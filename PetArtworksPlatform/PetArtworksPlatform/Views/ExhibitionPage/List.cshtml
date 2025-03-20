@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PetArtworksPlatform.Models.ExhibitionToListDto>
+
+@{
+    ViewData["Title"] = "Exhibitions";
+}
+
+<h1>Exhibitions</h1>
+
+<p>
+    <a asp-action="New">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ExhibitionTitle)
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExhibitionTitle)
+                </td>
+                <td>
+                    <span class="status-label status-@(item.Status.ToLower())">
+                        @item.Status
+                    </span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ExhibitionId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.ExhibitionId">Edit</a> |
+                    <a asp-action="ConfirmDelete" asp-route-id="@item.ExhibitionId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

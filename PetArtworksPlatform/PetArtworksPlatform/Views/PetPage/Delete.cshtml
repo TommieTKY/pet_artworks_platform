@@ -1,0 +1,28 @@
+﻿@model PetArtworksPlatform.Models.DTOs.PetDTO
+
+@{
+    ViewData["Title"] = "Delete Pet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Delete Pet</h1>
+
+    <div class="alert alert-danger">
+        Are you sure you want to delet @Model.Name?
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">Type: @Model.Type</p>
+            <p class="card-text">Breed: @Model.Breed</p>
+            <p class="card-text">Date of Birth: @Model.DOB.ToShortDateString()</p>
+        </div>
+    </div>
+
+    <form asp-controller="PetPage" asp-action="DeleteConfirmed" asp-route-id="@Model.PetId" method="post">
+        <button type="submit" class="btn btn-danger mt-3">Delete</button>
+        <a asp-action="List" class="btn btn-secondary mt-3">Cancel</a>
+    </form>
+</div>
