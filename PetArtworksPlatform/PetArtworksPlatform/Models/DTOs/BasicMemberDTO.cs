@@ -1,6 +1,6 @@
 using System;
 
-namespace PetArtworksPlatform.Models.DTOs
+namespace pawpals.Models.DTOs
 {
     public class BasicMemberDTO
     {
