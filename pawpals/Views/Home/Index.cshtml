@@ -1,0 +1,26 @@
+﻿@model pawpals.Models.Member
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Welcome, @Model.MemberName!</h1>
+
+<div>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Bio:</strong> @Model.Bio</p>
+    <p><strong>Location:</strong> @Model.Location</p>
+</div>
+
+<h2>Your Pets</h2>
+<ul>
+    @foreach (var petOwner in Model.PetOwners)
+    {
+        @if (petOwner.Pet != null)
+        {
+            <li>@petOwner.Pet.Name (@petOwner.Pet.Type)</li>
+        }
+    }
+</ul>
+
+<a asp-action="Privacy">Privacy</a>
