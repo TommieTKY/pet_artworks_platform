@@ -632,9 +632,54 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "petDto",
-        "Type": "PetArtworksPlatform.Models.DTOs.PetDTO",
-        "IsRequired": true
+        "Name": "PetId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Breed",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DOB",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerList",
+        "Type": "System.Collections.Generic.List\u00601[[PetArtworksPlatform.Models.DTOs.MemberDTO, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasPic",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "PetImagePath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PetImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -798,9 +843,75 @@
         "IsRequired": true
       },
       {
-        "Name": "petDto",
-        "Type": "PetArtworksPlatform.Models.DTOs.PetDTO",
+        "Name": "PetId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Breed",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DOB",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerList",
+        "Type": "System.Collections.Generic.List\u00601[[PetArtworksPlatform.Models.DTOs.MemberDTO, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasPic",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "PetImagePath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PetImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetArtworksPlatform.Controllers.PetController",
+    "Method": "UpdatePetImage",
+    "RelativePath": "api/Pet/UpdatePetImage/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "petPic",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

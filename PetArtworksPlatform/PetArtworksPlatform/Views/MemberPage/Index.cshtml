@@ -9,9 +9,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th>MemberId</th>
+            @* <th>MemberId</th> *@
             <th>Name</th>
             <th>Email</th>
+            <th>Location</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -19,9 +20,10 @@
         @foreach (var member in Model)
         {
             <tr>
-                <td>@member.MemberId</td>
+                @* <td>@member.MemberId</td> *@
                 <td>@member.MemberName</td>
                 <td>@member.Email</td>
+                <td>@member.Location</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@member.MemberId" class="btn btn-warning">Edit</a>
                     <a asp-action="Details" asp-route-id="@member.MemberId" class="btn btn-info">Details</a>

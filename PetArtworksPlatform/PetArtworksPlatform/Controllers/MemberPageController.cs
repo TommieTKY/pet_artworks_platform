@@ -36,6 +36,12 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var member = await _context.Members
+                .Include(m => m.Followers)
+                    .ThenInclude(c => c.Follower) 
+                .Include(m => m.Following)
+                    .ThenInclude(c => c.Following)
+                .Include(m => m.PetOwners) 
+                    .ThenInclude(po => po.Pet)
                 .Where(m => m.MemberId == id)
                 .Select(m => new MemberDTO
                 {
@@ -43,7 +49,27 @@ namespace PetArtworksPlatform.Controllers
                     MemberName = m.MemberName,
                     Email = m.Email,
                     Bio = m.Bio,
-                    Location = m.Location
+                    Location = m.Location,
+                    Followers = m.Followers.Select(c => new BasicMemberDTO
+                    {
+                        MemberId = c.Follower.MemberId,
+                        MemberName = c.Follower.MemberName
+                    }).ToList(),
+                    Following = m.Following.Select(c => new BasicMemberDTO
+                    {
+                        MemberId = c.Following.MemberId,
+                        MemberName = c.Following.MemberName
+                    }).ToList(),
+                    Pets = m.PetOwners.Select(po => new PetDTO 
+                    {
+                        PetId = po.Pet.PetId,
+                        Name = po.Pet.Name,
+                        Type = po.Pet.Type,
+                        Breed = po.Pet.Breed,
+                        DOB = po.Pet.DOB,
+                        HasPic = po.Pet.HasPic,
+                        PetImagePath = po.Pet.HasPic ? $"/image/pet/{po.Pet.PetId}{po.Pet.PicExtension}" : null
+                    }).ToList()
                 })
                 .FirstOrDefaultAsync();
 
@@ -131,16 +157,79 @@ namespace PetArtworksPlatform.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        // [HttpPost("DeleteConfirmed/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var member = await _context.Members.FindAsync(id);
-            if (member == null) return NotFound();
+            var member = await _context.Members
+                .Include(m => m.Followers) 
+                .Include(m => m.Following) 
+                .Include(m => m.PetOwners)
+                .FirstOrDefaultAsync(m => m.MemberId == id);
+
+            if (member == null)
+            {
+                return NotFound();
+            }
+
+            var followers = _context.Connections
+                .Where(c => c.FollowerId == id)
+                .ToList();
+
+            var following = _context.Connections
+                .Where(c => c.FollowingId == id)
+                .ToList();
+
+            _context.Connections.RemoveRange(followers);
+            _context.Connections.RemoveRange(following);
+
+            var petOwners = _context.PetOwners
+                .Where(po => po.OwnerId == id)
+                .ToList();
+                
+            _context.PetOwners.RemoveRange(petOwners);
 
             _context.Members.Remove(member);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> FollowersAndFollowing(int memberId)
+        {
+            var member = await _context.Members
+                .Include(m => m.Followers)
+                    .ThenInclude(c => c.Follower) 
+                .Include(m => m.Following)
+                    .ThenInclude(c => c.Following) 
+                .FirstOrDefaultAsync(m => m.MemberId == memberId);
+
+            if (member == null)
+            {
+                return NotFound();
+            }
+
+            var followers = member.Followers.Select(c => new BasicMemberDTO
+            {
+                MemberId = c.Follower.MemberId,
+                MemberName = c.Follower.MemberName
+            }).ToList();
+
+            var following = member.Following.Select(c => new BasicMemberDTO
+            {
+                MemberId = c.Following.MemberId,
+                MemberName = c.Following.MemberName
+            }).ToList();
+
+            var viewConnection = new FollowersAndFollowingConnection
+            {
+                MemberId = member.MemberId,
+                MemberName = member.MemberName,
+                Followers = followers,
+                Following = following
+            };
+
+            return View(viewConnection);
         }
     }
 }

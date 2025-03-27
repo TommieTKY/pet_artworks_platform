@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NsViBkO9uF0=",
+  "dgSpecHash": "l1n6yasv5EQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\PetArtworksPlatform\\PetArtworksPlatform\\PetArtworksPlatform.csproj",
+  "projectFilePath": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform\\PetArtworksPlatform\\PetArtworksPlatform\\PetArtworksPlatform.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tongk\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\tongk\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

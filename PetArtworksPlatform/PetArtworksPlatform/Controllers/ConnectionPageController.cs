@@ -37,6 +37,15 @@ namespace PetArtworksPlatform.Controllers
         {
             if (ModelState.IsValid)
             {
+                var existingConnection = _context.Connections
+                    .FirstOrDefault(c => c.FollowerId == connection.FollowerId && c.FollowingId == connection.FollowingId);
+
+                if (existingConnection != null)
+                {
+                    ModelState.AddModelError(string.Empty, "This connection already exists.");
+                    return View(connection);
+                }
+
                 _context.Connections.Add(connection);
                 _context.SaveChanges();
                 return RedirectToAction("Index");

@@ -4872,11 +4872,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\PetArtworksPlatform\\PetArtworksPlatform\\PetArtworksPlatform.csproj",
+      "projectUniqueName": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform\\PetArtworksPlatform\\PetArtworksPlatform\\PetArtworksPlatform.csproj",
       "projectName": "PetArtworksPlatform",
-      "projectPath": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\PetArtworksPlatform\\PetArtworksPlatform\\PetArtworksPlatform.csproj",
+      "projectPath": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform\\PetArtworksPlatform\\PetArtworksPlatform\\PetArtworksPlatform.csproj",
       "packagesPath": "C:\\Users\\tongk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\PetArtworksPlatform\\PetArtworksPlatform\\obj\\",
+      "outputPath": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform\\PetArtworksPlatform\\PetArtworksPlatform\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -6,14 +6,13 @@ namespace PetArtworksPlatform.Models
     public class PetOwner
     {
         [Key]
-        public int PetOwnerId { get; set; }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PetId { get; set; }
         public int OwnerId { get; set; }
 
         [ForeignKey("PetId")]
         public Pet? Pet { get; set; }
-
+        
         [ForeignKey("OwnerId")]
         public Member? Owner { get; set; }
     }
