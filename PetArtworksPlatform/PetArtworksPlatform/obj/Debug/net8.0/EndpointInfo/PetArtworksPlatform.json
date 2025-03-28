@@ -1158,21 +1158,96 @@
         "tags": [
           "Pet"
         ],
+        "parameters": [
+          {
+            "name": "PetId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Breed",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DOB",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "OwnerIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "OwnerList",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            }
+          },
+          {
+            "name": "HasPic",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "PetImagePath",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/PetDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PetDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PetDTO"
+                "type": "object",
+                "properties": {
+                  "PetImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "PetImage": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -1215,23 +1290,96 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "PetId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Breed",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DOB",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "OwnerIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "OwnerList",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            }
+          },
+          {
+            "name": "HasPic",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "PetImagePath",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/PetDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PetDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PetDTO"
+                "type": "object",
+                "properties": {
+                  "PetImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "PetImage": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -1421,6 +1569,49 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pet/UpdatePetImage/{id}": {
+      "post": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "petPic": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "petPic": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1706,12 +1897,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "follower": {
-            "$ref": "#/components/schemas/Member"
-          },
           "followingId": {
             "type": "integer",
             "format": "int32"
+          },
+          "follower": {
+            "$ref": "#/components/schemas/Member"
           },
           "following": {
             "$ref": "#/components/schemas/Member"
@@ -1919,6 +2110,13 @@
             "type": "string",
             "nullable": true
           },
+          "pets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Pet"
+            },
+            "nullable": true
+          },
           "userId": {
             "type": "string",
             "nullable": true
@@ -1972,6 +2170,32 @@
           "location": {
             "type": "string",
             "nullable": true
+          },
+          "ownerId": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "followers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BasicMemberDTO"
+            },
+            "nullable": true
+          },
+          "following": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BasicMemberDTO"
+            },
+            "nullable": true
+          },
+          "pets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PetDTO"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2006,11 +2230,11 @@
             },
             "nullable": true
           },
-          "artworks": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Artwork"
-            },
+          "hasPic": {
+            "type": "boolean"
+          },
+          "picExtension": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2047,11 +2271,23 @@
             },
             "nullable": true
           },
-          "listArtworks": {
+          "ownerList": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ArtworkForOtherDto"
+              "$ref": "#/components/schemas/MemberDTO"
             },
+            "nullable": true
+          },
+          "hasPic": {
+            "type": "boolean"
+          },
+          "petImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "petImage": {
+            "type": "string",
+            "format": "binary",
             "nullable": true
           }
         },
@@ -2074,10 +2310,6 @@
       "PetOwner": {
         "type": "object",
         "properties": {
-          "petOwnerId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "petId": {
             "type": "integer",
             "format": "int32"

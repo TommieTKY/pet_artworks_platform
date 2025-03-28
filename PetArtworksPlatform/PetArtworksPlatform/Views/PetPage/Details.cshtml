@@ -28,14 +28,28 @@
                         @(Model.Pet.DOB != default(DateTime) ? Model.Pet.DOB.ToString("MM/dd/yyyy") : "Not specified")
                     </dd>
 
+                    @if (!string.IsNullOrEmpty(Model.Pet.PetImagePath))
+                    {
+                        <dt class="col-sm-4">Pet Image</dt>
+                        <dd class="col-sm-8">
+                            <img style="width:150px; height:auto;" src="@Model.Pet.PetImagePath" />
+                        </dd>
+                    }
+
                     <dt class="col-sm-3">Owners</dt>
                     <dd class="col-sm-9">
                         @if (Model.Pet.OwnerIds.Any() == true)
                         {
-                            <ul>
+                            @* <ul>
                                 @foreach (var ownerId in Model.Pet.OwnerIds)
                                 {
                                     <li>Owner ID: @ownerId</li>
+                                }
+                            </ul> *@
+                            <ul>
+                                @foreach (var owner in Model.Owners)
+                                {
+                                    <li>Owner ID: @owner.MemberId - Name: @owner.MemberName</li>
                                 }
                             </ul>
                         }
@@ -53,8 +67,4 @@
             <a asp-controller="PetPage" asp-action="List" class="btn btn-secondary">Back to List</a>
         </div>
     }
-    @* else
-    {
-        <div class="alert alert-warning">Pet not found.</div>
-    } *@
 </div>

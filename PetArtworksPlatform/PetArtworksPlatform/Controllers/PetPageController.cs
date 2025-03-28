@@ -49,6 +49,7 @@ namespace PetArtworksPlatform.Controllers
 
             var pet = await _context.Pets
                 .Include(p => p.PetOwners) 
+                    .ThenInclude(po => po.Owner)
                 .FirstOrDefaultAsync(m => m.PetId == id);
 
             if (pet == null)
@@ -65,8 +66,20 @@ namespace PetArtworksPlatform.Controllers
                     Type = pet.Type ?? string.Empty,
                     Breed = pet.Breed ?? string.Empty,
                     DOB = pet.DOB,
-                    OwnerIds = pet.PetOwners.Select(po => po.OwnerId).ToList() 
-                }
+                    OwnerIds = pet.PetOwners.Select(po => po.OwnerId).ToList(),
+                    HasPic = pet.HasPic,
+                    PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null
+                },
+                Owners = pet.PetOwners
+                .Select(po => new MemberDTO
+                {
+                    MemberId = po.Owner.MemberId,
+                    MemberName = po.Owner.MemberName,
+                    Email = po.Owner.Email,
+                    Bio = po.Owner.Bio,
+                    Location = po.Owner.Location
+                })
+                .ToList()
             };
 
             return View(petDetails);
@@ -82,8 +95,13 @@ namespace PetArtworksPlatform.Controllers
                 })
                 .ToList();
 
-            ViewBag.Owners = owners; 
-            return View();
+            var petDto = new PetDTO
+            {
+                OwnerList = owners, 
+                OwnerIds = new List<int>() 
+            };
+
+            return View(petDto);
         }
 
         [HttpPost]
@@ -127,16 +145,6 @@ namespace PetArtworksPlatform.Controllers
 
                 return RedirectToAction(nameof(List));
             }
-            
-                var owners = _context.Members
-                    .Select(m => new MemberDTO
-                    {
-                        MemberId = m.MemberId,
-                        MemberName = m.MemberName
-                    })
-                    .ToList();
-
-                ViewBag.Owners = owners;
                 return View(petDto);
         }
 
@@ -163,16 +171,17 @@ namespace PetArtworksPlatform.Controllers
                 Type = pet.Type,
                 Breed = pet.Breed,
                 DOB = pet.DOB,
-                OwnerIds = pet.PetOwners?.Select(po => po.OwnerId).ToList() ?? new List<int>()
+                OwnerIds = pet.PetOwners?.Select(po => po.OwnerId).ToList() ?? new List<int>(),
+                OwnerList = await _context.Members
+                    .Select(m => new MemberDTO
+                    {
+                        MemberId = m.MemberId,
+                        MemberName = m.MemberName
+                    })
+                    .ToListAsync(),
+                HasPic = pet.HasPic,
+                PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null
             };
-
-            ViewBag.Owners = await _context.Members
-                .Select(m => new MemberDTO
-                {
-                    MemberId = m.MemberId,
-                    MemberName = m.MemberName
-                })
-                .ToListAsync();
 
             return View(petDto);
         }
@@ -186,47 +195,64 @@ namespace PetArtworksPlatform.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var pet = await _context.Pets
-                    .Include(p => p.PetOwners)
-                    .FirstOrDefaultAsync(p => p.PetId == id);
-
-                if (pet == null)
-                {
-                    return NotFound();
-                }
-
-                pet.Name = petDto.Name;
-                pet.Type = petDto.Type;
-                pet.Breed = petDto.Breed;
-                pet.DOB = petDto.DOB;
-
-                _context.Update(pet);
-
-                var existingOwners = _context.PetOwners
-                    .Where(po => po.PetId == pet.PetId)
-                    .ToList();
-
-                _context.PetOwners.RemoveRange(existingOwners.Where(po => !petDto.OwnerIds.Contains(po.OwnerId)));
-
-                var newOwners = petDto.OwnerIds
-                    .Where(ownerId => !existingOwners.Any(po => po.OwnerId == ownerId))
-                    .Select(ownerId => new PetOwner
+                petDto.OwnerList = await _context.Members
+                    .Select(m => new MemberDTO
                     {
-                        PetId = pet.PetId,
-                        OwnerId = ownerId
+                        MemberId = m.MemberId,
+                        MemberName = m.MemberName
                     })
-                    .ToList();
-
-                _context.PetOwners.AddRange(newOwners);
-
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(List));
+                    .ToListAsync();
+                    
+                return View(petDto);
             }
 
-            return View(petDto);
+            var pet = await _context.Pets
+                .Include(p => p.PetOwners)
+                .FirstOrDefaultAsync(p => p.PetId == id);
+
+            if (pet == null)
+            {
+                return NotFound();
+            }
+
+            pet.Name = petDto.Name;
+            pet.Type = petDto.Type;
+            pet.Breed = petDto.Breed;
+            pet.DOB = petDto.DOB;
+
+            if (petDto.PetImage != null && petDto.PetImage.Length > 0)
+            {
+                var filePath = Path.Combine("wwwroot/images/pets", $"{pet.PetId}{Path.GetExtension(petDto.PetImage.FileName)}");
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await petDto.PetImage.CopyToAsync(stream);
+                }
+                petDto.PetImagePath = $"/images/pets/{pet.PetId}{Path.GetExtension(petDto.PetImage.FileName)}";
+            }
+
+            _context.Update(pet);
+
+            var existingOwners = _context.PetOwners
+                .Where(po => po.PetId == pet.PetId)
+                .ToList();
+
+            _context.PetOwners.RemoveRange(existingOwners.Where(po => !petDto.OwnerIds.Contains(po.OwnerId)));
+
+            var newOwners = petDto.OwnerIds?
+                .Where(ownerId => !existingOwners.Any(po => po.OwnerId == ownerId))
+                .Select(ownerId => new PetOwner
+                {
+                    PetId = pet.PetId,
+                    OwnerId = ownerId
+                }).ToList();
+
+            _context.PetOwners.AddRange(newOwners);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(List));
         }
 
         [HttpGet("Delete/{id}")]

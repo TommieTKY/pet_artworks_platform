@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +35,7 @@ namespace PetArtworksPlatform.Controllers
         public async Task<ActionResult<PetDTO>> GetPet(int id)
         {
             var pet = await _context.Pets
-                .Include(p => p.PetOwners) // Load the PetOwners data
+                .Include(p => p.PetOwners)
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
@@ -49,7 +50,9 @@ namespace PetArtworksPlatform.Controllers
                 Type = pet.Type,
                 Breed = pet.Breed,
                 DOB = pet.DOB,
-                OwnerIds = pet.PetOwners.Select(po => po.OwnerId).ToList()
+                OwnerIds = pet.PetOwners.Select(po => po.OwnerId).ToList(),
+                HasPic = pet.HasPic,
+                PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null
             };
 
             return petDto;
@@ -69,7 +72,7 @@ namespace PetArtworksPlatform.Controllers
         public async Task<ActionResult<IEnumerable<PetDTO>>> GetPets()
         {
             var pets = await _context.Pets
-                .Include(p => p.PetOwners) // Load the PetOwners data
+                .Include(p => p.PetOwners) 
                 .Select(p => new PetDTO
                 {
                     PetId = p.PetId,
@@ -77,7 +80,9 @@ namespace PetArtworksPlatform.Controllers
                     Type = p.Type,
                     Breed = p.Breed,
                     DOB = p.DOB,
-                    OwnerIds = p.PetOwners.Select(po => po.OwnerId).ToList()
+                    OwnerIds = p.PetOwners.Select(po => po.OwnerId).ToList(),
+                    HasPic = p.HasPic,
+                    PetImagePath = p.HasPic ? $"/image/pet/{p.PetId}{p.PicExtension}" : null
                 })
                 .ToListAsync();
 
@@ -105,7 +110,6 @@ namespace PetArtworksPlatform.Controllers
                 return BadRequest(ModelState);
             }
 
-            // Check the owner ids existing or not
             foreach (var ownerId in petDto.OwnerIds)
             {
                 var owner = await _context.Members.FindAsync(ownerId);
@@ -115,19 +119,19 @@ namespace PetArtworksPlatform.Controllers
                 }
             }
 
-            // Create/Add new pet
             var pet = new Pet
             {
                 Name = petDto.Name,
                 Type = petDto.Type,
                 Breed = petDto.Breed,
-                DOB = petDto.DOB
+                DOB = petDto.DOB,
+                HasPic = petDto.PetImage != null,
+                PicExtension = petDto.PetImage != null ? Path.GetExtension(petDto.PetImage.FileName) : null
             };
 
             _context.Pets.Add(pet);
             await _context.SaveChangesAsync();
 
-            // Link all owners
             foreach (var ownerId in petDto.OwnerIds)
             {
                 var petOwner = new PetOwner
@@ -140,7 +144,6 @@ namespace PetArtworksPlatform.Controllers
 
             await _context.SaveChangesAsync();
 
-            // Return PetDTO
             var resultDto = new PetDTO
             {
                 PetId = pet.PetId,
@@ -148,7 +151,9 @@ namespace PetArtworksPlatform.Controllers
                 Type = pet.Type,
                 Breed = pet.Breed,
                 DOB = pet.DOB,
-                OwnerIds = petDto.OwnerIds
+                OwnerIds = petDto.OwnerIds,
+                HasPic = pet.HasPic,
+                PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null
             };
 
             return CreatedAtAction(nameof(GetPet), new { id = pet.PetId }, resultDto);
@@ -178,7 +183,7 @@ namespace PetArtworksPlatform.Controllers
             }
 
             var pet = await _context.Pets
-                .Include(p => p.PetOwners) // Load the PetOwners data
+                .Include(p => p.PetOwners) 
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
@@ -186,50 +191,41 @@ namespace PetArtworksPlatform.Controllers
                 return NotFound();
             }
 
-            // Update Pet's information
             pet.Name = petDto.Name;
             pet.Type = petDto.Type;
             pet.Breed = petDto.Breed;
             pet.DOB = petDto.DOB;
 
-            // Update Owner's information
-            var currentOwnerIds = pet.PetOwners.Select(po => po.OwnerId).ToList();
-            var newOwnerIds = petDto.OwnerIds;
+            if (petDto.PetImage != null && petDto.PetImage.Length > 0)
+            {
+                pet.HasPic = true;
+                pet.PicExtension = Path.GetExtension(petDto.PetImage.FileName);
+                var filePath = Path.Combine("wwwroot/image/pet/", $"{pet.PetId}{pet.PicExtension}");
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await petDto.PetImage.CopyToAsync(stream);
+                }
+            }
 
-            // Remove Owner
-            var ownersToRemove = pet.PetOwners
-                .Where(po => !newOwnerIds.Contains(po.OwnerId))
+            _context.Update(pet);
+
+            var existingOwners = _context.PetOwners
+                .Where(po => po.PetId == pet.PetId)
                 .ToList();
-            _context.PetOwners.RemoveRange(ownersToRemove);
 
-            // Add new Owner
-            var ownersToAdd = newOwnerIds
-                .Where(ownerId => !currentOwnerIds.Contains(ownerId))
+            _context.PetOwners.RemoveRange(existingOwners.Where(po => !petDto.OwnerIds.Contains(po.OwnerId)));
+
+            var newOwners = petDto.OwnerIds?
+                .Where(ownerId => !existingOwners.Any(po => po.OwnerId == ownerId))
                 .Select(ownerId => new PetOwner
                 {
                     PetId = pet.PetId,
                     OwnerId = ownerId
-                })
-                .ToList();
-            _context.PetOwners.AddRange(ownersToAdd);
+                }).ToList();
 
-            _context.Entry(pet).State = EntityState.Modified;
+            _context.PetOwners.AddRange(newOwners);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PetExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -417,6 +413,85 @@ namespace PetArtworksPlatform.Controllers
 
             _context.PetOwners.Remove(petOwner);
             await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Updates the image for a specific pet.
+        /// </summary>
+        /// <param name="id">The ID of the pet</param>
+        /// <param name="petPic">The image file to upload</param>
+        /// <returns>No content if the update is successful</returns>
+        /// <response code="204">Update successful</response>
+        /// <response code="400">If the image is invalid</response>
+        /// <response code="404">If the pet is not found</response>
+        [HttpPost("UpdatePetImage/{id}")]
+        [Authorize]
+        public async Task<IActionResult> UpdatePetImage(int id, IFormFile petPic)
+        {
+            var pet = await _context.Pets.FindAsync(id);
+            if (pet == null)
+            {
+                return NotFound();
+            }
+            if (petPic == null)
+            {
+                return BadRequest(new { message = "Pet picture is required." });
+            }
+            if (petPic.Length == 0)
+            {
+                return BadRequest(new { message = "Pet picture cannot be empty." });
+            }
+            if (petPic.Length > 10 * 1024 * 1024) 
+            {
+                return BadRequest(new { message = "Pet picture size cannot exceed 10MB." });
+            }
+
+            if (pet.HasPic)
+            {
+                string oldFileName = $"{pet.PetId}{pet.PicExtension}";
+                string oldFilePath = Path.Combine("wwwroot/image/pet/", oldFileName);
+                if (System.IO.File.Exists(oldFilePath))
+                {
+                    System.IO.File.Delete(oldFilePath);
+                }
+            }
+
+            List<string> Extensions = new List<string> { ".jpeg", ".jpg", ".png", ".gif" };
+            string petPicExtension = Path.GetExtension(petPic.FileName).ToLowerInvariant();
+            if (!Extensions.Contains(petPicExtension))
+            {
+                return BadRequest(new { message = "Invalid file type. Only .jpeg, .jpg, .png, and .gif are allowed." });
+            }
+
+            string fileName = $"{id}{petPicExtension}";
+            string filePath = Path.Combine("wwwroot/image/pet/", fileName);
+            using (var targetStream = System.IO.File.Create(filePath))
+            {
+                await petPic.CopyToAsync(targetStream);
+            }
+
+            pet.PicExtension = petPicExtension;
+            pet.HasPic = true;
+
+            _context.Entry(pet).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PetExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return NoContent();
         }

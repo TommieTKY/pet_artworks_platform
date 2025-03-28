@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>vfsvfavxtl</Fingerprint>
-      <Integrity>u6jrse7+2qclqrRvkXBjpmqZbvwrx7RsvDaQ+C3BtpM=</Integrity>
+      <Fingerprint>e7jvzkuleg</Fingerprint>
+      <Integrity>BppmVhcT42yl7U+P2OegKxALDqk8ucRj8j2ywHFM56M=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\1.jpg'))</OriginalItemSpec>
