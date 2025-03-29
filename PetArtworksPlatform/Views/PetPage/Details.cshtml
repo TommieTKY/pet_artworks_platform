@@ -1,0 +1,70 @@
+﻿@model PetArtworksPlatform.Models.PetDetails
+
+@{
+    ViewData["Title"] = "Pet Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Pet Details</h1>
+
+    @if (Model != null)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(model => model.Pet.Name)</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">ID</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Pet.PetId)</dd>
+
+                    <dt class="col-sm-3">Type</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Pet.Type)</dd>
+
+                    <dt class="col-sm-3">Breed</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Pet.Breed)</dd>
+
+                    <dt class="col-sm-3">Date of Birth</dt>
+                    <dd class="col-sm-9">
+                        @(Model.Pet.DOB != default(DateTime) ? Model.Pet.DOB.ToString("MM/dd/yyyy") : "Not specified")
+                    </dd>
+
+                    @if (!string.IsNullOrEmpty(Model.Pet.PetImagePath))
+                    {
+                        <dt class="col-sm-4">Pet Image</dt>
+                        <dd class="col-sm-8">
+                            <img style="width:150px; height:auto;" src="@Model.Pet.PetImagePath" />
+                        </dd>
+                    }
+
+                    <dt class="col-sm-3">Owners</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.Pet.OwnerIds.Any() == true)
+                        {
+                            @* <ul>
+                                @foreach (var ownerId in Model.Pet.OwnerIds)
+                                {
+                                    <li>Owner ID: @ownerId</li>
+                                }
+                            </ul> *@
+                            <ul>
+                                @foreach (var owner in Model.Owners)
+                                {
+                                    <li>Owner ID: @owner.MemberId - Name: @owner.MemberName</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <span>No owners assigned.</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a asp-controller="PetPage" asp-action="Edit" asp-route-id="@Model.Pet.PetId" class="btn btn-warning">Edit</a>
+            <a asp-controller="PetPage" asp-action="List" class="btn btn-secondary">Back to List</a>
+        </div>
+    }
+</div>

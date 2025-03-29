@@ -1,0 +1,2332 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "PetArtworksPlatform",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Artists/List": {
+      "get": {
+        "tags": [
+          "Artists"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ArtistToListDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ArtistToListDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ArtistToListDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Artists/FindArtist/{ArtistID}": {
+      "get": {
+        "tags": [
+          "Artists"
+        ],
+        "parameters": [
+          {
+            "name": "ArtistID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtistPersonDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtistPersonDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtistPersonDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Artists/Update/{ArtistID}": {
+      "put": {
+        "tags": [
+          "Artists"
+        ],
+        "parameters": [
+          {
+            "name": "ArtistID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtistPersonDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtistPersonDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtistPersonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Artists/Add": {
+      "post": {
+        "tags": [
+          "Artists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtistPersonDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtistPersonDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtistPersonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artist"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artist"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artist"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Artists/Delete/{id}": {
+      "delete": {
+        "tags": [
+          "Artists"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Artworks/List": {
+      "get": {
+        "tags": [
+          "Artworks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ArtworkToListDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ArtworkToListDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ArtworkToListDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Artworks/FindArtwork/{ArtworkID}": {
+      "get": {
+        "tags": [
+          "Artworks"
+        ],
+        "parameters": [
+          {
+            "name": "ArtworkID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtworkItemDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtworkItemDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtworkItemDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Artworks/Update/{ArtworkID}": {
+      "put": {
+        "tags": [
+          "Artworks"
+        ],
+        "parameters": [
+          {
+            "name": "ArtworkID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkItemDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkItemDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Artworks/Add": {
+      "post": {
+        "tags": [
+          "Artworks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkItemDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkItemDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artwork"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artwork"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artwork"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Artworks/Delete/{id}": {
+      "delete": {
+        "tags": [
+          "Artworks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Artworks/UpdateArtworkImage/{id}": {
+      "post": {
+        "tags": [
+          "Artworks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ArtworkPic": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "ArtworkPic": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Connection/NewFollow/{memberId}/{followingId}": {
+      "post": {
+        "tags": [
+          "Connection"
+        ],
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "followingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Connection/Unfollow/{memberId}/{followingId}": {
+      "delete": {
+        "tags": [
+          "Connection"
+        ],
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "followingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Exhibitions/List": {
+      "get": {
+        "tags": [
+          "Exhibitions"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExhibitionToListDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExhibitionToListDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExhibitionToListDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Exhibitions/FindExhibition/{ExhibitionID}": {
+      "get": {
+        "tags": [
+          "Exhibitions"
+        ],
+        "parameters": [
+          {
+            "name": "ExhibitionID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExhibitionItemDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExhibitionItemDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExhibitionItemDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Exhibitions/Update/{ExhibitionID}": {
+      "put": {
+        "tags": [
+          "Exhibitions"
+        ],
+        "parameters": [
+          {
+            "name": "ExhibitionID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionItemDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionItemDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Exhibitions/Add": {
+      "post": {
+        "tags": [
+          "Exhibitions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionItemDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionItemDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exhibition"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exhibition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exhibition"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Exhibitions/Delete/{id}": {
+      "delete": {
+        "tags": [
+          "Exhibitions"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Exhibitions/AddArtwork/{ExhibitionID}": {
+      "post": {
+        "tags": [
+          "Exhibitions"
+        ],
+        "parameters": [
+          {
+            "name": "ExhibitionID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exhibition"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exhibition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exhibition"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Exhibitions/DeleteArtwork/{ExhibitionID}": {
+      "delete": {
+        "tags": [
+          "Exhibitions"
+        ],
+        "parameters": [
+          {
+            "name": "ExhibitionID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Member/FindMember/{id}": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Member/Followers/{memberId}": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BasicMemberDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BasicMemberDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BasicMemberDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Member/Following/{memberId}": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BasicMemberDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BasicMemberDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BasicMemberDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Member/ListMembers": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Member/AddMember": {
+      "post": {
+        "tags": [
+          "Member"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Member/UpdateMember/{id}": {
+      "put": {
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Member/DeleteMember/{id}": {
+      "delete": {
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pet/FindPet/{id}": {
+      "get": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pet/ListPets": {
+      "get": {
+        "tags": [
+          "Pet"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PetDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PetDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PetDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pet/AddPet": {
+      "post": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "PetId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Breed",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DOB",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "OwnerIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "OwnerList",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            }
+          },
+          {
+            "name": "HasPic",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "PetImagePath",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "PetImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "PetImage": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pet/UpdatePet/{id}": {
+      "put": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PetId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Breed",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DOB",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "OwnerIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "OwnerList",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/MemberDTO"
+              }
+            }
+          },
+          {
+            "name": "HasPic",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "PetImagePath",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "PetImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "PetImage": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pet/DeletePet/{id}": {
+      "delete": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pet/Owners/{petId}": {
+      "get": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pet/MemberPets/{memberId}": {
+      "get": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PetDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PetDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PetDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pet/AddOwner/{petId}/{memberId}": {
+      "post": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pet/RemoveOwner/{petId}/{memberId}": {
+      "delete": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pet/UpdatePetImage/{id}": {
+      "post": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "petPic": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "petPic": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Delete/{id}": {
+      "get": {
+        "tags": [
+          "PetPage"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Artist": {
+        "type": "object",
+        "properties": {
+          "artistID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artistName": {
+            "type": "string",
+            "nullable": true
+          },
+          "artistBiography": {
+            "type": "string",
+            "nullable": true
+          },
+          "artworks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Artwork"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArtistPersonDto": {
+        "type": "object",
+        "properties": {
+          "artistId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artistName": {
+            "type": "string",
+            "nullable": true
+          },
+          "artistBiography": {
+            "type": "string",
+            "nullable": true
+          },
+          "listArtworks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArtworkForOtherDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArtistToListDto": {
+        "type": "object",
+        "properties": {
+          "artistId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artistName": {
+            "type": "string",
+            "nullable": true
+          },
+          "artistBiography": {
+            "type": "string",
+            "nullable": true
+          },
+          "artworkCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Artwork": {
+        "type": "object",
+        "properties": {
+          "artworkID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artworkTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "artworkMedium": {
+            "type": "string",
+            "nullable": true
+          },
+          "artworkYearCreated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artistID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasPic": {
+            "type": "boolean"
+          },
+          "picExtension": {
+            "type": "string",
+            "nullable": true
+          },
+          "exhibitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Exhibition"
+            },
+            "nullable": true
+          },
+          "pet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Pet"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArtworkForOtherDto": {
+        "type": "object",
+        "properties": {
+          "artworkId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artworkTitle": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArtworkIdDto": {
+        "type": "object",
+        "properties": {
+          "artworkId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArtworkItemDto": {
+        "type": "object",
+        "properties": {
+          "artworkId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artworkTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "artworkMedium": {
+            "type": "string",
+            "nullable": true
+          },
+          "artworkYearCreated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasArtworkPic": {
+            "type": "boolean"
+          },
+          "artworkImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "artistID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "listExhibitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExhibitionForOtherDto"
+            },
+            "nullable": true
+          },
+          "name": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PetForArtworkDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArtworkToListDto": {
+        "type": "object",
+        "properties": {
+          "artworkId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artworkTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "artworkMedium": {
+            "type": "string",
+            "nullable": true
+          },
+          "artworkYearCreated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasArtworkPic": {
+            "type": "boolean"
+          },
+          "artworkImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "artistID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exhibitionCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BasicMemberDTO": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "memberName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Connection": {
+        "type": "object",
+        "properties": {
+          "connectionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "followerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "followingId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "follower": {
+            "$ref": "#/components/schemas/Member"
+          },
+          "following": {
+            "$ref": "#/components/schemas/Member"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Exhibition": {
+        "type": "object",
+        "properties": {
+          "exhibitionID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exhibitionTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "exhibitionDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "artworks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Artwork"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExhibitionForOtherDto": {
+        "type": "object",
+        "properties": {
+          "exhibitionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exhibitionTitle": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExhibitionItemDto": {
+        "type": "object",
+        "properties": {
+          "exhibitionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exhibitionTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "exhibitionDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "listArtworks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArtworkForOtherDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExhibitionToListDto": {
+        "type": "object",
+        "properties": {
+          "exhibitionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exhibitionTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "exhibitionDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "artworkCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentityUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Member": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "memberName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "pets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Pet"
+            },
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/IdentityUser"
+          },
+          "followers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connection"
+            },
+            "nullable": true
+          },
+          "following": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connection"
+            },
+            "nullable": true
+          },
+          "petOwners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PetOwner"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemberDTO": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "memberName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerId": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "followers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BasicMemberDTO"
+            },
+            "nullable": true
+          },
+          "following": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BasicMemberDTO"
+            },
+            "nullable": true
+          },
+          "pets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PetDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Pet": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "breed": {
+            "type": "string",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "petOwners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PetOwner"
+            },
+            "nullable": true
+          },
+          "hasPic": {
+            "type": "boolean"
+          },
+          "picExtension": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PetDTO": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "breed": {
+            "type": "string",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ownerIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "ownerList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberDTO"
+            },
+            "nullable": true
+          },
+          "hasPic": {
+            "type": "boolean"
+          },
+          "petImagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "petImage": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PetForArtworkDto": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PetOwner": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ownerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pet": {
+            "$ref": "#/components/schemas/Pet"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/Member"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

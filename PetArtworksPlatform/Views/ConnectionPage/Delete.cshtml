@@ -1,0 +1,22 @@
+﻿@model PetArtworksPlatform.Models.Connection
+
+<h2>Delete Connection</h2>
+
+<p>Are you sure you want to delete this connection?</p>
+
+<table class="table">
+    <tr>
+        <th>Follower</th>
+        <td>@Model.Follower.MemberName (@Model.FollowerId)</td>
+    </tr>
+    <tr>
+        <th>Following</th>
+        <td>@Model.Following.MemberName (@Model.FollowingId)</td>
+    </tr>
+</table>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ConnectionId" />
+    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
