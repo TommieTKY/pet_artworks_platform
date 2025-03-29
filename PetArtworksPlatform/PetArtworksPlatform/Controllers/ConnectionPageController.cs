@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PetArtworksPlatform.Data;
-using PetArtworksPlatform.Models;
+using pawpals.Data;
+using pawpals.Models;
 using System.Threading.Tasks;
 
-namespace PetArtworksPlatform.Controllers
+namespace pawpals.Controllers
 {
     public class ConnectionPageController : Controller
     {
@@ -37,6 +37,15 @@ namespace PetArtworksPlatform.Controllers
         {
             if (ModelState.IsValid)
             {
+                var existingConnection = _context.Connections
+                    .FirstOrDefault(c => c.FollowerId == connection.FollowerId && c.FollowingId == connection.FollowingId);
+
+                if (existingConnection != null)
+                {
+                    ModelState.AddModelError(string.Empty, "This connection already exists.");
+                    return View(connection);
+                }
+
                 _context.Connections.Add(connection);
                 _context.SaveChanges();
                 return RedirectToAction("Index");

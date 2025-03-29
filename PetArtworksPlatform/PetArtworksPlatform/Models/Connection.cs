@@ -2,19 +2,20 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace PetArtworksPlatform.Models
+namespace pawpals.Models
 {
 
   public class Connection
   {
-        [Key]
-        public int ConnectionId { get; set; }
-        public int FollowerId { get; set; }
+      public int ConnectionId { get; set; }
+      public int FollowerId { get; set; } 
+      public int FollowingId { get; set; } 
 
-        public Member? Follower { get; set; } 
-        public int FollowingId { get; set; }
-
-        public Member? Following { get; set; } 
+      [ForeignKey("FollowerId")]
+      public Member? Follower { get; set; } 
+      
+      [ForeignKey("FollowingId")]
+      public Member? Following { get; set; } 
         
   }
 

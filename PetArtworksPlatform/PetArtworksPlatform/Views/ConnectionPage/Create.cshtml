@@ -1,6 +1,12 @@
-﻿@model PetArtworksPlatform.Models.Connection
+﻿@model pawpals.Models.Connection
 
 <h2>Create Connection</h2>
+@if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        </div>
+    }
 <br>
 <form asp-action="Create" method="post">
     <div class="form-group">

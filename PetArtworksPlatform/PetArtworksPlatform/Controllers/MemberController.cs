@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PetArtworksPlatform.Data;
-using PetArtworksPlatform.Models;
+using pawpals.Data;
+using pawpals.Models;
 using Microsoft.EntityFrameworkCore;
-using PetArtworksPlatform.Models.DTOs;
+using pawpals.Models.DTOs;
 
-namespace PetArtworksPlatform.Controllers
+namespace pawpals.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

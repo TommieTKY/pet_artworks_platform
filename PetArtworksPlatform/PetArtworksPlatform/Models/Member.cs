@@ -1,17 +1,20 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using pawpals.Models.DTOs;
 
-namespace PetArtworksPlatform.Models
+namespace pawpals.Models
 {
     public class Member
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MemberId { get; set; }
         public string? MemberName { get; set; }
         public string? Email { get; set; }
         public string? Bio { get; set; }
         public string? Location { get; set; }
+        public ICollection<Pet>? Pets { get; set; }
         public string? UserId { get; set; } 
         public IdentityUser? User { get; set; } 
 
@@ -22,4 +25,5 @@ namespace PetArtworksPlatform.Models
         // Many to Many Relationship: Pet Owners
         public ICollection<PetOwner> PetOwners { get; set; } = new List<PetOwner>();
     }
+
 }
