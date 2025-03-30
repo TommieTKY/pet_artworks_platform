@@ -112,27 +112,53 @@ namespace PetArtworksPlatform.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Validate owners
                 foreach (var ownerId in petDto.OwnerIds)
                 {
                     var owner = await _context.Members.FindAsync(ownerId);
                     if (owner == null)
                     {
                         ModelState.AddModelError("OwnerIds", $"Owner with ID {ownerId} not found");
+                        petDto.OwnerList = await GetOwnerList(); // Repopulate owner list
                         return View(petDto);
                     }
                 }
 
+                // Create the pet
                 var pet = new Pet
                 {
                     Name = petDto.Name,
                     Type = petDto.Type,
                     Breed = petDto.Breed,
-                    DOB = petDto.DOB
+                    DOB = petDto.DOB,
+                    HasPic = petDto.PetImage != null,
+                    PicExtension = petDto.PetImage != null ? Path.GetExtension(petDto.PetImage.FileName) : null
                 };
 
                 _context.Add(pet);
-                await _context.SaveChangesAsync();
-                
+                await _context.SaveChangesAsync(); // Save first to get the PetId
+
+                // Handle image upload if present
+                if (petDto.PetImage != null && petDto.PetImage.Length > 0)
+                {
+                    // Ensure directory exists
+                    var imageDirectory = Path.Combine("wwwroot", "image", "pet");
+                    if (!Directory.Exists(imageDirectory))
+                    {
+                        Directory.CreateDirectory(imageDirectory);
+                    }
+
+                    // Save the image
+                    string fileName = $"{pet.PetId}{pet.PicExtension}";
+                    string filePath = Path.Combine(imageDirectory, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await petDto.PetImage.CopyToAsync(stream);
+                    }
+                }
+
+                // Add owners
                 foreach (var ownerId in petDto.OwnerIds)
                 {
                     var petOwner = new PetOwner
@@ -147,7 +173,22 @@ namespace PetArtworksPlatform.Controllers
 
                 return RedirectToAction(nameof(List));
             }
-                return View(petDto);
+
+            // If we got this far, something failed; repopulate owner list
+            petDto.OwnerList = await GetOwnerList();
+            return View(petDto);
+        }
+
+        // Helper method to get owner list
+        private async Task<List<MemberDTO>> GetOwnerList()
+        {
+            return await _context.Members
+                .Select(m => new MemberDTO
+                {
+                    MemberId = m.MemberId,
+                    MemberName = m.MemberName
+                })
+                .ToListAsync();
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -206,7 +247,7 @@ namespace PetArtworksPlatform.Controllers
                         MemberName = m.MemberName
                     })
                     .ToListAsync();
-                    
+
                 return View(petDto);
             }
 
@@ -226,14 +267,39 @@ namespace PetArtworksPlatform.Controllers
 
             if (petDto.PetImage != null && petDto.PetImage.Length > 0)
             {
-                var filePath = Path.Combine("wwwroot/image/pet", $"{pet.PetId}{Path.GetExtension(petDto.PetImage.FileName)}");
+                // Ensure directory exists
+                var imageDirectory = Path.Combine("wwwroot", "image", "pet");
+                if (!Directory.Exists(imageDirectory))
+                {
+                    Directory.CreateDirectory(imageDirectory);
+                }
+
+                // Delete old image if exists
+                if (pet.HasPic)
+                {
+                    string oldFilePath = Path.Combine(imageDirectory, $"{pet.PetId}{pet.PicExtension}");
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        System.IO.File.Delete(oldFilePath);
+                    }
+                }
+
+                // Save new image
+                string fileExtension = Path.GetExtension(petDto.PetImage.FileName);
+                string fileName = $"{pet.PetId}{fileExtension}";
+                string filePath = Path.Combine(imageDirectory, fileName);
+
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await petDto.PetImage.CopyToAsync(stream);
                 }
-                petDto.PetImagePath = $"/image/pet/{pet.PetId}{Path.GetExtension(petDto.PetImage.FileName)}";
+
+                // Update pet properties
+                pet.HasPic = true;
+                pet.PicExtension = fileExtension;
             }
 
+            // Rest of your existing code for owner updates...
             _context.Update(pet);
 
             var existingOwners = _context.PetOwners

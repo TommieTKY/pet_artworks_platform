@@ -8,7 +8,7 @@
 
 <h1>Add New Pet</h1>
 
-<form method="post" asp-action="Create" asp-controller="PetPage">
+<form method="post" asp-action="Create" asp-controller="PetPage" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Name" class="control-label"></label>
         <input asp-for="Name" class="form-control" />

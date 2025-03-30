@@ -53,6 +53,22 @@
       "PackagePath": "staticwebassets\\image\\pet\\2.jpg"
     },
     {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\3.jpg",
+      "PackagePath": "staticwebassets\\image\\pet\\3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\4.jpg",
+      "PackagePath": "staticwebassets\\image\\pet\\4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\7.jpg",
+      "PackagePath": "staticwebassets\\image\\pet\\7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\8.jpg",
+      "PackagePath": "staticwebassets\\image\\pet\\8.jpg"
+    },
+    {
       "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
