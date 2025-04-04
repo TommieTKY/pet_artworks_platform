@@ -604,6 +604,37 @@
   },
   {
     "ContainingType": "PetArtworksPlatform.Controllers.PetController",
+    "Method": "AddArtworkToPet",
+    "RelativePath": "api/Pet/AddArtwork/{petId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "petId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "artworkIdDto",
+        "Type": "PetArtworksPlatform.Models.ArtworkIdDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PetArtworksPlatform.Models.Pet",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PetArtworksPlatform.Controllers.PetController",
     "Method": "AddOwner",
     "RelativePath": "api/Pet/AddOwner/{petId}/{memberId}",
     "HttpMethod": "POST",
@@ -680,6 +711,26 @@
         "Name": "PetImage",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      },
+      {
+        "Name": "ListArtworks",
+        "Type": "System.Collections.Generic.List\u00601[[PetArtworksPlatform.Models.ArtworkForOtherDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ArtworkList",
+        "Type": "System.Collections.Generic.List\u00601[[PetArtworksPlatform.Models.ArtworkToListDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "TempArtworks",
+        "Type": "System.Collections.Generic.List\u00601[[PetArtworksPlatform.Models.ArtworkForOtherDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewArtworkId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -693,6 +744,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "PetArtworksPlatform.Controllers.PetController",
+    "Method": "DeleteArtworkFromPet",
+    "RelativePath": "api/Pet/DeleteArtwork/{petId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "petId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "artworkIdDto",
+        "Type": "PetArtworksPlatform.Models.ArtworkIdDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "PetArtworksPlatform.Controllers.PetController",
@@ -890,6 +962,26 @@
       {
         "Name": "PetImage",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListArtworks",
+        "Type": "System.Collections.Generic.List\u00601[[PetArtworksPlatform.Models.ArtworkForOtherDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ArtworkList",
+        "Type": "System.Collections.Generic.List\u00601[[PetArtworksPlatform.Models.ArtworkToListDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "TempArtworks",
+        "Type": "System.Collections.Generic.List\u00601[[PetArtworksPlatform.Models.ArtworkForOtherDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewArtworkId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],

@@ -3,17 +3,21 @@ using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
 using PetArtworksPlatform.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetArtworksPlatform.Controllers
 {
     public class PetPageController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ArtworksController _artworksApi;
+        private readonly PetController _petApi;
 
-        public PetPageController(ApplicationDbContext context)
+        public PetPageController(ApplicationDbContext context, ArtworksController artworksApi, PetController petApi)
         {
             _context = context;
+            _artworksApi = artworksApi;
+            _petApi = petApi;
         }
 
         public async Task<IActionResult> Index()
@@ -50,7 +54,8 @@ namespace PetArtworksPlatform.Controllers
             }
 
             var pet = await _context.Pets
-                .Include(p => p.PetOwners) 
+                .Include(p => p.Artworks)
+                .Include(p => p.PetOwners)
                     .ThenInclude(po => po.Owner)
                 .FirstOrDefaultAsync(m => m.PetId == id);
 
@@ -70,7 +75,12 @@ namespace PetArtworksPlatform.Controllers
                     DOB = pet.DOB,
                     OwnerIds = pet.PetOwners.Select(po => po.OwnerId).ToList(),
                     HasPic = pet.HasPic,
-                    PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null
+                    PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null,
+                    ListArtworks = pet.Artworks?.Select(p => new ArtworkForOtherDto
+                    {
+                        ArtworkId = p.ArtworkID,
+                        ArtworkTitle = p.ArtworkTitle
+                    }).ToList() ?? new List<ArtworkForOtherDto>()
                 },
                 Owners = pet.PetOwners
                 .Select(po => new MemberDTO
@@ -81,7 +91,12 @@ namespace PetArtworksPlatform.Controllers
                     Bio = po.Owner.Bio,
                     Location = po.Owner.Location
                 })
-                .ToList()
+                .ToList(),
+                ArtworkList = (await _artworksApi.List()).Value?.Select(a => new ArtworkToListDto
+                {
+                    ArtworkId = a.ArtworkId,
+                    ArtworkTitle = a.ArtworkTitle
+                }).ToList() ?? new List<ArtworkToListDto>()
             };
 
             return View(petDetails);
@@ -99,8 +114,8 @@ namespace PetArtworksPlatform.Controllers
 
             var petDto = new PetDTO
             {
-                OwnerList = owners, 
-                OwnerIds = new List<int>() 
+                OwnerList = owners,
+                OwnerIds = new List<int>()
             };
 
             return View(petDto);
@@ -225,7 +240,6 @@ namespace PetArtworksPlatform.Controllers
                 HasPic = pet.HasPic,
                 PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null
             };
-
             return View(petDto);
         }
 
@@ -299,7 +313,7 @@ namespace PetArtworksPlatform.Controllers
                 pet.PicExtension = fileExtension;
             }
 
-            // Rest of your existing code for owner updates...
+            // Update owners
             _context.Update(pet);
 
             var existingOwners = _context.PetOwners
@@ -359,7 +373,7 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var pet = await _context.Pets
-                .Include(p => p.PetOwners) 
+                .Include(p => p.PetOwners)
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
@@ -373,6 +387,34 @@ namespace PetArtworksPlatform.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(List));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddArtwork(int petId, int newArtworkId)
+        {
+            var artworkIdDto = new ArtworkIdDto { ArtworkId = newArtworkId };
+            var result = await _petApi.AddArtworkToPet(petId, artworkIdDto);
+
+            if (result.Result is NotFoundResult)
+            {
+                return View("Error");
+            }
+
+            return RedirectToAction("Details", new { id = petId });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveArtwork(int petId, int artworkId)
+        {
+            var artworkIdDto = new ArtworkIdDto { ArtworkId = artworkId };
+            var result = await _petApi.DeleteArtworkFromPet(petId, artworkIdDto);
+
+            if (result is NotFoundResult)
+            {
+                return View("Error");
+            }
+            return RedirectToAction("Details", new { id = petId });
         }
 
         private bool PetExists(int id)

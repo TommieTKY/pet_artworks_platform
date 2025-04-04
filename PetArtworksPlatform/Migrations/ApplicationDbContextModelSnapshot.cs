@@ -37,6 +37,21 @@ namespace PetArtworksPlatform.Migrations
                     b.ToTable("ArtworkExhibition");
                 });
 
+            modelBuilder.Entity("ArtworkPet", b =>
+                {
+                    b.Property<int>("ArtworksArtworkID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PetsPetId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArtworksArtworkID", "PetsPetId");
+
+                    b.HasIndex("PetsPetId");
+
+                    b.ToTable("ArtworkPet");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -384,9 +399,6 @@ namespace PetArtworksPlatform.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PetId"));
 
-                    b.Property<int?>("ArtworkID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Breed")
                         .HasColumnType("nvarchar(max)");
 
@@ -409,8 +421,6 @@ namespace PetArtworksPlatform.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PetId");
-
-                    b.HasIndex("ArtworkID");
 
                     b.HasIndex("MemberId");
 
@@ -444,6 +454,21 @@ namespace PetArtworksPlatform.Migrations
                     b.HasOne("PetArtworksPlatform.Models.Exhibition", null)
                         .WithMany()
                         .HasForeignKey("ExhibitionsExhibitionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ArtworkPet", b =>
+                {
+                    b.HasOne("PetArtworksPlatform.Models.Artwork", null)
+                        .WithMany()
+                        .HasForeignKey("ArtworksArtworkID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetArtworksPlatform.Models.Pet", null)
+                        .WithMany()
+                        .HasForeignKey("PetsPetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -538,10 +563,6 @@ namespace PetArtworksPlatform.Migrations
 
             modelBuilder.Entity("PetArtworksPlatform.Models.Pet", b =>
                 {
-                    b.HasOne("PetArtworksPlatform.Models.Artwork", null)
-                        .WithMany("Pet")
-                        .HasForeignKey("ArtworkID");
-
                     b.HasOne("PetArtworksPlatform.Models.Member", null)
                         .WithMany("Pets")
                         .HasForeignKey("MemberId");
@@ -569,11 +590,6 @@ namespace PetArtworksPlatform.Migrations
             modelBuilder.Entity("PetArtworksPlatform.Models.Artist", b =>
                 {
                     b.Navigation("Artworks");
-                });
-
-            modelBuilder.Entity("PetArtworksPlatform.Models.Artwork", b =>
-                {
-                    b.Navigation("Pet");
                 });
 
             modelBuilder.Entity("PetArtworksPlatform.Models.Member", b =>

@@ -3,85 +3,74 @@
 
 @{
     ViewData["Title"] = "Edit Pet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
     <h1>Edit Pet</h1>
 
-    <form asp-controller="PetPage" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="PetId" />
+
         <div class="form-group mb-3">
-            <label asp-for="Name" class="control-label">Pet Name</label>
-            <input asp-for="Name" class="form-control" required />
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
+
         <div class="form-group mb-3">
-            <label asp-for="Type" class="control-label">Pet Type</label>
-            <input asp-for="Type" class="form-control" required />
+            <label asp-for="Type" class="control-label"></label>
+            <input asp-for="Type" class="form-control" />
             <span asp-validation-for="Type" class="text-danger"></span>
         </div>
+
         <div class="form-group mb-3">
-            <label asp-for="Breed" class="control-label">Pet Breed</label>
-            <input asp-for="Breed" class="form-control" required />
+            <label asp-for="Breed" class="control-label"></label>
+            <input asp-for="Breed" class="form-control" />
             <span asp-validation-for="Breed" class="text-danger"></span>
         </div>
+
         <div class="form-group mb-3">
-            <label asp-for="DOB" class="control-label">Date of Birth</label>
-            <input asp-for="DOB" type="date" class="form-control" required />
+            <label asp-for="DOB" class="control-label"></label>
+            <input asp-for="DOB" type="date" class="form-control" />
             <span asp-validation-for="DOB" class="text-danger"></span>
         </div>
-        @* <div class="form-group mb-3">
-            <label>Owners</label>
-            <div>
-                @foreach (var owner in ViewBag.Owners as List<MemberDTO>)
-                {
-                    <div class="form-check">
-                        <input type="checkbox" name="OwnerIds" value="@owner.MemberId"
-                            class="form-check-input"
-                            @(Model.OwnerIds.Contains(owner.MemberId) ? "checked" : "") />
-                        <label class="form-check-label">@owner.MemberName</label>
-                    </div>
-                }
-            </div>
-        </div> *@
-        @* In this way, users need to hold ctrl/command key to mulity select owners *@
-        @* <div class="form-group">
-            <label for="owners">Select Owners</label>
-            <select id="owners" name="OwnerIds" class="form-control" multiple>
-                @foreach (var owner in ViewBag.Owners as List<MemberDTO>)
-                {
-                    <option value="@owner.MemberId">@owner.MemberName</option>
-                }
-            </select>
-            <span asp-validation-for="OwnerIds" class="text-danger"></span>
-        </div> *@
-        <div class="form-group">
-            <label>Select Owners</label>
-            <div>
-                @foreach (var owner in Model.OwnerList)
-                {
-                    <div class="form-check">
-                        <input type="checkbox" name="OwnerIds" value="@owner.MemberId"
-                            class="form-check-input"
-                            @(Model.OwnerIds.Contains(owner.MemberId) ? "checked" : "") />
-                        <label class="form-check-label">@owner.MemberName</label>
-                    </div>
-                }
-            </div>
-        </div>
-        <div class="form-group mb-4">
-            <label for="PetImage" class="control-label">Pet Image</label>
-            <input asp-for="PetImage" type="file" class="form-control" />
-            <span asp-validation-for="PetImage" class="text-danger"></span>
+
+        <div class="form-group mb-3">
+            <label asp-for="PetImage" class="control-label">Pet Image</label>
+            <input asp-for="PetImage" type="file" class="form-control" accept="image/*" />
+            @if (!string.IsNullOrEmpty(Model.PetImagePath))
+            {
+                <img src="@Model.PetImagePath" alt="Current Pet Image" style="max-width: 200px; margin-top: 10px;" />
+            }
         </div>
 
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary" />
-            <a asp-controller="PetPage" asp-action="List" class="btn btn-secondary">Back to List</a>
+        <div class="form-group mb-3">
+            <label class="control-label">Owners</label>
+            <div class="row">
+                @foreach (var owner in Model.OwnerList)
+                {
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="OwnerIds" value="@owner.MemberId"
+                            @(Model.OwnerIds.Contains(owner.MemberId) ? "checked" : "") />
+                            <label class="form-check-label">@owner.MemberName</label>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="List" class="btn btn-secondary">Back to List</a>
         </div>
     </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

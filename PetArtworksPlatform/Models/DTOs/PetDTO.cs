@@ -10,7 +10,6 @@ public class PetDTO
       public string Breed { get; set; } = string.Empty; 
       public DateTime DOB { get; set; }
 
-      // public int OwnerId { get; set; }
       public List<int> OwnerIds { get; set; } = new List<int>();
       public List<MemberDTO> OwnerList { get; set; } = new List<MemberDTO>();
 
@@ -18,4 +17,9 @@ public class PetDTO
       public string? PetImagePath { get; set; }
       public IFormFile? PetImage { get; set; }
 
-  }
+      public List<ArtworkForOtherDto>? ListArtworks { get; set; }
+      public List<ArtworkToListDto> ArtworkList { get; set; } = new List<ArtworkToListDto>();
+      public List<ArtworkForOtherDto> TempArtworks { get; set; } = new List<ArtworkForOtherDto>();
+      public int? NewArtworkId { get; set; }
+
+}

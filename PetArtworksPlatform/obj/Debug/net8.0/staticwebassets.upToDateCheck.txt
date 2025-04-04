@@ -9,11 +9,16 @@ wwwroot\image\artwork\6.jpg
 wwwroot\image\artwork\7.jpg
 wwwroot\image\artwork\8.jpg
 wwwroot\image\pet\1.jpg
+wwwroot\image\pet\10.jpg
+wwwroot\image\pet\11.jpg
 wwwroot\image\pet\2.jpg
 wwwroot\image\pet\3.jpg
 wwwroot\image\pet\4.jpg
+wwwroot\image\pet\5.jpg
+wwwroot\image\pet\6.jpg
 wwwroot\image\pet\7.jpg
 wwwroot\image\pet\8.jpg
+wwwroot\image\pet\9.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

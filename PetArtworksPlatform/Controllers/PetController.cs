@@ -36,6 +36,7 @@ namespace PetArtworksPlatform.Controllers
         {
             var pet = await _context.Pets
                 .Include(p => p.PetOwners)
+                .Include(p => p.Artworks)
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
@@ -52,7 +53,8 @@ namespace PetArtworksPlatform.Controllers
                 DOB = pet.DOB,
                 OwnerIds = pet.PetOwners.Select(po => po.OwnerId).ToList(),
                 HasPic = pet.HasPic,
-                PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null
+                PetImagePath = pet.HasPic ? $"/image/pet/{pet.PetId}{pet.PicExtension}" : null,
+                ListArtworks = pet.Artworks?.Select(p => new ArtworkForOtherDto { ArtworkId = p.ArtworkID, ArtworkTitle = p.ArtworkTitle }).ToList(),
             };
 
             return petDto;
@@ -497,6 +499,82 @@ namespace PetArtworksPlatform.Controllers
                 return NoContent();
             }
             return BadRequest(new { message = "Failed to upload pet picture." });
+        }
+
+        [HttpPost("AddArtwork/{petId}")]
+        [Authorize]
+        public async Task<ActionResult<Pet>> AddArtworkToPet(int petId, [FromBody] ArtworkIdDto artworkIdDto)
+        {
+            Pet? pet = await _context.Pets.Include(e => e.Artworks).Where(e => e.PetId == petId).FirstOrDefaultAsync();
+
+            if (pet == null)
+            {
+                return NotFound(new { message = "Pet does not exist." });
+            }
+
+            Artwork? Artwork = await _context.Artworks.Where(e => e.ArtworkID == artworkIdDto.ArtworkId).FirstOrDefaultAsync();
+
+            if (Artwork == null)
+            {
+                return NotFound(new { message = "Artwork does not exist." });
+            }
+
+            pet.Artworks?.Add(Artwork);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PetExists(petId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
+        [HttpDelete("DeleteArtwork/{petId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteArtworkFromPet(int petId, [FromBody] ArtworkIdDto artworkIdDto)
+        {
+            Pet? pet = await _context.Pets.Include(e => e.Artworks).Where(e => e.PetId == petId).FirstOrDefaultAsync();
+
+            if (pet == null)
+            {
+                return NotFound(new { message = "Pet does not exist." });
+            }
+
+            Artwork? artwork = pet.Artworks?.FirstOrDefault(a => a.ArtworkID == artworkIdDto.ArtworkId);
+
+            if (artwork == null)
+            {
+                return NotFound(new { message = "Artwork does not exist." });
+            }
+
+            pet.Artworks?.Remove(artwork);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PetExists(petId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
         }
     }
 }

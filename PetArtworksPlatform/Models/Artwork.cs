@@ -22,7 +22,7 @@ namespace PetArtworksPlatform.Models
 
         //An artwork can be featured in many exhibitions.
         public ICollection<Exhibition>? Exhibitions { get; set; }
-        public ICollection<Pet>? Pet { get; set; }
+        public ICollection<Pet>? Pets { get; set; }
     }
 
     public class ArtworkToListDto
@@ -48,7 +48,7 @@ namespace PetArtworksPlatform.Models
         public string? ArtworkImagePath { get; set; }
         public int ArtistID { get; set; }
         public List<ExhibitionForOtherDto>? ListExhibitions { get; set; }
-        public List<PetForArtworkDto>? Name { get; set; }
+        public List<PetForArtworkDto>? ListPets { get; set; }
     }
 
 
@@ -66,7 +66,7 @@ namespace PetArtworksPlatform.Models
     public class PetArtwork
     {
         public ICollection<Artwork>? Artworks { get; set; }
-        public ICollection<Pet>? Pet { get; set; }
+        public ICollection<Pet>? Pets { get; set; }
 
     }
 

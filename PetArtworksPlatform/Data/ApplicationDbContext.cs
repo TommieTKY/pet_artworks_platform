@@ -6,13 +6,13 @@ namespace PetArtworksPlatform.Data;
 
 public class ApplicationDbContext : IdentityDbContext
 {
+    public DbSet<Artwork> Artworks { get; set; }
+    public DbSet<Artist> Artists { get; set; }
+    public DbSet<Exhibition> Exhibitions { get; set; }
     public DbSet<Member> Members { get; set; }
     public DbSet<Pet> Pets { get; set; }
     public DbSet<Connection> Connections { get; set; }
     public DbSet<PetOwner> PetOwners { get; set; }
-    public DbSet<Artwork> Artworks { get; set; }
-    public DbSet<Artist> Artists { get; set; }
-    public DbSet<Exhibition> Exhibitions { get; set; }
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {

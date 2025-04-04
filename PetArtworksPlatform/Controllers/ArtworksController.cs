@@ -67,7 +67,7 @@ namespace PetArtworksPlatform.Controllers
         [HttpGet(template: "FindArtwork/{ArtworkID}")]
         public async Task<ActionResult<ArtworkItemDto>> FindArtwork(int ArtworkID)
         {
-            Artwork? Artwork = await _context.Artworks.Include(w => w.Exhibitions).Where(w => w.ArtworkID == ArtworkID).FirstOrDefaultAsync();
+            Artwork? Artwork = await _context.Artworks.Include(w => w.Exhibitions).Include(w => w.Pets).Where(w => w.ArtworkID == ArtworkID).FirstOrDefaultAsync();
 
             if (Artwork == null)
             {
@@ -84,7 +84,8 @@ namespace PetArtworksPlatform.Controllers
                 HasArtworkPic = Artwork.HasPic,
 
                 ArtistID = Artwork.ArtistID,
-                ListExhibitions = Artwork.Exhibitions?.Select(w => new ExhibitionForOtherDto { ExhibitionId = w.ExhibitionID, ExhibitionTitle = w.ExhibitionTitle }).ToList()
+                ListExhibitions = Artwork.Exhibitions?.Select(w => new ExhibitionForOtherDto { ExhibitionId = w.ExhibitionID, ExhibitionTitle = w.ExhibitionTitle }).ToList(),
+                ListPets = Artwork.Pets?.Select(w => new PetForArtworkDto { PetId = w.PetId, Name = w.Name }).ToList()
             };
             if (Artwork.HasPic)
             {

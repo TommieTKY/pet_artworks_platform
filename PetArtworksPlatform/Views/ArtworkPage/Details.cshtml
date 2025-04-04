@@ -57,6 +57,17 @@
                 </li>
             }
         </ul>
+
+        <h4>Pet Information</h4>
+        <hr />
+        <ul>
+            @foreach (var pet in Model?.Artwork.ListPets ?? [])
+            {
+                <li>
+                    <a href="/PetPage/Details/@pet.PetId">@pet.Name</a>
+                </li>
+            }
+        </ul>
     </div>
 </div>
 

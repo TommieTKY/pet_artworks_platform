@@ -1230,6 +1230,44 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "ListArtworks",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ArtworkForOtherDto"
+              }
+            }
+          },
+          {
+            "name": "ArtworkList",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ArtworkToListDto"
+              }
+            }
+          },
+          {
+            "name": "TempArtworks",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ArtworkForOtherDto"
+              }
+            }
+          },
+          {
+            "name": "NewArtworkId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         ],
         "requestBody": {
@@ -1361,6 +1399,44 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "ListArtworks",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ArtworkForOtherDto"
+              }
+            }
+          },
+          {
+            "name": "ArtworkList",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ArtworkToListDto"
+              }
+            }
+          },
+          {
+            "name": "TempArtworks",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ArtworkForOtherDto"
+              }
+            }
+          },
+          {
+            "name": "NewArtworkId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -1619,6 +1695,107 @@
         }
       }
     },
+    "/api/Pet/AddArtwork/{petId}": {
+      "post": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pet/DeleteArtwork/{petId}": {
+      "delete": {
+        "tags": [
+          "Pet"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArtworkIdDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Delete/{id}": {
       "get": {
         "tags": [
@@ -1754,7 +1931,7 @@
             },
             "nullable": true
           },
-          "pet": {
+          "pets": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Pet"
@@ -1825,7 +2002,7 @@
             },
             "nullable": true
           },
-          "name": {
+          "listPets": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PetForArtworkDto"
@@ -2236,6 +2413,13 @@
           "picExtension": {
             "type": "string",
             "nullable": true
+          },
+          "artworks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Artwork"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2288,6 +2472,32 @@
           "petImage": {
             "type": "string",
             "format": "binary",
+            "nullable": true
+          },
+          "listArtworks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArtworkForOtherDto"
+            },
+            "nullable": true
+          },
+          "artworkList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArtworkToListDto"
+            },
+            "nullable": true
+          },
+          "tempArtworks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArtworkForOtherDto"
+            },
+            "nullable": true
+          },
+          "newArtworkId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         },
