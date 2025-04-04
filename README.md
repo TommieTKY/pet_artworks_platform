@@ -2,11 +2,20 @@
 
 **Pet Artworks Platform** is a creative collaboration web application that bridges the **ArtGallery** and **PawPals** projects.
 
-Built with **ASP.NET Core**, the platform provides comprehensive management tools for different domains.
+Built with ASP.NET Core, the platform provides comprehensive management tools for different domains.
 **ArtGallery** allows guests to explore artworks, artists, and exhibitions, while registered users can manage gallery content.
 **PawPals** enables admins to oversee members and their pets, facilitating connections and CRUD operations. Both applications utilize Entity Framework and MVC architecture for a seamless and user-friendly experience.
 
-The **core connection** between ArtGallery and PawPals is **pet-related artwork**. Users can explore artworks featuring pets and access detailed pet information associated with each piece. Registered users can also add or remove artworks directly from a pet's detail page, enhancing the interactive experience between art and pet communities.
+The core connection between ArtGallery and PawPals is **pet-related artwork**. Users can explore artworks featuring pets and access detailed pet information associated with each piece. Registered users can also add or remove artworks directly from a pet's detail page, enhancing the interactive experience between art and pet communities.
+
+---
+
+## Team Contributions
+
+- ArtGallery MVP: Kit Ying Tong
+- PawPals MVP: Kexin Sun
+- Setup the database: Kit Ying Tong & Kexin Sun
+- Add artwork feature to pet's detail: Kit Ying Tong & Kexin Sun
 
 ---
 
@@ -53,9 +62,8 @@ The **core connection** between ArtGallery and PawPals is **pet-related artwork*
 - **Create**: Adds a new pet.
 - **Details**: Shows detailed information about a specific pet.
   - **Profile Information**: Displays pet's name, id, type, breed, birthday, image, owners, and the related artworks.
-  - **Artwork Management**: Add and remove artworks associated with the pet.
+  - **_Artwork Management: Add and remove artworks associated with the pet._**
   - **Owner Management**: Add, remove, and update pet owners directly from the details page.
-  
 - **Edit**: Updates pet information.
 - **Delete**: Deletes an existing pet after confirmation.
 
@@ -67,9 +75,9 @@ The **core connection** between ArtGallery and PawPals is **pet-related artwork*
 
 ## Project Structure
 
-• Controllers: Contains API controllers for managing artists, artworks, and exhibitions.
+• Controllers: Contains API controllers for managing artists, artworks, exhibitions, pet, member and connection.
 
-• Models: Contains data models representing artists, artworks, and exhibitions.
+• Models: Contains data models representing artists, artworks, exhibitions, pet, member and connection.
 
 • Data: Contains the database context and migrations.
 
@@ -139,9 +147,9 @@ The **core connection** between ArtGallery and PawPals is **pet-related artwork*
 
 • POST /api/Pet/UpdatePetImage/{id}: Updates the image of a specific pet.
 
-• POST /api/Pet/AddArtwork/{petId}: Adds an artwork to a pet.
+• **POST /api/Pet/AddArtwork/{petId}: Adds an artwork to a pet.**
 
-• DELETE /api/Pet/DeleteArtwork/{petId}: Removes an artwork from a pet.
+• **DELETE /api/Pet/DeleteArtwork/{petId}: Removes an artwork from a pet.**
 
 ### Member
 
@@ -164,7 +172,6 @@ The **core connection** between ArtGallery and PawPals is **pet-related artwork*
 • POST /api/Connection/NewFollow/{memberId}/{followingId}: Creates a connection where one member follows another.
 
 • DELETE /api/Connection/Unfollow/{memberId}/{followingId}: Removes a connection where one member follows another.
-
 
 ## Technologies Used
 
