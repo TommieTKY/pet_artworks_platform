@@ -6,7 +6,7 @@ Built with **ASP.NET Core**, the platform provides comprehensive management tool
 **ArtGallery** allows guests to explore artworks, artists, and exhibitions, while registered users can manage gallery content.
 **PawPals** enables admins to oversee members and their pets, facilitating connections and CRUD operations. Both applications utilize Entity Framework and MVC architecture for a seamless and user-friendly experience.
 
-The **core connection** between ArtGallery and PawPals is **pet-related artwork**. Users can explore artworks featuring pets and access detailed pet information associated with each piece. Registered users can also add or remove artworks directly from a pet’s detail page, enhancing the interactive experience between art and pet communities.
+The **core connection** between ArtGallery and PawPals is **pet-related artwork**. Users can explore artworks featuring pets and access detailed pet information associated with each piece. Registered users can also add or remove artworks directly from a pet's detail page, enhancing the interactive experience between art and pet communities.
 
 ---
 
@@ -41,6 +41,9 @@ The **core connection** between ArtGallery and PawPals is **pet-related artwork*
 - **Index**: Displays a list of all members.
 - **Create**: Adds a new member.
 - **Details**: Shows detailed information about a specific member.
+  - **Profile Information**: Displays member's name, email, bio, and location.
+  - **Followers & Following**: View a list of followers and members being followed.
+  - **Pets**: Displays all pets owned by the member with their details and images.
 - **Edit**: Updates member information.
 - **Delete**: Deletes an existing member after confirmation.
 
@@ -49,6 +52,10 @@ The **core connection** between ArtGallery and PawPals is **pet-related artwork*
 - **List (Index)**: Displays all pets.
 - **Create**: Adds a new pet.
 - **Details**: Shows detailed information about a specific pet.
+  - **Profile Information**: Displays pet's name, id, type, breed, birthday, image, owners, and the related artworks.
+  - **Artwork Management**: Add and remove artworks associated with the pet.
+  - **Owner Management**: Add, remove, and update pet owners directly from the details page.
+  
 - **Edit**: Updates pet information.
 - **Delete**: Deletes an existing pet after confirmation.
 
@@ -57,14 +64,6 @@ The **core connection** between ArtGallery and PawPals is **pet-related artwork*
 - **Index**: Displays a list of all connections.
 - **Create**: Adds a new connection.
 - **Delete**: Deletes an existing connection after confirmation.
-
-## Technologies Used
-
-- .NET 8
-- Blazor
-- ASP.NET Core MVC
-- Entity Framework Core
-- Bootstrap
 
 ## Project Structure
 
@@ -117,3 +116,60 @@ The **core connection** between ArtGallery and PawPals is **pet-related artwork*
 • POST /api/Exhibitions/AddArtwork/{ExhibitionID}: Adds an artwork to an exhibition.
 
 • DELETE /api/Exhibitions/DeleteArtwork/{ExhibitionID}: Removes an artwork from an exhibition.
+
+### Pet
+
+• GET /api/Pet/FindPet/{id}: Retrieves details of a specific pet.
+
+• GET /api/Pet/ListPets: Retrieves a list of all pets.
+
+• POST /api/Pet/AddPet: Adds a new pet.
+
+• PUT /api/Pet/UpdatePet/{id}: Updates an existing pet.
+
+• DELETE /api/Pet/DeletePet/{id}: Deletes a pet.
+
+• GET /api/Pet/Owners/{petId}: Retrieves all owners of a specific pet.
+
+• GET /api/Pet/MemberPets/{memberId}: Retrieves all pets owned by a specific member.
+
+• POST /api/Pet/AddOwner/{petId}/{memberId}: Adds an owner to a pet.
+
+• DELETE /api/Pet/RemoveOwner/{petId}/{memberId}: Removes an owner from a pet.
+
+• POST /api/Pet/UpdatePetImage/{id}: Updates the image of a specific pet.
+
+• POST /api/Pet/AddArtwork/{petId}: Adds an artwork to a pet.
+
+• DELETE /api/Pet/DeleteArtwork/{petId}: Removes an artwork from a pet.
+
+### Member
+
+• GET /api/Member/FindMember/{id}: Retrieves details of a specific member.
+
+• GET /api/Member/Followers/{memberId}: Retrieves all followers of a specific member.
+
+• GET /api/Member/Following/{memberId}: Retrieves all members that a specific member is following.
+
+• GET /api/Member/ListMembers: Retrieves a list of all members.
+
+• POST /api/Member/AddMember: Adds a new member.
+
+• PUT /api/Member/UpdateMember/{id}: Updates an existing member.
+
+• DELETE /api/Member/DeleteMember/{id}: Deletes a member.
+
+### Connection
+
+• POST /api/Connection/NewFollow/{memberId}/{followingId}: Creates a connection where one member follows another.
+
+• DELETE /api/Connection/Unfollow/{memberId}/{followingId}: Removes a connection where one member follows another.
+
+
+## Technologies Used
+
+- .NET 8
+- Blazor
+- ASP.NET Core MVC
+- Entity Framework Core
+- Bootstrap
