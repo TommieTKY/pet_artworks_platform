@@ -1,14 +1,16 @@
 # Pet Artworks Platform
 
-A creative collaboration between ArtGallery and Pawpals.
+**Pet Artworks Platform** is a creative collaboration web application that bridges the **ArtGallery** and **PawPals** projects.
+
+Built with **ASP.NET Core**, the platform provides comprehensive management tools for different domains.
+**ArtGallery** allows guests to explore artworks, artists, and exhibitions, while registered users can manage gallery content.
+**PawPals** enables admins to oversee members and their pets, facilitating connections and CRUD operations. Both applications utilize Entity Framework and MVC architecture for a seamless and user-friendly experience.
+
+The **core connection** between ArtGallery and PawPals is **pet-related artwork**. Users can explore artworks featuring pets and access detailed pet information associated with each piece. Registered users can also add or remove artworks directly from a pet’s detail page, enhancing the interactive experience between art and pet communities.
 
 ---
 
-ArtGallery is a web application built with Blazor and ASP.NET Core MVC that provides a comprehensive platform for managing and exploring art galleries. The application allows guests to view lists and detailed information about artworks, artists, and exhibitions. Registered users have additional capabilities to create, edit, and delete artworks, artists, and exhibitions, making it a versatile tool for both art enthusiasts and gallery administrators.
-
----
-
-## Features
+## Features - ArtGallery
 
 • Artists Management: View, find, add, update, and delete artists.
 
@@ -31,6 +33,30 @@ ArtGallery is a web application built with Blazor and ASP.NET Core MVC that prov
 - Authentication: Secure authentication for creating, editing, and deleting content.
 - Artwork Image Management: Upload and display images for artworks.
 - Exhibition Status: View a list of exhibitions with their status (past, ongoing, future)
+
+## Features - PawPals
+
+### Member Page
+
+- **Index**: Displays a list of all members.
+- **Create**: Adds a new member.
+- **Details**: Shows detailed information about a specific member.
+- **Edit**: Updates member information.
+- **Delete**: Deletes an existing member after confirmation.
+
+### Pet Page
+
+- **List (Index)**: Displays all pets.
+- **Create**: Adds a new pet.
+- **Details**: Shows detailed information about a specific pet.
+- **Edit**: Updates pet information.
+- **Delete**: Deletes an existing pet after confirmation.
+
+### Connection Page
+
+- **Index**: Displays a list of all connections.
+- **Create**: Adds a new connection.
+- **Delete**: Deletes an existing connection after confirmation.
 
 ## Technologies Used
 
