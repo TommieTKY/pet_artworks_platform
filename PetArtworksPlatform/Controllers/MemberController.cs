@@ -4,6 +4,7 @@ using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
 using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -158,6 +159,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="201">Returns the newly created member</response>
         /// <response code="400">If the input data is invalid</response>
         [HttpPost("AddMember")]
+        [Authorize]
         public async Task<ActionResult<MemberDTO>> PostMember(MemberDTO memberDto)
         {
             var newMember = new Member
@@ -196,6 +198,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="400">If the ID in the URL does not match the ID in the request body</response>
         /// <response code="404">If the member with the given ID is not found</response>
         [HttpPut("UpdateMember/{id}")]
+        [Authorize]
         public async Task<IActionResult> PutMember(int id, MemberDTO memberDto)
         {
             if (id != memberDto.MemberId)
@@ -253,6 +256,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Operation successful</response>
         /// <response code="404">If the member with the given ID is not found</response>
         [HttpDelete("DeleteMember/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteMember(int id)
         {
             var member = await _context.Members.FindAsync(id);

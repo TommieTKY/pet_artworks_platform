@@ -16,6 +16,7 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 - PawPals MVP: Kexin Sun
 - Setup the database: Kit Ying Tong & Kexin Sun
 - Add artwork feature to pet's detail: Kit Ying Tong & Kexin Sun
+- Add Authorize feature: Kit Ying Tong
 
 ---
 

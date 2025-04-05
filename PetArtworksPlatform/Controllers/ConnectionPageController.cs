@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Data;
@@ -26,6 +27,7 @@ namespace PetArtworksPlatform.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -33,6 +35,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Create(Connection connection)
         {
             if (ModelState.IsValid)
@@ -55,6 +58,7 @@ namespace PetArtworksPlatform.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             var connection = _context.Connections
@@ -72,6 +76,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult DeleteConfirmed(int id)
         {
             var connection = _context.Connections.Find(id);

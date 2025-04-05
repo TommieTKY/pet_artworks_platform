@@ -4,6 +4,7 @@ using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
 using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -31,6 +32,7 @@ namespace PetArtworksPlatform.Controllers
         /// Success message if follow is successful. Error message if already following.
         /// </returns>
         [HttpPost("NewFollow/{memberId}/{followingId}")]
+        [Authorize]
         public async Task<ActionResult> FollowUser(int memberId, int followingId)
         {
             // Member can not follow themself
@@ -74,6 +76,7 @@ namespace PetArtworksPlatform.Controllers
         /// Success message if follow is successful. Error message if already following.
         /// </returns>
         [HttpDelete("Unfollow/{memberId}/{followingId}")]
+        [Authorize]
         public async Task<IActionResult> UnfollowUser(int memberId, int followingId)
         {
             var connection = await _context.Connections

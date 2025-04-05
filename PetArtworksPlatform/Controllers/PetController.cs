@@ -105,6 +105,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="201">Returns the newly created pet</response>
         /// <response code="400">If the pet data is invalid or any owner does not exist</response>
         [HttpPost("AddPet")]
+        [Authorize]
         public async Task<ActionResult<Pet>> PostPet(PetDTO petDto)
         {
             if (!ModelState.IsValid)
@@ -177,6 +178,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="400">If the update data is invalid</response>
         /// <response code="404">If the pet is not found</response>
         [HttpPut("UpdatePet/{id}")]
+        [Authorize]
         public async Task<IActionResult> PutPet(int id, PetDTO petDto)
         {
             if (id != petDto.PetId)
@@ -246,6 +248,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Delete successful</response>
         /// <response code="404">If pet with given ID is not found</response>
         [HttpDelete("DeletePet/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletePet(int id)
         {
             var pet = await _context.Pets
@@ -353,6 +356,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Operation successful</response>
         /// <response code="404">If pet or member with given ID is not found</response>
         [HttpPost("AddOwner/{petId}/{memberId}")]
+        [Authorize]
         public async Task<IActionResult> AddOwner(int petId, int memberId)
         {
             var pet = await _context.Pets.FindAsync(petId);
@@ -403,6 +407,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Operation successful</response>
         /// <response code="404">If pet or member with given ID is not found</response>
         [HttpDelete("RemoveOwner/{petId}/{memberId}")]
+        [Authorize]
         public async Task<IActionResult> RemoveOwner(int petId, int memberId)
         {
             var petOwner = await _context.PetOwners

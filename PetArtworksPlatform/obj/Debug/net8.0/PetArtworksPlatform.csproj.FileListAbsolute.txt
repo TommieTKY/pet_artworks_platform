@@ -647,7 +647,6 @@ C:\Users\tongk\OneDrive - Humber Polytechnic\http5226_Back-End\pet_artworks_plat
 C:\Users\tongk\OneDrive - Humber Polytechnic\http5226_Back-End\pet_artworks_platform_git\PetArtworksPlatform\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.PetArtworksPlatform.props
 C:\Users\tongk\OneDrive - Humber Polytechnic\http5226_Back-End\pet_artworks_platform_git\PetArtworksPlatform\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.PetArtworksPlatform.props
 C:\Users\tongk\OneDrive - Humber Polytechnic\http5226_Back-End\pet_artworks_platform_git\PetArtworksPlatform\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\tongk\OneDrive - Humber Polytechnic\http5226_Back-End\pet_artworks_platform_git\PetArtworksPlatform\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\tongk\OneDrive - Humber Polytechnic\http5226_Back-End\pet_artworks_platform_git\PetArtworksPlatform\obj\Debug\net8.0\PetArtwo.9E387E2A.Up2Date
 C:\Users\tongk\OneDrive - Humber Polytechnic\http5226_Back-End\pet_artworks_platform_git\PetArtworksPlatform\obj\Debug\net8.0\PetArtworksPlatform.dll
 C:\Users\tongk\OneDrive - Humber Polytechnic\http5226_Back-End\pet_artworks_platform_git\PetArtworksPlatform\obj\Debug\net8.0\refint\PetArtworksPlatform.dll
