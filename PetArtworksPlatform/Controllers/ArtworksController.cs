@@ -113,7 +113,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> (db updated: {"artworkId":15,"artworkTitle":"Updated Artwork Title","artworkMedium":"Oil on Canvas","artworkYearCreated":2021,"artistID":11,"listExhibitions":[{"exhibitionId":7,"exhibitionTitle":"New Exhibition"}]})
         /// </example>
         [HttpPut(template: "Update/{ArtworkID}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> UpdateArtwork(int ArtworkID, [FromBody] ArtworkItemDto artworkDto)
         {
             if (string.IsNullOrWhiteSpace(artworkDto.ArtworkTitle) || string.IsNullOrWhiteSpace(artworkDto.ArtworkMedium) || artworkDto.ArtworkYearCreated < 0 || artworkDto.ArtworkYearCreated > DateTime.Now.Year)
@@ -175,7 +175,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"message":"Invalid artwork data"}
         /// </example>
         [HttpPost(template: "Add")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<ActionResult<Artwork>> AddArtwork([FromBody] ArtworkItemDto artworkDto)
         {
             if (string.IsNullOrWhiteSpace(artworkDto.ArtworkTitle) || string.IsNullOrWhiteSpace(artworkDto.ArtworkMedium) || artworkDto.ArtworkYearCreated < 0 || artworkDto.ArtworkYearCreated > DateTime.Now.Year)
@@ -215,7 +215,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"Not Found","status":404,"traceId":"00-ff1d5f16f07554eea66dc625c8550442-a44ec122e7a83285-00"}
         /// </example>
         [HttpDelete("Delete/{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> DeleteArtwork(int id)
         {
             var artwork = await _context.Artworks.FindAsync(id);
@@ -232,7 +232,7 @@ namespace PetArtworksPlatform.Controllers
 
 
         [HttpPost("UpdateArtworkImage/{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> UpdateArtworkImage(int id, IFormFile ArtworkPic)
         {
             var artwork = await _context.Artworks.FindAsync(id);

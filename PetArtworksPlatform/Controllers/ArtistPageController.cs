@@ -31,7 +31,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtistPage/New -> A webpage that prompts the user to enter new artist information
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public IActionResult New()
         {
             return View();
@@ -39,7 +39,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtistPage/Create -> Handles the creation of a new artist
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> Create(string artistName, string artistBiography)
         {
             var newArtist = new ArtistPersonDto
@@ -67,7 +67,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtistPage/ConfirmDelete/{id} -> A webpage that prompts the user to confirm the deletion of an artist
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public IActionResult ConfirmDelete(int id)
         {
             var selectedArtist = _api.FindArtist(id).Result.Value;
@@ -76,7 +76,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtistPage/Delete/{id} -> Handles the deletion of an artist
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _api.DeleteArtist(id);
@@ -85,7 +85,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtistPage/Edit/{id} -> A webpage that prompts the user to edit an artist's information
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public IActionResult Edit(int id)
         {
             var selectedArtist = _api.FindArtist(id).Result.Value;
@@ -94,7 +94,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtistPage/Update/{id} -> Handles the update of an artist's information
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> Update(int id, string artistName, string artistBiography)
         {
             var updateArtist = new ArtistPersonDto

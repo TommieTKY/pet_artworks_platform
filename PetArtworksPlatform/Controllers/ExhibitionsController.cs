@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PetArtworksPlatform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -12,9 +13,11 @@ namespace PetArtworksPlatform.Controllers
     public class ExhibitionsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ExhibitionsController(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public ExhibitionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -108,7 +111,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> (db updated)
         /// </example>
         [HttpPut("Update/{ExhibitionID}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> UpdateExhibition(int ExhibitionID, [FromBody] ExhibitionItemDto exhibitionDto)
         {
             // attempt to find associated exhibition in DB by looking up ExhibitionId
@@ -163,7 +166,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"exhibitionID":6,"exhibitionTitle":"New Exhibition","exhibitionDescription":"Description of the new exhibition","startDate":"2025-03-01","endDate":"2025-03-31","artworks":null}
         /// </example>
         [HttpPost(template: "Add")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<ActionResult<Exhibition>> AddExhibition([FromBody] ExhibitionItemDto exhibitionDto)
         {
             if (string.IsNullOrWhiteSpace(exhibitionDto.ExhibitionTitle) || string.IsNullOrWhiteSpace(exhibitionDto.ExhibitionDescription) || exhibitionDto.StartDate > exhibitionDto.EndDate)
@@ -197,7 +200,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"Not Found","status":404,"traceId":"00-f30dcb0dd93827d8269897b1689b5594-dcbde54f131bb15a-00"}
         /// </example>
         [HttpDelete("Delete/{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> DeleteExhibition(int id)
         {
             var exhibition = await _context.Exhibitions.FindAsync(id);
@@ -227,7 +230,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> (db updated: {"exhibitionId":7,"exhibitionTitle":"New Exhibition","exhibitionDescription":"Description of the new exhibition","startDate":"2025-03-01","endDate":"2025-03-31","listArtworks":[{"artworkId":15,"artworkTitle":"New Artwork"}]})
         /// </example>
         [HttpPost("AddArtwork/{ExhibitionID}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<ActionResult<Exhibition>> AddArtworkToExhibition(int ExhibitionID, [FromBody] ArtworkIdDto artworkIdDto)
         {
             Exhibition? exhibition = await _context.Exhibitions.Include(e => e.Artworks).Where(e => e.ExhibitionID == ExhibitionID).FirstOrDefaultAsync();
@@ -279,7 +282,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"message":"Artwork does not exist."}
         /// </example>
         [HttpDelete("DeleteArtwork/{ExhibitionID}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> DeleteArtworkFromExhibition(int ExhibitionID, [FromBody] ArtworkIdDto artworkIdDto)
         {
             Exhibition? exhibition = await _context.Exhibitions.Include(e => e.Artworks).Where(e => e.ExhibitionID == ExhibitionID).FirstOrDefaultAsync();

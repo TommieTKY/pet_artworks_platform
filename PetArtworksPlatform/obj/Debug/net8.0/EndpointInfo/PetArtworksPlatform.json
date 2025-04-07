@@ -1843,6 +1843,9 @@
               "$ref": "#/components/schemas/Artwork"
             },
             "nullable": true
+          },
+          "artistUser": {
+            "$ref": "#/components/schemas/IdentityUser"
           }
         },
         "additionalProperties": false
@@ -1937,6 +1940,9 @@
               "$ref": "#/components/schemas/Pet"
             },
             "nullable": true
+          },
+          "artistUser": {
+            "$ref": "#/components/schemas/IdentityUser"
           }
         },
         "additionalProperties": false

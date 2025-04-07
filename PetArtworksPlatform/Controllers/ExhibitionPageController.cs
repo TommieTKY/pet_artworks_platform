@@ -35,7 +35,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ExhibitionPage/New -> A webpage that prompts the user to enter new exhibition information
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public IActionResult New()
         {
             return View();
@@ -43,7 +43,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ExhibitionPage/Create -> Creates a new exhibition
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> Create(string exhibitionTitle, string exhibitionDescription, DateTime startDate, DateTime endDate)
         {
             var newExhibition = new ExhibitionItemDto
@@ -76,7 +76,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ExhibitionPage/ConfirmDelete/{id} -> A webpage that confirms the deletion of an exhibition
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public IActionResult ConfirmDelete(int id)
         {
             var selectedExhibition = _exhibitionsApi.FindExhibition(id).Result.Value;
@@ -85,7 +85,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ExhibitionPage/Delete/{id} -> Deletes an exhibition
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _exhibitionsApi.DeleteExhibition(id);
@@ -94,7 +94,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ExhibitionPage/Edit/{id} -> A webpage that prompts the user to edit exhibition information
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> Edit(int id)
         {
             var selectedExhibition = await _exhibitionsApi.FindExhibition(id);
@@ -113,7 +113,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ExhibitionPage/Update -> Handles the update of an exhibition's information
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> Update(ViewExhibitionEdit model)
         {
             if (model == null || model.Exhibition == null)
@@ -149,7 +149,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ExhibitionPage/AddArtwork -> Adds an artwork to an exhibition
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> AddArtwork(int exhibitionId, int newArtworkId)
         {
             var artworkIdDto = new ArtworkIdDto { ArtworkId = newArtworkId };
@@ -165,7 +165,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ExhibitionPage/RemoveArtwork -> Removes an artwork from an exhibition
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> RemoveArtwork(int exhibitionId, int artworkId)
         {
             var artworkIdDto = new ArtworkIdDto { ArtworkId = artworkId };

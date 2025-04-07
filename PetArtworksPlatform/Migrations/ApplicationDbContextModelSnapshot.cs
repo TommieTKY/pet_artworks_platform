@@ -270,7 +270,12 @@ namespace PetArtworksPlatform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ArtistUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ArtistID");
+
+                    b.HasIndex("ArtistUserId");
 
                     b.ToTable("Artists");
                 });
@@ -285,6 +290,9 @@ namespace PetArtworksPlatform.Migrations
 
                     b.Property<int>("ArtistID")
                         .HasColumnType("int");
+
+                    b.Property<string>("ArtistUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ArtworkMedium")
                         .IsRequired()
@@ -306,6 +314,8 @@ namespace PetArtworksPlatform.Migrations
                     b.HasKey("ArtworkID");
 
                     b.HasIndex("ArtistID");
+
+                    b.HasIndex("ArtistUserId");
 
                     b.ToTable("Artworks");
                 });
@@ -524,6 +534,15 @@ namespace PetArtworksPlatform.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PetArtworksPlatform.Models.Artist", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ArtistUser")
+                        .WithMany()
+                        .HasForeignKey("ArtistUserId");
+
+                    b.Navigation("ArtistUser");
+                });
+
             modelBuilder.Entity("PetArtworksPlatform.Models.Artwork", b =>
                 {
                     b.HasOne("PetArtworksPlatform.Models.Artist", null)
@@ -531,6 +550,12 @@ namespace PetArtworksPlatform.Migrations
                         .HasForeignKey("ArtistID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ArtistUser")
+                        .WithMany()
+                        .HasForeignKey("ArtistUserId");
+
+                    b.Navigation("ArtistUser");
                 });
 
             modelBuilder.Entity("PetArtworksPlatform.Models.Connection", b =>

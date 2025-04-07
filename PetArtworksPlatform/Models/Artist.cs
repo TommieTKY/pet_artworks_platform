@@ -2,6 +2,7 @@
 using PetArtworksPlatform.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace PetArtworksPlatform.Models
 {
@@ -13,7 +14,9 @@ namespace PetArtworksPlatform.Models
         public string ArtistBiography { get; set; }
 
         public ICollection<Artwork>? Artworks { get; set; }
-        }
+
+        public IdentityUser? ArtistUser { get; set; }
+    }
 
     public class ArtistToListDto
     {

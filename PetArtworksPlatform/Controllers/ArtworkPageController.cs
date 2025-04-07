@@ -50,7 +50,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtworkPage/New -> A webpage that prompts the user to enter new artwork information
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> New()
         {
             var artists = await _artistsApi.List();
@@ -65,7 +65,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtworkPage/Create -> Handles the creation of a new artwork
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> Create(ViewArtworkEdit model)
         {
             if (!ModelState.IsValid)
@@ -123,7 +123,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtworkPage/ConfirmDelete/{id} -> A webpage that prompts the user to confirm the deletion of an artwork
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public IActionResult ConfirmDelete(int id)
         {
             var selectedArtwork = _artworkApi.FindArtwork(id).Result.Value;
@@ -132,7 +132,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtworkPage/Delete/{id} -> Handles the deletion of an artwork
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> Delete(int id)
         {
             await _artworkApi.DeleteArtwork(id);
@@ -141,7 +141,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtworkPage/Edit/{id} -> A webpage that prompts the user to edit an artwork's information
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> Edit(int id)
         {
             var selectedArtwork = await _artworkApi.FindArtwork(id);
@@ -160,7 +160,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtworkPage/Update -> Handles the update of an artwork's information
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> Update(ViewArtworkEdit model)
         {
             if (!ModelState.IsValid)

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetArtworksPlatform.Models
@@ -23,6 +24,8 @@ namespace PetArtworksPlatform.Models
         //An artwork can be featured in many exhibitions.
         public ICollection<Exhibition>? Exhibitions { get; set; }
         public ICollection<Pet>? Pets { get; set; }
+
+        public IdentityUser? ArtistUser { get; set; }
     }
 
     public class ArtworkToListDto

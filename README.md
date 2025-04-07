@@ -181,3 +181,22 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 - ASP.NET Core MVC
 - Entity Framework Core
 - Bootstrap
+
+---
+
+## To run this project
+
+Tools > NuGet Package Manager > Package Manager Console
+update-database
+
+---
+
+## Roles:
+
+- Admin(tommie@admin.ca): manage Pet Artworks Platform system.
+- GalleryAdmin(gallery@admin.ca): manage Art Gallery system.
+- ArtistUser(tommie@artist.ca, kelly@artist.ca): manage their own profile and artwork.
+
+Qqqq@111
+
+PetAdmin(pawpals@admin.ca): manage PawPals system.

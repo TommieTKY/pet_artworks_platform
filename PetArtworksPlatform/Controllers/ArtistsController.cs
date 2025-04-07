@@ -5,6 +5,7 @@ using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -13,9 +14,13 @@ namespace PetArtworksPlatform.Controllers
     public class ArtistsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ArtistsController(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ArtistsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -92,24 +97,50 @@ namespace PetArtworksPlatform.Controllers
         /// curl -X PUT -H "Content-Type: application/json" -d "{\"artistName\": \"Updated artist.\",  \"artistBiography\": \"Updated biography.\"}" "https://localhost:7145/api/Artists/Update/11"
         /// </example>
         [HttpPut(template: "Update/{ArtistID}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> UpdateArtist(int ArtistID, [FromBody] ArtistPersonDto artistDto)
         {
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            string currentId = User.Id;
+
+            Artist Artist = await _context.Artists
+            .Include(a => a.ArtistUser)
+            .FirstOrDefaultAsync(a => a.ArtistID == ArtistID);
+
+            if (Artist == null)
+            {
+                return NotFound();
+            }
+
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin") || await _userManager.IsInRoleAsync(User, "GalleryAdmin");
+
+            if ((Artist.ArtistUser?.Id != currentId) && !isUserAdmin)
+            {
+                return Forbid();
+            }
+
+            Console.WriteLine(currentId);
+            Console.WriteLine(Artist.ArtistUser?.Id);
+
             if (string.IsNullOrWhiteSpace(artistDto.ArtistName) || string.IsNullOrWhiteSpace(artistDto.ArtistBiography))
             {
                 return BadRequest(new { message = "Invalid artist data" });
             }
 
-            var artistGet = await _context.Artists.FindAsync(ArtistID);
-            if (artistGet == null)
-            {
-                return NotFound();
-            }
+            //var artistGet = await _context.Artists.FindAsync(ArtistID);
+            //if (artistGet == null)
+            //{
+            //    return NotFound();
+            //}
 
-            artistGet.ArtistName = artistDto.ArtistName;
-            artistGet.ArtistBiography = artistDto.ArtistBiography;
+            //artistGet.ArtistName = artistDto.ArtistName;
+            //artistGet.ArtistBiography = artistDto.ArtistBiography;
+            //_context.Entry(artistGet).State = EntityState.Modified;
 
-            _context.Entry(artistGet).State = EntityState.Modified;
+            Artist.ArtistName = artistDto.ArtistName;
+            Artist.ArtistBiography = artistDto.ArtistBiography;
+
+            _context.Entry(Artist).State = EntityState.Modified;
 
             try
             {
@@ -143,7 +174,7 @@ namespace PetArtworksPlatform.Controllers
         /// 
         /// </example>
         [HttpPost(template: "Add")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<ActionResult<Artist>> AddArtist([FromBody] ArtistPersonDto artistDto)
         {
             if (string.IsNullOrWhiteSpace(artistDto.ArtistName) || string.IsNullOrWhiteSpace(artistDto.ArtistBiography))
@@ -175,7 +206,7 @@ namespace PetArtworksPlatform.Controllers
         /// (db updated)
         /// </example>
         [HttpDelete("Delete/{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,GalleryAdmin")]
         public async Task<IActionResult> DeleteArtist(int id)
         {
             var artist = await _context.Artists.FindAsync(id);
