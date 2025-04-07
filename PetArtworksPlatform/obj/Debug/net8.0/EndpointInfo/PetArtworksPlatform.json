@@ -1916,10 +1916,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "artistID": {
-            "type": "integer",
-            "format": "int32"
-          },
           "hasPic": {
             "type": "boolean"
           },
@@ -1941,8 +1937,12 @@
             },
             "nullable": true
           },
-          "artistUser": {
-            "$ref": "#/components/schemas/IdentityUser"
+          "artistID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artist": {
+            "$ref": "#/components/schemas/Artist"
           }
         },
         "additionalProperties": false

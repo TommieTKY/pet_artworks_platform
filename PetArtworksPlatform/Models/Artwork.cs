@@ -11,21 +11,17 @@ namespace PetArtworksPlatform.Models
         public string ArtworkTitle { get; set; }
         public string ArtworkMedium { get; set; }
         public int ArtworkYearCreated { get; set; }
-
-        [ForeignKey("Artists")]
-        public int ArtistID { get; set; }
-        //public virtual Artist? Artist { get; set; }
-
         public bool HasPic { get; set; } = false;
-
         // images stored in /wwwroot/image/artwork/{ArtworkId}.{PicExtension}
         public string? PicExtension { get; set; }
-
-        //An artwork can be featured in many exhibitions.
         public ICollection<Exhibition>? Exhibitions { get; set; }
         public ICollection<Pet>? Pets { get; set; }
 
-        public IdentityUser? ArtistUser { get; set; }
+        [ForeignKey("Artists")]
+        public int ArtistID { get; set; }
+        public virtual Artist? Artist { get; set; }
+
+        //public IdentityUser? ArtistUser { get; set; }
     }
 
     public class ArtworkToListDto

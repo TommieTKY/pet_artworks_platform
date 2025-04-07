@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -13,9 +14,13 @@ namespace PetArtworksPlatform.Controllers
     public class ArtworksController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ArtworksController(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ArtworksController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -116,6 +121,24 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
         public async Task<IActionResult> UpdateArtwork(int ArtworkID, [FromBody] ArtworkItemDto artworkDto)
         {
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            string currentId = User.Id;
+
+            Artwork artwork = await _context.Artworks.Include(a => a.Artist).FirstOrDefaultAsync(a => a.ArtworkID == ArtworkID);
+
+            if (artwork == null)
+            {
+                return NotFound();
+            }
+
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin") || await _userManager.IsInRoleAsync(User, "GalleryAdmin");
+
+            if ((artwork.Artist.ArtistUser?.Id != currentId) && !isUserAdmin)
+            {
+                return Forbid();
+            }
+
+
             if (string.IsNullOrWhiteSpace(artworkDto.ArtworkTitle) || string.IsNullOrWhiteSpace(artworkDto.ArtworkMedium) || artworkDto.ArtworkYearCreated < 0 || artworkDto.ArtworkYearCreated > DateTime.Now.Year)
             {
                 return BadRequest(new { message = "Invalid artwork data" });
@@ -127,19 +150,21 @@ namespace PetArtworksPlatform.Controllers
                 return BadRequest(new { message = $"Artist with ID {artworkDto.ArtistID} does not exist" });
             }
 
-            var artworkGet = await _context.Artworks.FindAsync(ArtworkID);
+            //var artworkGet = await _context.Artworks.FindAsync(ArtworkID);
+            //if (artworkGet == null)
+            //{
+            //    return NotFound();
+            //}
+            //artworkGet.ArtworkTitle = artworkDto.ArtworkTitle;
+            //artworkGet.ArtworkMedium = artworkDto.ArtworkMedium;
+            //artworkGet.ArtworkYearCreated = artworkDto.ArtworkYearCreated;
+            //artworkGet.ArtistID = artworkDto.ArtistID;
+            //_context.Entry(artworkGet).State = EntityState.Modified;
 
-            if (artworkGet == null)
-            {
-                return NotFound();
-            }
-
-            artworkGet.ArtworkTitle = artworkDto.ArtworkTitle;
-            artworkGet.ArtworkMedium = artworkDto.ArtworkMedium;
-            artworkGet.ArtworkYearCreated = artworkDto.ArtworkYearCreated;
-            artworkGet.ArtistID = artworkDto.ArtistID;
-
-            _context.Entry(artworkGet).State = EntityState.Modified;
+            artwork.ArtworkTitle = artworkDto.ArtworkTitle;
+            artwork.ArtworkMedium = artworkDto.ArtworkMedium;
+            artwork.ArtworkYearCreated = artworkDto.ArtworkYearCreated;
+            _context.Entry(artwork).State = EntityState.Modified;
 
             try
             {

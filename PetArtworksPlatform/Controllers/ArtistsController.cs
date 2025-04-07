@@ -132,7 +132,6 @@ namespace PetArtworksPlatform.Controllers
             //{
             //    return NotFound();
             //}
-
             //artistGet.ArtistName = artistDto.ArtistName;
             //artistGet.ArtistBiography = artistDto.ArtistBiography;
             //_context.Entry(artistGet).State = EntityState.Modified;

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PetArtworksPlatform.Migrations
 {
     /// <inheritdoc />
-    public partial class artistUser : Migration
+    public partial class artwork : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -225,8 +225,7 @@ namespace PetArtworksPlatform.Migrations
                     ArtworkYearCreated = table.Column<int>(type: "int", nullable: false),
                     ArtistID = table.Column<int>(type: "int", nullable: false),
                     HasPic = table.Column<bool>(type: "bit", nullable: false),
-                    PicExtension = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArtistUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    PicExtension = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -237,11 +236,6 @@ namespace PetArtworksPlatform.Migrations
                         principalTable: "Artists",
                         principalColumn: "ArtistID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Artworks_AspNetUsers_ArtistUserId",
-                        column: x => x.ArtistUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -385,11 +379,6 @@ namespace PetArtworksPlatform.Migrations
                 name: "IX_Artworks_ArtistID",
                 table: "Artworks",
                 column: "ArtistID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Artworks_ArtistUserId",
-                table: "Artworks",
-                column: "ArtistUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

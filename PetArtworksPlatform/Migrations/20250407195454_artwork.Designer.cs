@@ -12,8 +12,8 @@ using PetArtworksPlatform.Data;
 namespace PetArtworksPlatform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250406174606_artistUser")]
-    partial class artistUser
+    [Migration("20250407195454_artwork")]
+    partial class artwork
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -294,9 +294,6 @@ namespace PetArtworksPlatform.Migrations
                     b.Property<int>("ArtistID")
                         .HasColumnType("int");
 
-                    b.Property<string>("ArtistUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ArtworkMedium")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -317,8 +314,6 @@ namespace PetArtworksPlatform.Migrations
                     b.HasKey("ArtworkID");
 
                     b.HasIndex("ArtistID");
-
-                    b.HasIndex("ArtistUserId");
 
                     b.ToTable("Artworks");
                 });
@@ -548,17 +543,13 @@ namespace PetArtworksPlatform.Migrations
 
             modelBuilder.Entity("PetArtworksPlatform.Models.Artwork", b =>
                 {
-                    b.HasOne("PetArtworksPlatform.Models.Artist", null)
+                    b.HasOne("PetArtworksPlatform.Models.Artist", "Artist")
                         .WithMany("Artworks")
                         .HasForeignKey("ArtistID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ArtistUser")
-                        .WithMany()
-                        .HasForeignKey("ArtistUserId");
-
-                    b.Navigation("ArtistUser");
+                    b.Navigation("Artist");
                 });
 
             modelBuilder.Entity("PetArtworksPlatform.Models.Connection", b =>
