@@ -93,10 +93,6 @@ namespace PetArtworksPlatform.Controllers
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             string currentId = User.Id;
 
-            //Artist Artist = await _context.Artists
-            //.Include(a => a.ArtistUser)
-            //.FirstOrDefaultAsync(a => a.ArtistID == ArtistID);
-
             Artist Artist = await _context.Artists
             .Include(a => a.ArtistUser)
             .FirstOrDefaultAsync(a => a.ArtistUser.Id == currentId);
@@ -146,5 +142,36 @@ namespace PetArtworksPlatform.Controllers
             string currentId = User.Id;
             return await _context.Artists.AnyAsync(a => a.ArtistUser.Id == currentId);
         }
+
+
+
+        //[HttpPost(template: "AddArtwork")]
+        //[Authorize(Roles = "ArtistUser")]
+        //public async Task<ActionResult<Artwork>> AddArtwork([FromBody] ArtworkItemDto artworkDto)
+        //{
+        //    if (string.IsNullOrWhiteSpace(artworkDto.ArtworkTitle) || string.IsNullOrWhiteSpace(artworkDto.ArtworkMedium) || artworkDto.ArtworkYearCreated < 0 || artworkDto.ArtworkYearCreated > DateTime.Now.Year)
+        //    {
+        //        return BadRequest(new { message = "Invalid artwork data" });
+        //    }
+
+        //    var artistExists = await _context.Artists.AnyAsync(a => a.ArtistID == artworkDto.ArtistID);
+        //    if (!artistExists)
+        //    {
+        //        return BadRequest(new { message = $"Artist with ID {artworkDto.ArtistID} does not exist" });
+        //    }
+
+        //    Artwork artwork = new Artwork
+        //    {
+        //        ArtworkTitle = artworkDto.ArtworkTitle,
+        //        ArtworkMedium = artworkDto.ArtworkMedium,
+        //        ArtworkYearCreated = artworkDto.ArtworkYearCreated,
+        //        ArtistID = artworkDto.ArtistID
+        //    };
+
+        //    _context.Artworks.Add(artwork);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("FindArtwork", new { ArtworkID = artwork.ArtworkID }, artwork);
+        //}
     }
 }

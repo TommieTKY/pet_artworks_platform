@@ -19,6 +19,7 @@ namespace PetArtworksPlatform.Controllers
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }
+
         // GET: ArtistProfilePage/Details/{id} -> A webpage that displays an artist by the Artist’s ID
         [HttpGet]
         [Authorize(Roles = "ArtistUser")]
@@ -31,7 +32,6 @@ namespace PetArtworksPlatform.Controllers
             }
             return View(selectedArtist);
         }
-
 
         // GET: ArtistProfilePage/New -> A webpage that prompts the user to enter new artist information
         [HttpGet]
@@ -92,7 +92,6 @@ namespace PetArtworksPlatform.Controllers
         {
             var updateArtist = new ArtistPersonDto
             {
-                //ArtistId = id,
                 ArtistName = artistName,
                 ArtistBiography = artistBiography
             };

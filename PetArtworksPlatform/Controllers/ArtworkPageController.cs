@@ -14,15 +14,17 @@ namespace PetArtworksPlatform.Controllers
     {
         private readonly ArtworksController _artworkApi;
         private readonly ArtistsController _artistsApi;
+        private readonly ArtistProfileController _artistProfileApi;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ArtworkPageController(ArtworksController artworkApi, ArtistsController artistsApi, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
+        public ArtworkPageController(ArtworksController artworkApi, ArtistsController artistsApi, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor, ArtistProfileController artistProfileApi)
         {
             _artworkApi = artworkApi;
             _artistsApi = artistsApi;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
+            _artistProfileApi = artistProfileApi;
         }
 
         // GET: ArtworkPage/List -> A webpage that shows all artworks in the db
@@ -80,11 +82,31 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> New()
         {
-            var artists = await _artistsApi.List(0, int.MaxValue);
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            string currentId = User.Id;
+
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+
+            List<ArtistToListDto> artists;
+
+            if (isUserAdmin)
+            {
+                artists = (await _artistsApi.List(0, int.MaxValue)).Value.ToList();
+            }
+            else
+            {
+                var userArtist = await _artistProfileApi.FindArtist();
+                if (userArtist.Value == null)
+                {
+                    return RedirectToAction("New", "ArtistProfilePage");
+                }
+                artists = new List<ArtistToListDto> { new ArtistToListDto { ArtistId = userArtist.Value.ArtistId, ArtistName = userArtist.Value.ArtistName, ArtistBiography = userArtist.Value.ArtistBiography } };
+            }
+
             var model = new ViewArtworkEdit
             {
                 Artwork = new ArtworkItemDto(),
-                ArtistList = artists.Value.ToList()
+                ArtistList = artists
             };
             ViewData["Title"] = "New Artwork";
             return View(model);

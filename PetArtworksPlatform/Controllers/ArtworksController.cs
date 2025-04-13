@@ -131,20 +131,26 @@ namespace PetArtworksPlatform.Controllers
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             string currentId = User.Id;
 
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+            if (!isUserAdmin)
+            {
+                var artist = await _context.Artists.FirstOrDefaultAsync(a => a.ArtistUser.Id == currentId);
+                if (artist == null || artist.ArtistID != artworkDto.ArtistID)
+                {
+                    return Forbid();
+                }
+            }
+
             Artwork artwork = await _context.Artworks.Include(a => a.Artist).FirstOrDefaultAsync(a => a.ArtworkID == ArtworkID);
 
             if (artwork == null)
             {
                 return NotFound();
             }
-
-            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
-
             if ((artwork.Artist.ArtistUser?.Id != currentId) && !isUserAdmin)
             {
                 return Forbid();
             }
-
 
             if (string.IsNullOrWhiteSpace(artworkDto.ArtworkTitle) || string.IsNullOrWhiteSpace(artworkDto.ArtworkMedium) || artworkDto.ArtworkYearCreated < 0 || artworkDto.ArtworkYearCreated > DateTime.Now.Year)
             {
@@ -205,6 +211,19 @@ namespace PetArtworksPlatform.Controllers
                 return BadRequest(new { message = "Invalid artwork data" });
             }
 
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            string currentId = User.Id;
+
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+            if (!isUserAdmin)
+            {
+                var artist = await _context.Artists.FirstOrDefaultAsync(a => a.ArtistUser.Id == currentId);
+                if (artist == null || artist.ArtistID != artworkDto.ArtistID)
+                {
+                    return Forbid();
+                }
+            }
+
             var artistExists = await _context.Artists.AnyAsync(a => a.ArtistID == artworkDto.ArtistID);
             if (!artistExists)
             {
@@ -251,7 +270,6 @@ namespace PetArtworksPlatform.Controllers
 
             return NoContent();
         }
-
 
         [HttpPost("UpdateArtworkImage/{id}")]
         [Authorize(Roles = "Admin,ArtistUser")]
@@ -329,7 +347,6 @@ namespace PetArtworksPlatform.Controllers
             // If the file was not uploaded successfully, return a BadRequest
             return BadRequest(new { message = "Failed to upload artwork picture." });
         }
-
 
         private bool ArtworkExists(int id)
         {
