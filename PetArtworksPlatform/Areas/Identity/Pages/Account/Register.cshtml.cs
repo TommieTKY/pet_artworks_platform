@@ -100,6 +100,13 @@ namespace PetArtworksPlatform.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            /// <summary>
+            ///    selecting role
+            /// </summary>
+            [Required(ErrorMessage = "Please select a role.")]
+            [Display(Name = "Registering as")]
+            public string Role { get; set; }
         }
 
 
@@ -123,11 +130,26 @@ namespace PetArtworksPlatform.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    var ArtistUserRole = _roleManager.FindByNameAsync("ArtistUser").Result;
-
-                    if (ArtistUserRole != null)
+                    if (!string.IsNullOrEmpty(Input.Role))
                     {
-                        IdentityResult roleresult = await _userManager.AddToRoleAsync(user, ArtistUserRole.Name);
+                        var roleExists = await _roleManager.RoleExistsAsync(Input.Role);
+                        if (roleExists)
+                        {
+                            var roleResult = await _userManager.AddToRoleAsync(user, Input.Role);
+                            if (!roleResult.Succeeded)
+                            {
+                                foreach (var error in roleResult.Errors)
+                                {
+                                    ModelState.AddModelError(string.Empty, error.Description);
+                                }
+                                return Page();
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Selected role does not exist.");
+                            return Page();
+                        }
                     }
 
                     _logger.LogInformation("User created a new account with password.");

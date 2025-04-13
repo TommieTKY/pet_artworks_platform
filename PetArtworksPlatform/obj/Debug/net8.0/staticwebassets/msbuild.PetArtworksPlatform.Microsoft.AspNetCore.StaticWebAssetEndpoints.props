@@ -108,17 +108,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pbkiD\u002B21aMainSVZV3om\u002Bm2pJFuc35aXeyWqyTcYKWM="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1903174"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022pbkiD\u002B21aMainSVZV3om\u002Bm2pJFuc35aXeyWqyTcYKWM=\u0022"},{"Name":"Last-Modified","Value":"Sat, 12 Apr 2025 23:02:01 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/8.fqkcxikatr.jpg">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\8.jpg'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"fqkcxikatr"},{"Name":"integrity","Value":"sha256-9/y6PoVOR6QfRIPkL\u002B\u002BfJ7x8KPpmhkqwfApi4Jnf71g="},{"Name":"label","Value":"_content/PetArtworksPlatform/image/artwork/8.jpg"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5423"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00229/y6PoVOR6QfRIPkL\u002B\u002BfJ7x8KPpmhkqwfApi4Jnf71g=\u0022"},{"Name":"Last-Modified","Value":"Thu, 03 Apr 2025 15:42:35 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/8.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\8.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-9/y6PoVOR6QfRIPkL\u002B\u002BfJ7x8KPpmhkqwfApi4Jnf71g="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"5423"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00229/y6PoVOR6QfRIPkL\u002B\u002BfJ7x8KPpmhkqwfApi4Jnf71g=\u0022"},{"Name":"Last-Modified","Value":"Thu, 03 Apr 2025 15:42:35 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"15862"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=\u0022"},{"Name":"Last-Modified","Value":"Sun, 13 Apr 2025 15:20:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/8.nejxt6ye5u.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\8.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nejxt6ye5u"},{"Name":"integrity","Value":"sha256-gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI="},{"Name":"label","Value":"_content/PetArtworksPlatform/image/artwork/8.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15862"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=\u0022"},{"Name":"Last-Modified","Value":"Sun, 13 Apr 2025 15:20:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/pet/1.7dc7kirtw9.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\1.jpg'))</AssetFile>

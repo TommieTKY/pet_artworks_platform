@@ -1,5 +1,67 @@
 [
   {
+    "ContainingType": "PetArtworksPlatform.Controllers.ArtistProfileController",
+    "Method": "CreateArtist",
+    "RelativePath": "api/ArtistProfile/CreateArtist",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "artistDto",
+        "Type": "PetArtworksPlatform.Models.ArtistPersonDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PetArtworksPlatform.Models.Artist",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PetArtworksPlatform.Controllers.ArtistProfileController",
+    "Method": "FindArtist",
+    "RelativePath": "api/ArtistProfile/FindArtist",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "PetArtworksPlatform.Models.ArtistPersonDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PetArtworksPlatform.Controllers.ArtistProfileController",
+    "Method": "UpdateArtist",
+    "RelativePath": "api/ArtistProfile/UpdateArtist",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "artistDto",
+        "Type": "PetArtworksPlatform.Models.ArtistPersonDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PetArtworksPlatform.Controllers.ArtistsController",
     "Method": "CountArtists",
     "RelativePath": "api/Artists",

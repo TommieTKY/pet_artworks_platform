@@ -112,7 +112,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtistPage/Edit/{id} -> A webpage that prompts the user to edit an artist's information
         [HttpGet]
-        [Authorize(Roles = "Admin,ArtistUser")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var selectedArtist = _api.FindArtist(id).Result.Value;
@@ -121,7 +121,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtistPage/Update/{id} -> Handles the update of an artist's information
         [HttpPost]
-        [Authorize(Roles = "Admin,ArtistUser")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(int id, string artistName, string artistBiography)
         {
             var updateArtist = new ArtistPersonDto

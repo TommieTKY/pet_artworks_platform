@@ -106,40 +106,24 @@ namespace PetArtworksPlatform.Controllers
         /// curl -X PUT -H "Content-Type: application/json" -d "{\"artistName\": \"Updated artist.\",  \"artistBiography\": \"Updated biography.\"}" "https://localhost:7145/api/Artists/Update/11"
         /// </example>
         [HttpPut(template: "Update/{ArtistID}")]
-        [Authorize(Roles = "Admin,ArtistUser")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateArtist(int ArtistID, [FromBody] ArtistPersonDto artistDto)
         {
-            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-            string currentId = User.Id;
-
-            Artist Artist = await _context.Artists
-            .Include(a => a.ArtistUser)
-            .FirstOrDefaultAsync(a => a.ArtistID == ArtistID);
-
-            if (Artist == null)
-            {
-                return NotFound();
-            }
-
-            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin") || await _userManager.IsInRoleAsync(User, "GalleryAdmin");
-
-            if ((Artist.ArtistUser?.Id != currentId) && !isUserAdmin)
-            {
-                return Forbid();
-            }
-
-            Console.WriteLine(currentId);
-            Console.WriteLine(Artist.ArtistUser?.Id);
-
             if (string.IsNullOrWhiteSpace(artistDto.ArtistName) || string.IsNullOrWhiteSpace(artistDto.ArtistBiography))
             {
                 return BadRequest(new { message = "Invalid artist data" });
             }
 
-            Artist.ArtistName = artistDto.ArtistName;
-            Artist.ArtistBiography = artistDto.ArtistBiography;
+            var artistGet = await _context.Artists.FindAsync(ArtistID);
+            if (artistGet == null)
+            {
+                return NotFound();
+            }
 
-            _context.Entry(Artist).State = EntityState.Modified;
+            artistGet.ArtistName = artistDto.ArtistName;
+            artistGet.ArtistBiography = artistDto.ArtistBiography;
+
+            _context.Entry(artistGet).State = EntityState.Modified;
 
             try
             {
@@ -159,6 +143,41 @@ namespace PetArtworksPlatform.Controllers
             }
             return NoContent();
         }
+
+        //public async Task<IActionResult> UpdateArtist(int ArtistID, [FromBody] ArtistPersonDto artistDto)
+        //{
+        //    IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+        //    string currentId = User.Id;
+
+        //    Artist Artist = await _context.Artists
+        //    .Include(a => a.ArtistUser)
+        //    .FirstOrDefaultAsync(a => a.ArtistID == ArtistID);
+
+        //    if (Artist == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+
+        //    if ((Artist.ArtistUser?.Id != currentId) && !isUserAdmin)
+        //    {
+        //        return Forbid();
+        //    }
+
+        //    Console.WriteLine(currentId);
+        //    Console.WriteLine(Artist.ArtistUser?.Id);
+
+        //    if (string.IsNullOrWhiteSpace(artistDto.ArtistName) || string.IsNullOrWhiteSpace(artistDto.ArtistBiography))
+        //    {
+        //        return BadRequest(new { message = "Invalid artist data" });
+        //    }
+
+        //    Artist.ArtistName = artistDto.ArtistName;
+        //    Artist.ArtistBiography = artistDto.ArtistBiography;
+
+        //    _context.Entry(Artist).State = EntityState.Modified;
+        //}
 
         /// <summary>
         /// Adds a new artist to the database.

@@ -29,6 +29,7 @@ builder.Services.AddScoped<ExhibitionsController>();
 builder.Services.AddScoped<ConnectionController>();
 builder.Services.AddScoped<MemberController>();
 builder.Services.AddScoped<PetController>();
+builder.Services.AddScoped<ArtistProfileController>();
 
 var app = builder.Build();
 
