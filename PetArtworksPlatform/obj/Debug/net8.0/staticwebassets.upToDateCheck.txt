@@ -8,6 +8,7 @@ wwwroot\image\artwork\5.jpg
 wwwroot\image\artwork\6.jpg
 wwwroot\image\artwork\7.jpg
 wwwroot\image\artwork\8.jpg
+wwwroot\image\artwork\9.jpg
 wwwroot\image\pet\1.jpg
 wwwroot\image\pet\10.jpg
 wwwroot\image\pet\11.jpg

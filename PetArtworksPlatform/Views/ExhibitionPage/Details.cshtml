@@ -1,4 +1,7 @@
 ﻿@model PetArtworksPlatform.Models.ExhibitionItemDto
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "View Exhibition";
@@ -50,10 +53,13 @@
         </ul>
     </div>
 </div>
-
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ExhibitionId">Edit</a> |
-    <a asp-action="ConfirmDelete" asp-route-id="@Model.ExhibitionId">Delete</a> |
     <a asp-action="List">Back to List</a>
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <span> | </span>
+        <a asp-action="Edit" asp-route-id="@Model.ExhibitionId">Edit</a>
+        <span> | </span>
+        <a asp-action="ConfirmDelete" asp-route-id="@Model.ExhibitionId">Delete</a>
+    }
 </div>
-

@@ -193,14 +193,36 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> Edit(int id)
         {
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            string currentId = User.Id;
+
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+
+            List<ArtistToListDto> artists;
+
+            if (isUserAdmin)
+            {
+                artists = (await _artistsApi.List(0, int.MaxValue)).Value.ToList();
+            }
+            else
+            {
+                var userArtist = await _artistProfileApi.FindArtist();
+                if (userArtist.Value == null)
+                {
+                    return RedirectToAction("New", "ArtistProfilePage");
+                }
+                artists = new List<ArtistToListDto> { new ArtistToListDto { ArtistId = userArtist.Value.ArtistId, ArtistName = userArtist.Value.ArtistName, ArtistBiography = userArtist.Value.ArtistBiography } };
+            }
+
+
+
             var selectedArtwork = await _artworkApi.FindArtwork(id);
             if (selectedArtwork.Value is ArtworkItemDto artworkItemDto)
             {
-                var artists = await _artistsApi.List(0, int.MaxValue);
                 var artworkDetails = new ViewArtworkEdit
                 {
                     Artwork = artworkItemDto,
-                    ArtistList = artists.Value.ToList()
+                    ArtistList = artists
                 };
                 return View(artworkDetails);
             }
@@ -216,7 +238,7 @@ namespace PetArtworksPlatform.Controllers
             {
                 return View("Edit", model);
             }
-
+                       
             var updateArtwork = new ArtworkItemDto
             {
                 ArtworkId = model.Artwork.ArtworkId,

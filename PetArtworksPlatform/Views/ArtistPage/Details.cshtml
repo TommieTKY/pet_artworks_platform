@@ -1,4 +1,7 @@
 ﻿@model PetArtworksPlatform.Models.ArtistPersonDto
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "View Artist";
@@ -40,9 +43,14 @@
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ArtistId">Edit</a> |
-    <a asp-action="ConfirmDelete" asp-route-id="@Model.ArtistId">Delete</a> |
-    <a asp-action="List">Back to List</a>
+    <a asp-action="List">Back to List</a>    
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <span> | </span>
+        <a asp-action="Edit" asp-route-id="@Model.ArtistId">Edit</a>
+        <span> | </span>
+        <a asp-action="ConfirmDelete" asp-route-id="@Model.ArtistId">Delete</a>
+    }
 </div>
 
 
