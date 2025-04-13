@@ -93,6 +93,6 @@ namespace PetArtworksPlatform.Controllers
             return Ok("Unfollowed successfully");
         }
 
-        
+
     }
 }

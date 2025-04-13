@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetArtworksPlatform.Models.ExhibitionToListDto>
+﻿@model PetArtworksPlatform.Models.ViewModels.ExhibitionList
 
 @{
     ViewData["Title"] = "Exhibitions";
@@ -6,29 +6,42 @@
 
 <h1>Exhibitions</h1>
 
-<p>
-    <a asp-action="New">Create New</a>
-</p>
+@if (Model.isAdmin)
+{
+    <p style="margin-top:20px;">
+        <a asp-action="New">Create New</a>
+    </p>
+}
+
+<div style="margin:25px;">
+    @if (Model.MaxPage > 0)
+    {
+        <a href="/ExhibitionPage/List?PageNum=@(Model.Page - 1)">&laquo; Prev</a>
+        <span>Page @(Model.Page + 1) of @(Model.MaxPage + 1)</span>
+        <a href="/ExhibitionPage/List?PageNum=@(Model.Page + 1)">Next &raquo;</a>
+    }
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ExhibitionTitle)
+                @Html.DisplayNameFor(model => model.Exhibitions.First().ExhibitionTitle)
             </th>
             <th>
                 Status
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                @Html.DisplayNameFor(model => model.Exhibitions.First().StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EndDate)
+                @Html.DisplayNameFor(model => model.Exhibitions.First().EndDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Exhibitions)
         {
             <tr>
                 <td>
@@ -46,9 +59,14 @@
                     @Html.DisplayFor(modelItem => item.EndDate)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ExhibitionId">Details</a> |
-                    <a asp-action="Edit" asp-route-id="@item.ExhibitionId">Edit</a> |
-                    <a asp-action="ConfirmDelete" asp-route-id="@item.ExhibitionId">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.ExhibitionId">Details</a>
+                    @if (Model.isAdmin)
+                    {
+                        <span> | </span>
+                        <a asp-action="Edit" asp-route-id="@item.ExhibitionId">Edit</a>
+                        <span> | </span>
+                        <a asp-action="ConfirmDelete" asp-route-id="@item.ExhibitionId"> Delete </a>
+                    }           
                 </td>
             </tr>
         }

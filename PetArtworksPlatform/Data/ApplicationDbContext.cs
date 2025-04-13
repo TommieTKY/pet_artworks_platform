@@ -17,17 +17,17 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<PetOwner>()
-            .HasKey(po => new { po.PetId, po.OwnerId }); 
+            .HasKey(po => new { po.PetId, po.OwnerId });
 
         modelBuilder.Entity<PetOwner>()
-            .HasOne(po => po.Pet) 
-            .WithMany(p => p.PetOwners) 
+            .HasOne(po => po.Pet)
+            .WithMany(p => p.PetOwners)
             .HasForeignKey(po => po.PetId);
 
         modelBuilder.Entity<PetOwner>()
@@ -43,17 +43,17 @@ public class ApplicationDbContext : IdentityDbContext
             .HasOne(c => c.Follower)
             .WithMany(m => m.Following)
             .HasForeignKey(c => c.FollowerId)
-            .OnDelete(DeleteBehavior.Restrict); 
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Connection>()
             .HasOne(c => c.Following)
             .WithMany(m => m.Followers)
             .HasForeignKey(c => c.FollowingId)
-            .OnDelete(DeleteBehavior.Restrict); 
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Connection>()
             .HasIndex(c => new { c.FollowerId, c.FollowingId })
             .IsUnique();
     }
-    
+
 }

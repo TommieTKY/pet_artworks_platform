@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
+using PetArtworksPlatform.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -32,9 +33,12 @@ namespace PetArtworksPlatform.Controllers
         /// -> [{"artistId":1,"artistName":"Agnes Martin","artistBiography":"A Canadian-American painter known for her delicate grid-based compositions that evoke a sense of tranquility and introspection within Minimalist abstraction.","artworkCount":1},{"artistId":2,"artistName":"Mark Rothko","artistBiography":"A Latvian-American painter famous for his large-scale color-field paintings that use layered hues to evoke deep emotional and spiritual responses.","artworkCount":1},{"artistId":3,"artistName":"Piet Mondrian","artistBiography":"A Dutch artist and pioneer of geometric abstraction, whose works with bold primary colors and black grids helped define the De Stijl movement.","artworkCount":1},{"artistId":4,"artistName":"Wassily Kandinsky","artistBiography":"A Russian painter and art theorist, widely regarded as a pioneer of abstract art, known for his dynamic compositions that explored the spiritual and emotional power of color and form.","artworkCount":1},{"artistId":5,"artistName":"Barnett Newman","artistBiography":"n American abstract expressionist known for his large-scale color field paintings and \"zip\" motifs, which emphasized spatial depth and spiritual transcendence.","artworkCount":1}]
         /// </example>
         [HttpGet(template: "List")]
-        public async Task<ActionResult<IEnumerable<ArtistToListDto>>> List()
+        public async Task<ActionResult<IEnumerable<ArtistToListDto>>> List(int skip, int page)
         {
-            List<Artist> Artists = await _context.Artists.Include(a => a.Artworks).ToListAsync();
+            if (skip == null) skip = 0;
+            if (page == null) page = await CountArtists();
+
+            List<Artist> Artists = await _context.Artists.Include(a => a.Artworks).OrderBy(a => a.ArtistID).Skip(skip).Take(page).ToListAsync();
 
             List<ArtistToListDto> ArtistsDtos = new List<ArtistToListDto>();
 
@@ -48,6 +52,11 @@ namespace PetArtworksPlatform.Controllers
                 ArtistsDtos.Add(ArtistDto);
             }
             return ArtistsDtos;
+        }
+
+        public async Task<int> CountArtists()
+        {
+            return await _context.Artists.CountAsync();
         }
 
         /// <summary>
@@ -97,7 +106,7 @@ namespace PetArtworksPlatform.Controllers
         /// curl -X PUT -H "Content-Type: application/json" -d "{\"artistName\": \"Updated artist.\",  \"artistBiography\": \"Updated biography.\"}" "https://localhost:7145/api/Artists/Update/11"
         /// </example>
         [HttpPut(template: "Update/{ArtistID}")]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> UpdateArtist(int ArtistID, [FromBody] ArtistPersonDto artistDto)
         {
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
@@ -126,15 +135,6 @@ namespace PetArtworksPlatform.Controllers
             {
                 return BadRequest(new { message = "Invalid artist data" });
             }
-
-            //var artistGet = await _context.Artists.FindAsync(ArtistID);
-            //if (artistGet == null)
-            //{
-            //    return NotFound();
-            //}
-            //artistGet.ArtistName = artistDto.ArtistName;
-            //artistGet.ArtistBiography = artistDto.ArtistBiography;
-            //_context.Entry(artistGet).State = EntityState.Modified;
 
             Artist.ArtistName = artistDto.ArtistName;
             Artist.ArtistBiography = artistDto.ArtistBiography;
@@ -173,7 +173,7 @@ namespace PetArtworksPlatform.Controllers
         /// 
         /// </example>
         [HttpPost(template: "Add")]
-        [Authorize(Roles = "Admin,GalleryAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Artist>> AddArtist([FromBody] ArtistPersonDto artistDto)
         {
             if (string.IsNullOrWhiteSpace(artistDto.ArtistName) || string.IsNullOrWhiteSpace(artistDto.ArtistBiography))
@@ -205,7 +205,7 @@ namespace PetArtworksPlatform.Controllers
         /// (db updated)
         /// </example>
         [HttpDelete("Delete/{id}")]
-        [Authorize(Roles = "Admin,GalleryAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteArtist(int id)
         {
             var artist = await _context.Artists.FindAsync(id);

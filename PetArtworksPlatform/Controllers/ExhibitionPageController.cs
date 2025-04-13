@@ -3,6 +3,9 @@ using PetArtworksPlatform.Models;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using PetArtworksPlatform.Models.ViewModels;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -10,19 +13,43 @@ namespace PetArtworksPlatform.Controllers
     {
         private readonly ExhibitionsController _exhibitionsApi;
         private readonly ArtworksController _artworksApi;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ExhibitionPageController(ExhibitionsController exhibitionsApi, ArtworksController artworksApi)
+        public ExhibitionPageController(ExhibitionsController exhibitionsApi, ArtworksController artworksApi, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _exhibitionsApi = exhibitionsApi;
             _artworksApi = artworksApi;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: ExhibitionPage/List -> A webpage that shows all exhibitions in the db
         [HttpGet]
-        public IActionResult List()
+        public async Task<IActionResult> List(int PageNum = 0)
         {
-            List<ExhibitionToListDto> exhibitions = _exhibitionsApi.List().Result.Value.ToList();
-            return View(exhibitions);
+            int PerPage = 5;
+            int MaxPage = (int)Math.Ceiling((decimal)await _exhibitionsApi.CountExhibitions() / PerPage) - 1;
+
+            if (MaxPage < 0) MaxPage = 0;
+            if (PageNum < 0) PageNum = 0;
+            if (PageNum > MaxPage) PageNum = MaxPage;
+
+            int StartIndex = PerPage * PageNum;
+
+            var result = await _exhibitionsApi.List(StartIndex, PerPage);
+            IEnumerable<ExhibitionToListDto> ExhibitionList = result.Value;
+
+            ExhibitionList ViewModel = new ExhibitionList();
+            ViewModel.Exhibitions = ExhibitionList;
+            ViewModel.MaxPage = MaxPage;
+            ViewModel.Page = PageNum;
+
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            if (User != null) ViewModel.isAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+            else ViewModel.isAdmin = false;
+
+            return View(ViewModel);
         }
 
         // GET: ExhibitionPage/Details/{id} -> A webpage that displays an exhibition by the Exhibition’s ID
@@ -100,7 +127,7 @@ namespace PetArtworksPlatform.Controllers
             var selectedExhibition = await _exhibitionsApi.FindExhibition(id);
             if (selectedExhibition.Value is ExhibitionItemDto exhibitionItemDto)
             {
-                var artworks = await _artworksApi.List();
+                var artworks = await _artworksApi.List(0,int.MaxValue);
                 var exhibitionDetails = new ViewExhibitionEdit
                 {
                     Exhibition = exhibitionItemDto,

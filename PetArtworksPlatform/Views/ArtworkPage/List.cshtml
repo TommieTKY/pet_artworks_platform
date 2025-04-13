@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetArtworksPlatform.Models.ArtworkToListDto>
+﻿@model PetArtworksPlatform.Models.ViewModels.ArtworkListView
 
 @{
     ViewData["Title"] = "Artworks";
@@ -6,14 +6,27 @@
 
 <h1>Artworks</h1>
 
-<p>
-    <a asp-action="New">Create New</a>
-</p>
+@if (Model.isAdmin)
+{
+    <p style="margin-top:20px;">
+        <a asp-action="New">Create New</a>
+    </p>
+}
+
+<div style="margin:25px;">
+    @if (Model.MaxPage > 0)
+    {
+        <a href="/ArtworkPage/List?PageNum=@(Model.Page - 1)">&laquo; Prev</a>
+        <span>Page @(Model.Page + 1) of @(Model.MaxPage + 1)</span>
+        <a href="/ArtworkPage/List?PageNum=@(Model.Page + 1)">Next &raquo;</a>
+    }
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ArtworkTitle)
+                @Html.DisplayNameFor(model => model.Artworks.First().ArtworkTitle)
             </th>
             <th>
                 Image
@@ -22,7 +35,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Artworks)
         {
             <tr>
                 <td>
@@ -32,9 +45,14 @@
                     <img style="width:auto; height:50px;" src="@item.ArtworkImagePath" />
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ArtworkId">Details</a> |
-                    <a asp-action="Edit" asp-route-id="@item.ArtworkId">Edit</a> |
-                    <a asp-action="ConfirmDelete" asp-route-id="@item.ArtworkId">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.ArtworkId">Details</a>
+                    @if (Model.isAdmin)
+                    {
+                        <span> | </span>
+                        <a asp-action="Edit" asp-route-id="@item.ArtworkId">Edit</a>
+                        <span> | </span>
+                        <a asp-action="ConfirmDelete" asp-route-id="@item.ArtworkId">Delete</a>
+                    }
                 </td>
             </tr>
         }

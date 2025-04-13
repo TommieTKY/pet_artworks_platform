@@ -1,6 +1,26 @@
 [
   {
     "ContainingType": "PetArtworksPlatform.Controllers.ArtistsController",
+    "Method": "CountArtists",
+    "RelativePath": "api/Artists",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PetArtworksPlatform.Controllers.ArtistsController",
     "Method": "AddArtist",
     "RelativePath": "api/Artists/Add",
     "HttpMethod": "POST",
@@ -74,7 +94,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[PetArtworksPlatform.Models.ArtistToListDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -107,6 +138,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetArtworksPlatform.Controllers.ArtworksController",
+    "Method": "CountArtworks",
+    "RelativePath": "api/Artworks",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PetArtworksPlatform.Controllers.ArtworksController",
@@ -183,7 +234,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[PetArtworksPlatform.Models.ArtworkToListDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -279,6 +341,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetArtworksPlatform.Controllers.ExhibitionsController",
+    "Method": "CountExhibitions",
+    "RelativePath": "api/Exhibitions",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PetArtworksPlatform.Controllers.ExhibitionsController",
@@ -407,7 +489,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[PetArtworksPlatform.Models.ExhibitionToListDto, PetArtworksPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",

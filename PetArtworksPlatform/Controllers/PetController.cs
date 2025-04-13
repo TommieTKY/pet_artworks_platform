@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
 using PetArtworksPlatform.Models.DTOs;
+using System.Linq;
 
 namespace PetArtworksPlatform.Controllers
 {

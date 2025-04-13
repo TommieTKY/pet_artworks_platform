@@ -12,7 +12,7 @@ namespace PetArtworksPlatform.Models
 
         [ForeignKey("PetId")]
         public Pet? Pet { get; set; }
-        
+
         [ForeignKey("OwnerId")]
         public Member? Owner { get; set; }
     }

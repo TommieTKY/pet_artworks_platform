@@ -20,6 +20,18 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 ---
 
+## Roles:
+
+- Admin: manage Pet Artworks Platform system.
+<!-- - GalleryAdmin(gallery@admin.ca): manage Art Gallery system.
+- ArtistUser(tommie@artist.ca, kelly@artist.ca): manage their own profile and artwork. -->
+
+Qqqq@111
+
+PetAdmin(pawpals@admin.ca): manage PawPals system.
+
+---
+
 ## Features - ArtGallery
 
 • Artists Management: View, find, add, update, and delete artists.
@@ -188,15 +200,3 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 Tools > NuGet Package Manager > Package Manager Console
 update-database
-
----
-
-## Roles:
-
-- Admin(tommie@admin.ca): manage Pet Artworks Platform system.
-- GalleryAdmin(gallery@admin.ca): manage Art Gallery system.
-- ArtistUser(tommie@artist.ca, kelly@artist.ca): manage their own profile and artwork.
-
-Qqqq@111
-
-PetAdmin(pawpals@admin.ca): manage PawPals system.

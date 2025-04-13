@@ -31,10 +31,12 @@ namespace PetArtworksPlatform.Controllers
         /// -> [{"artworkId":7,"artworkTitle":"Whispers of the Wild","artworkMedium":"Watercolor","artworkYearCreated":2025,"artistID":1,"exhibitionCount":2},{"artworkId":8,"artworkTitle":"Starry Sun","artworkMedium":"Oil on canvas","artworkYearCreated":2023,"artistID":2,"exhibitionCount":1},{"artworkId":9,"artworkTitle":"The Night Show","artworkMedium":"Oil on canvas","artworkYearCreated":2024,"artistID":3,"exhibitionCount":2},{"artworkId":12,"artworkTitle":"Golden Horizon","artworkMedium":"Watercolor","artworkYearCreated":2024,"artistID":1,"exhibitionCount":3},{"artworkId":13,"artworkTitle":"Unbroken Spirit","artworkMedium":"Oil on canvas","artworkYearCreated":2019,"artistID":2,"exhibitionCount":0},{"artworkId":15,"artworkTitle":"New Artwork","artworkMedium":"Acrylic on Canvas","artworkYearCreated":2025,"artistID":5,"exhibitionCount":0}]
         /// </example>
         [HttpGet(template: "List")]
-        public async Task<ActionResult<IEnumerable<ArtworkToListDto>>> List()
+        public async Task<ActionResult<IEnumerable<ArtworkToListDto>>> List(int skip, int page)
         {
-            List<Artwork> Artworks = await _context.Artworks.Include(w => w.Exhibitions).ToListAsync();
+            if (skip == null) skip = 0;
+            if (page == null) page = await CountArtworks();
 
+            List<Artwork> Artworks = await _context.Artworks.Include(w => w.Exhibitions).OrderBy(w => w.ArtworkID).Skip(skip).Take(page).ToListAsync();
             List<ArtworkToListDto> ArtworksDtos = new List<ArtworkToListDto>();
 
             foreach (Artwork Artwork in Artworks)
@@ -56,6 +58,11 @@ namespace PetArtworksPlatform.Controllers
                 ArtworksDtos.Add(ArtworkDto);
             }
             return ArtworksDtos;
+        }
+
+        public async Task<int> CountArtworks()
+        {
+            return await _context.Artworks.CountAsync();
         }
 
         /// <summary>
@@ -118,7 +125,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> (db updated: {"artworkId":15,"artworkTitle":"Updated Artwork Title","artworkMedium":"Oil on Canvas","artworkYearCreated":2021,"artistID":11,"listExhibitions":[{"exhibitionId":7,"exhibitionTitle":"New Exhibition"}]})
         /// </example>
         [HttpPut(template: "Update/{ArtworkID}")]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> UpdateArtwork(int ArtworkID, [FromBody] ArtworkItemDto artworkDto)
         {
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
@@ -131,7 +138,7 @@ namespace PetArtworksPlatform.Controllers
                 return NotFound();
             }
 
-            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin") || await _userManager.IsInRoleAsync(User, "GalleryAdmin");
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
 
             if ((artwork.Artist.ArtistUser?.Id != currentId) && !isUserAdmin)
             {
@@ -150,20 +157,10 @@ namespace PetArtworksPlatform.Controllers
                 return BadRequest(new { message = $"Artist with ID {artworkDto.ArtistID} does not exist" });
             }
 
-            //var artworkGet = await _context.Artworks.FindAsync(ArtworkID);
-            //if (artworkGet == null)
-            //{
-            //    return NotFound();
-            //}
-            //artworkGet.ArtworkTitle = artworkDto.ArtworkTitle;
-            //artworkGet.ArtworkMedium = artworkDto.ArtworkMedium;
-            //artworkGet.ArtworkYearCreated = artworkDto.ArtworkYearCreated;
-            //artworkGet.ArtistID = artworkDto.ArtistID;
-            //_context.Entry(artworkGet).State = EntityState.Modified;
-
             artwork.ArtworkTitle = artworkDto.ArtworkTitle;
             artwork.ArtworkMedium = artworkDto.ArtworkMedium;
             artwork.ArtworkYearCreated = artworkDto.ArtworkYearCreated;
+            artwork.ArtistID = artworkDto.ArtistID;
             _context.Entry(artwork).State = EntityState.Modified;
 
             try
@@ -200,7 +197,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"message":"Invalid artwork data"}
         /// </example>
         [HttpPost(template: "Add")]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<ActionResult<Artwork>> AddArtwork([FromBody] ArtworkItemDto artworkDto)
         {
             if (string.IsNullOrWhiteSpace(artworkDto.ArtworkTitle) || string.IsNullOrWhiteSpace(artworkDto.ArtworkMedium) || artworkDto.ArtworkYearCreated < 0 || artworkDto.ArtworkYearCreated > DateTime.Now.Year)
@@ -240,7 +237,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"Not Found","status":404,"traceId":"00-ff1d5f16f07554eea66dc625c8550442-a44ec122e7a83285-00"}
         /// </example>
         [HttpDelete("Delete/{id}")]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> DeleteArtwork(int id)
         {
             var artwork = await _context.Artworks.FindAsync(id);
@@ -257,7 +254,7 @@ namespace PetArtworksPlatform.Controllers
 
 
         [HttpPost("UpdateArtworkImage/{id}")]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> UpdateArtworkImage(int id, IFormFile ArtworkPic)
         {
             var artwork = await _context.Artworks.FindAsync(id);

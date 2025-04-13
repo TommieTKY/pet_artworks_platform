@@ -38,10 +38,10 @@ namespace PetArtworksPlatform.Controllers
         {
             var member = await _context.Members
                 .Include(m => m.Followers)
-                    .ThenInclude(c => c.Follower) 
+                    .ThenInclude(c => c.Follower)
                 .Include(m => m.Following)
                     .ThenInclude(c => c.Following)
-                .Include(m => m.PetOwners) 
+                .Include(m => m.PetOwners)
                     .ThenInclude(po => po.Pet)
                 .Where(m => m.MemberId == id)
                 .Select(m => new MemberDTO
@@ -61,7 +61,7 @@ namespace PetArtworksPlatform.Controllers
                         MemberId = c.Following.MemberId,
                         MemberName = c.Following.MemberName
                     }).ToList(),
-                    Pets = m.PetOwners.Select(po => new PetDTO 
+                    Pets = m.PetOwners.Select(po => new PetDTO
                     {
                         PetId = po.Pet.PetId,
                         Name = po.Pet.Name,
@@ -138,7 +138,7 @@ namespace PetArtworksPlatform.Controllers
 
             member.MemberName = memberDto.MemberName;
             member.Email = memberDto.Email;
-            member.Bio = memberDto.Bio;         
+            member.Bio = memberDto.Bio;
             member.Location = memberDto.Location;
 
             _context.Members.Update(member);
@@ -170,8 +170,8 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var member = await _context.Members
-                .Include(m => m.Followers) 
-                .Include(m => m.Following) 
+                .Include(m => m.Followers)
+                .Include(m => m.Following)
                 .Include(m => m.PetOwners)
                 .FirstOrDefaultAsync(m => m.MemberId == id);
 
@@ -194,7 +194,7 @@ namespace PetArtworksPlatform.Controllers
             var petOwners = _context.PetOwners
                 .Where(po => po.OwnerId == id)
                 .ToList();
-                
+
             _context.PetOwners.RemoveRange(petOwners);
 
             _context.Members.Remove(member);
@@ -207,9 +207,9 @@ namespace PetArtworksPlatform.Controllers
         {
             var member = await _context.Members
                 .Include(m => m.Followers)
-                    .ThenInclude(c => c.Follower) 
+                    .ThenInclude(c => c.Follower)
                 .Include(m => m.Following)
-                    .ThenInclude(c => c.Following) 
+                    .ThenInclude(c => c.Following)
                 .FirstOrDefaultAsync(m => m.MemberId == memberId);
 
             if (member == null)

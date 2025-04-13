@@ -4,6 +4,7 @@ using PetArtworksPlatform.Models;
 using PetArtworksPlatform.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -99,7 +100,7 @@ namespace PetArtworksPlatform.Controllers
                         MemberName = m.MemberName
                     })
                     .ToListAsync(),
-                ArtworkList = (await _artworksApi.List()).Value?.Select(a => new ArtworkToListDto
+                ArtworkList = (await _artworksApi.List(0,int.MaxValue)).Value?.Select(a => new ArtworkToListDto
                 {
                     ArtworkId = a.ArtworkId,
                     ArtworkTitle = a.ArtworkTitle
@@ -197,7 +198,7 @@ namespace PetArtworksPlatform.Controllers
                 };
 
                 _context.Add(pet);
-                await _context.SaveChangesAsync(); 
+                await _context.SaveChangesAsync();
 
                 if (petDto.PetImage != null && petDto.PetImage.Length > 0)
                 {

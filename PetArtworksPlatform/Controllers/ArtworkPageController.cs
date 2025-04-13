@@ -4,6 +4,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using PetArtworksPlatform.Models.ViewModels;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -11,19 +14,43 @@ namespace PetArtworksPlatform.Controllers
     {
         private readonly ArtworksController _artworkApi;
         private readonly ArtistsController _artistsApi;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ArtworkPageController(ArtworksController artworkApi, ArtistsController artistsApi)
+        public ArtworkPageController(ArtworksController artworkApi, ArtistsController artistsApi, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _artworkApi = artworkApi;
             _artistsApi = artistsApi;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: ArtworkPage/List -> A webpage that shows all artworks in the db
         [HttpGet]
-        public IActionResult List()
+        public async Task<IActionResult> List(int PageNum = 0)
         {
-            List<ArtworkToListDto> artworks = _artworkApi.List().Result.Value.ToList();
-            return View(artworks);
+            int PerPage = 5;
+            int MaxPage = (int)Math.Ceiling((decimal)await _artworkApi.CountArtworks() / PerPage) - 1;
+
+            if (MaxPage < 0) MaxPage = 0;
+            if (PageNum < 0) PageNum = 0;
+            if (PageNum > MaxPage) PageNum = MaxPage;
+
+            int StartIndex = PerPage * PageNum;
+
+            var result = await _artworkApi.List(StartIndex, PerPage);
+            IEnumerable<ArtworkToListDto> ArtworkList = result.Value;
+
+            ArtworkListView ViewModel = new ArtworkListView();
+            ViewModel.Artworks = ArtworkList;
+            ViewModel.MaxPage = MaxPage;
+            ViewModel.Page = PageNum;
+
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            if (User != null) ViewModel.isAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+            else ViewModel.isAdmin = false;
+
+            return View(ViewModel);
         }
 
         // GET: ArtworkPage/Details/{id} -> A webpage that displays an artwork by the Artwork’s ID
@@ -50,10 +77,10 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtworkPage/New -> A webpage that prompts the user to enter new artwork information
         [HttpGet]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> New()
         {
-            var artists = await _artistsApi.List();
+            var artists = await _artistsApi.List(0, int.MaxValue);
             var model = new ViewArtworkEdit
             {
                 Artwork = new ArtworkItemDto(),
@@ -65,12 +92,12 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtworkPage/Create -> Handles the creation of a new artwork
         [HttpPost]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> Create(ViewArtworkEdit model)
         {
             if (!ModelState.IsValid)
             {
-                model.ArtistList = (await _artistsApi.List()).Value.ToList();
+                model.ArtistList = (await _artistsApi.List(0,0)).Value.ToList();
                 return View("New", model);
             }
 
@@ -123,7 +150,7 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtworkPage/ConfirmDelete/{id} -> A webpage that prompts the user to confirm the deletion of an artwork
         [HttpGet]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public IActionResult ConfirmDelete(int id)
         {
             var selectedArtwork = _artworkApi.FindArtwork(id).Result.Value;
@@ -132,7 +159,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtworkPage/Delete/{id} -> Handles the deletion of an artwork
         [HttpPost]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> Delete(int id)
         {
             await _artworkApi.DeleteArtwork(id);
@@ -141,13 +168,13 @@ namespace PetArtworksPlatform.Controllers
 
         // GET: ArtworkPage/Edit/{id} -> A webpage that prompts the user to edit an artwork's information
         [HttpGet]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> Edit(int id)
         {
             var selectedArtwork = await _artworkApi.FindArtwork(id);
             if (selectedArtwork.Value is ArtworkItemDto artworkItemDto)
             {
-                var artists = await _artistsApi.List();
+                var artists = await _artistsApi.List(0, int.MaxValue);
                 var artworkDetails = new ViewArtworkEdit
                 {
                     Artwork = artworkItemDto,
@@ -160,7 +187,7 @@ namespace PetArtworksPlatform.Controllers
 
         // POST: ArtworkPage/Update -> Handles the update of an artwork's information
         [HttpPost]
-        [Authorize(Roles = "Admin,GalleryAdmin,ArtistUser")]
+        [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> Update(ViewArtworkEdit model)
         {
             if (!ModelState.IsValid)
@@ -208,5 +235,6 @@ namespace PetArtworksPlatform.Controllers
             };
             return View("Error", errorViewModel2);
         }
+
     }
 }

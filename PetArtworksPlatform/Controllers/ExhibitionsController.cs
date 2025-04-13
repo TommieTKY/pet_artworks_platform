@@ -14,10 +14,12 @@ namespace PetArtworksPlatform.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-        public ExhibitionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ExhibitionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -29,10 +31,12 @@ namespace PetArtworksPlatform.Controllers
         /// -> [{"exhibitionId":1,"exhibitionTitle":"A Symphony of Nature's Beauty","exhibitionDescription":"A Symphony of Nature's Beauty celebrates nature's beauty and spirit through evocative, harmony-filled artworks.","startDate":"2024-10-09","endDate":"2025-01-19","artworkCount":3},{"exhibitionId":3,"exhibitionTitle":"Defaced! Money, Conflict, Protest","exhibitionDescription":"The exhibition explores how artists and individuals have historically altered currency—through scratching, overprinting, and digital manipulation—as acts of dissent against government authority, spanning events from the French Revolution to the Black Lives Matter movement.","startDate":"2023-11-20","endDate":"2024-12-01","artworkCount":3},{"exhibitionId":4,"exhibitionTitle":"Feels like Home","exhibitionDescription":"The exhibition showcases photography and video works by the creative agency Sunday School, exploring contemporary notions of home through diverse Black identities.","startDate":"2023-05-06","endDate":"2024-06-16","artworkCount":2}]
         /// </example>
         [HttpGet(template: "List")]
-        public async Task<ActionResult<IEnumerable<ExhibitionToListDto>>> List()
+        public async Task<ActionResult<IEnumerable<ExhibitionToListDto>>> List(int skip, int page)
         {
-            List<Exhibition> Exhibitions = await _context.Exhibitions.Include(e => e.Artworks).ToListAsync();
+            if (skip == null) skip = 0;
+            if (page == null) page = await CountExhibitions();
 
+            List<Exhibition> Exhibitions = await _context.Exhibitions.Include(e => e.Artworks).OrderBy(w => w.ExhibitionID).Skip(skip).Take(page).ToListAsync();
             List<ExhibitionToListDto> ExhibitionsDtos = new List<ExhibitionToListDto>();
 
             foreach (Exhibition Exhibition in Exhibitions)
@@ -62,6 +66,10 @@ namespace PetArtworksPlatform.Controllers
             return ExhibitionsDtos;
         }
 
+        public async Task<int> CountExhibitions()
+        {
+            return await _context.Exhibitions.CountAsync();
+        }
 
         /// <summary>
         /// This method receives an ExhibitionID and outputs the Exhibition associated with that ID.
@@ -111,7 +119,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> (db updated)
         /// </example>
         [HttpPut("Update/{ExhibitionID}")]
-        [Authorize(Roles = "Admin,GalleryAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateExhibition(int ExhibitionID, [FromBody] ExhibitionItemDto exhibitionDto)
         {
             // attempt to find associated exhibition in DB by looking up ExhibitionId
@@ -166,7 +174,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"exhibitionID":6,"exhibitionTitle":"New Exhibition","exhibitionDescription":"Description of the new exhibition","startDate":"2025-03-01","endDate":"2025-03-31","artworks":null}
         /// </example>
         [HttpPost(template: "Add")]
-        [Authorize(Roles = "Admin,GalleryAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Exhibition>> AddExhibition([FromBody] ExhibitionItemDto exhibitionDto)
         {
             if (string.IsNullOrWhiteSpace(exhibitionDto.ExhibitionTitle) || string.IsNullOrWhiteSpace(exhibitionDto.ExhibitionDescription) || exhibitionDto.StartDate > exhibitionDto.EndDate)
@@ -200,7 +208,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"Not Found","status":404,"traceId":"00-f30dcb0dd93827d8269897b1689b5594-dcbde54f131bb15a-00"}
         /// </example>
         [HttpDelete("Delete/{id}")]
-        [Authorize(Roles = "Admin,GalleryAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteExhibition(int id)
         {
             var exhibition = await _context.Exhibitions.FindAsync(id);
@@ -230,7 +238,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> (db updated: {"exhibitionId":7,"exhibitionTitle":"New Exhibition","exhibitionDescription":"Description of the new exhibition","startDate":"2025-03-01","endDate":"2025-03-31","listArtworks":[{"artworkId":15,"artworkTitle":"New Artwork"}]})
         /// </example>
         [HttpPost("AddArtwork/{ExhibitionID}")]
-        [Authorize(Roles = "Admin,GalleryAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Exhibition>> AddArtworkToExhibition(int ExhibitionID, [FromBody] ArtworkIdDto artworkIdDto)
         {
             Exhibition? exhibition = await _context.Exhibitions.Include(e => e.Artworks).Where(e => e.ExhibitionID == ExhibitionID).FirstOrDefaultAsync();
@@ -282,7 +290,7 @@ namespace PetArtworksPlatform.Controllers
         /// -> {"message":"Artwork does not exist."}
         /// </example>
         [HttpDelete("DeleteArtwork/{ExhibitionID}")]
-        [Authorize(Roles = "Admin,GalleryAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteArtworkFromExhibition(int ExhibitionID, [FromBody] ArtworkIdDto artworkIdDto)
         {
             Exhibition? exhibition = await _context.Exhibitions.Include(e => e.Artworks).Where(e => e.ExhibitionID == ExhibitionID).FirstOrDefaultAsync();
