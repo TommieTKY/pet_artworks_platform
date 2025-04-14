@@ -1,4 +1,7 @@
 ﻿@model PetArtworksPlatform.Models.ViewModels.ArtworkListView
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Artworks";
@@ -6,7 +9,7 @@
 
 <h1>Artworks</h1>
 
-@if (Model.isAdmin)
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("ArtistUser")))
 {
     <p style="margin-top:20px;">
         <a asp-action="New">Create New</a>

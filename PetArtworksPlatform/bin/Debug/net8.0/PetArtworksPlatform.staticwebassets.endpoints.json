@@ -2551,6 +2551,88 @@
       ]
     },
     {
+      "Route": "image/artwork/10.7dc7kirtw9.jpg",
+      "AssetFile": "image/artwork/10.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1903174"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 00:38:51 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7dc7kirtw9"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
+        },
+        {
+          "Name": "label",
+          "Value": "image/artwork/10.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "image/artwork/10.jpg",
+      "AssetFile": "image/artwork/10.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1903174"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 00:38:51 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
+        }
+      ]
+    },
+    {
       "Route": "image/artwork/2.2r68edr3b8.jpg",
       "AssetFile": "image/artwork/2.jpg",
       "Selectors": [],

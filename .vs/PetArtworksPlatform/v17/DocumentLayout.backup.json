@@ -3,55 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\views\\exhibitionpage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\views\\exhibitionpage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\views\\artistpage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\views\\artistpage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\views\\artistpage\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\views\\artistpage\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\artistpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\controllers\\artistpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\artworkscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\controllers\\artworkscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\artworkpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\controllers\\artworkpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\artworkscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\controllers\\artworkscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Migrations\\20250414003750_artworkitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PetArtworksPlatform\\Migrations\\20250414003750_artworkitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\models\\artist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\models\\artist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\artistprofilepagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\controllers\\artistprofilepagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\models\\viewmodels\\artistlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\models\\viewmodels\\artistlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\views\\artistprofilepage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\views\\artistprofilepage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\views\\artistprofilepage\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\views\\artistprofilepage\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\artistprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\controllers\\artistprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.Artists.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -61,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -84,168 +53,73 @@
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ExhibitionPage\\Details.cshtml",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Views\\ExhibitionPage\\Details.cshtml",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ExhibitionPage\\Details.cshtml",
-              "RelativeToolTip": "PetArtworksPlatform\\Views\\ExhibitionPage\\Details.cshtml",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAD4AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-13T22:31:15.638Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "PetArtworksPlatform\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-13T22:22:36.497Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ArtistPageController.cs",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtistPageController.cs",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ArtistPageController.cs",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtistPageController.cs",
-              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtistPageController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAYwDcAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T22:19:43.634Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ArtistProfilePageController.cs",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtistProfilePageController.cs",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ArtistProfilePageController.cs",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtistProfilePageController.cs",
-              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtistProfilePageController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwE4AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T21:14:58.347Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ArtworkPageController.cs",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtworkPageController.cs",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ArtworkPageController.cs",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtworkPageController.cs",
-              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtworkPageController.cs",
-              "ViewState": "AgIAAMkAAAAAAAAAAAAqwNoAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T21:03:45.327Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "ArtworksController.cs",
               "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtworksController.cs",
               "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ArtworksController.cs",
               "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtworksController.cs",
               "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtworksController.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAqwI0AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAA1wH4AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T20:29:10.853Z",
+              "WhenOpened": "2025-04-14T00:43:18.208Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ArtistList.cs",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Models\\ViewModels\\ArtistList.cs",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Models\\ViewModels\\ArtistList.cs",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Models\\ViewModels\\ArtistList.cs",
-              "RelativeToolTip": "PetArtworksPlatform\\Models\\ViewModels\\ArtistList.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T20:09:20.28Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "List.cshtml",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ArtistPage\\List.cshtml",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Views\\ArtistPage\\List.cshtml",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ArtistPage\\List.cshtml",
-              "RelativeToolTip": "PetArtworksPlatform\\Views\\ArtistPage\\List.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-13T20:08:54.556Z",
+              "Title": "Artist.cs",
+              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Models\\Artist.cs",
+              "RelativeDocumentMoniker": "PetArtworksPlatform\\Models\\Artist.cs",
+              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Models\\Artist.cs",
+              "RelativeToolTip": "PetArtworksPlatform\\Models\\Artist.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T00:42:04.933Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ArtistProfilePage\\Edit.cshtml",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Views\\ArtistProfilePage\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ArtistProfilePage\\Edit.cshtml",
-              "RelativeToolTip": "PetArtworksPlatform\\Views\\ArtistProfilePage\\Edit.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-13T19:02:45.802Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ArtistProfilePage\\Details.cshtml",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Views\\ArtistProfilePage\\Details.cshtml",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ArtistProfilePage\\Details.cshtml",
-              "RelativeToolTip": "PetArtworksPlatform\\Views\\ArtistProfilePage\\Details.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-13T19:02:22.656Z"
+              "DocumentIndex": 2,
+              "Title": "20250414003750_artworkitemdto.cs",
+              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Migrations\\20250414003750_artworkitemdto.cs",
+              "RelativeDocumentMoniker": "PetArtworksPlatform\\Migrations\\20250414003750_artworkitemdto.cs",
+              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Migrations\\20250414003750_artworkitemdto.cs",
+              "RelativeToolTip": "PetArtworksPlatform\\Migrations\\20250414003750_artworkitemdto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T00:37:50.131Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ArtistPage\\Details.cshtml",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Views\\ArtistPage\\Details.cshtml",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\ArtistPage\\Details.cshtml",
-              "RelativeToolTip": "PetArtworksPlatform\\Views\\ArtistPage\\Details.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-13T19:02:17.971Z",
+              "Title": "ArtworkPageController.cs",
+              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtworkPageController.cs",
+              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ArtworkPageController.cs",
+              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtworkPageController.cs",
+              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtworkPageController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwDsAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T22:52:46.455Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ArtistProfileController.cs",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtistProfileController.cs",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ArtistProfileController.cs",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtistProfileController.cs",
-              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtistProfileController.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAUwJIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ArtistProfilePageController.cs",
+              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtistProfilePageController.cs",
+              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ArtistProfilePageController.cs",
+              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ArtistProfilePageController.cs",
+              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtistProfilePageController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T16:36:14.214Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "dbo.Artists.sql",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.Artists.sql",
-              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.Artists.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-04-13T17:22:12.223Z"
+              "WhenOpened": "2025-04-13T22:52:43.483Z",
+              "EditorCaption": ""
             }
           ]
         }

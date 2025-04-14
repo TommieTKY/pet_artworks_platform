@@ -46,6 +46,7 @@ namespace PetArtworksPlatform.Models
         public bool HasArtworkPic { get; set; }=false;
         public string? ArtworkImagePath { get; set; }
         public int ArtistID { get; set; }
+        public virtual Artist? Artist { get; set; }
         public List<ExhibitionForOtherDto>? ListExhibitions { get; set; }
         public List<PetForArtworkDto>? ListPets { get; set; }
     }

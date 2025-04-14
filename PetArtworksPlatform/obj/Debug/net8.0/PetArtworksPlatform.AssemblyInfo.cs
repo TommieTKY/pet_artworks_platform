@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetArtworksPlatform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f13335aa25c5817a945bfa17e58033938edeb9d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4cef1a6d760406366521db2afa1149d9a30b29c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetArtworksPlatform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetArtworksPlatform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

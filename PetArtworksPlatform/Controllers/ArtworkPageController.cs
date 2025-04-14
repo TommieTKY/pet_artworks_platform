@@ -173,17 +173,34 @@ namespace PetArtworksPlatform.Controllers
         // GET: ArtworkPage/ConfirmDelete/{id} -> A webpage that prompts the user to confirm the deletion of an artwork
         [HttpGet]
         [Authorize(Roles = "Admin,ArtistUser")]
-        public IActionResult ConfirmDelete(int id)
+        public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var selectedArtwork = _artworkApi.FindArtwork(id).Result.Value;
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            string currentId = User.Id;
+
+            if (currentId != id.ToString())
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
+
+            var selectedArtwork = (await _artworkApi.FindArtwork(id)).Value;
             return View(selectedArtwork);
         }
+
 
         // POST: ArtworkPage/Delete/{id} -> Handles the deletion of an artwork
         [HttpPost]
         [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> Delete(int id)
         {
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            string currentId = User.Id;
+
+            if (currentId != id.ToString())
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
+
             await _artworkApi.DeleteArtwork(id);
             return RedirectToAction("List");
         }
@@ -195,6 +212,17 @@ namespace PetArtworksPlatform.Controllers
         {
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             string currentId = User.Id;
+
+            var selectedArtworkResult = await _artworkApi.FindArtwork(id);
+            if (selectedArtworkResult.Value is not ArtworkItemDto artworkItemDto)
+            {
+                return View("Error");
+            }
+
+            if (artworkItemDto.Artist?.ArtistUser?.Id != currentId)
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
 
             bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
 
@@ -215,18 +243,13 @@ namespace PetArtworksPlatform.Controllers
             }
 
 
-
-            var selectedArtwork = await _artworkApi.FindArtwork(id);
-            if (selectedArtwork.Value is ArtworkItemDto artworkItemDto)
+            var artworkDetails = new ViewArtworkEdit
             {
-                var artworkDetails = new ViewArtworkEdit
-                {
-                    Artwork = artworkItemDto,
-                    ArtistList = artists
-                };
-                return View(artworkDetails);
-            }
-            return View("Error");
+                Artwork = artworkItemDto,
+                ArtistList = artists
+            };
+            return View(artworkDetails);
+
         }
 
         // POST: ArtworkPage/Update -> Handles the update of an artwork's information

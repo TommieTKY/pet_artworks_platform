@@ -32,6 +32,7 @@ namespace PetArtworksPlatform.Models
         public string ArtistName { get; set; }
         public string ArtistBiography { get; set; }
         public List<ArtworkForOtherDto>? ListArtworks { get; set; }
+        public IdentityUser? ArtistUser { get; set; }
     }
 
     public class ArtistForOtherDto

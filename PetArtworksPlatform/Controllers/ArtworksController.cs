@@ -132,14 +132,6 @@ namespace PetArtworksPlatform.Controllers
             string currentId = User.Id;
 
             bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
-            if (!isUserAdmin)
-            {
-                var artist = await _context.Artists.FirstOrDefaultAsync(a => a.ArtistUser.Id == currentId);
-                if (artist == null || artist.ArtistID != artworkDto.ArtistID)
-                {
-                    return Forbid();
-                }
-            }
 
             Artwork artwork = await _context.Artworks.Include(a => a.Artist).FirstOrDefaultAsync(a => a.ArtworkID == ArtworkID);
 
@@ -147,9 +139,14 @@ namespace PetArtworksPlatform.Controllers
             {
                 return NotFound();
             }
-            if ((artwork.Artist.ArtistUser?.Id != currentId) && !isUserAdmin)
+
+            if (!isUserAdmin)
             {
-                return Forbid();
+                var artist = await _context.Artists.FirstOrDefaultAsync(a => a.ArtistUser.Id == currentId);
+                if (artist == null || artist.ArtistID != artwork.ArtistID)
+                {
+                    return Forbid();
+                }
             }
 
             if (string.IsNullOrWhiteSpace(artworkDto.ArtworkTitle) || string.IsNullOrWhiteSpace(artworkDto.ArtworkMedium) || artworkDto.ArtworkYearCreated < 0 || artworkDto.ArtworkYearCreated > DateTime.Now.Year)
@@ -186,6 +183,7 @@ namespace PetArtworksPlatform.Controllers
             }
             return NoContent();
         }
+
 
         /// <summary>
         /// Adds a new artwork to the database.
@@ -259,6 +257,14 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin,ArtistUser")]
         public async Task<IActionResult> DeleteArtwork(int id)
         {
+            IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            string currentId = User.Id;
+
+            if (currentId != id.ToString())
+            {
+                return Forbid();
+            }
+
             var artwork = await _context.Artworks.FindAsync(id);
             if (artwork == null)
             {
