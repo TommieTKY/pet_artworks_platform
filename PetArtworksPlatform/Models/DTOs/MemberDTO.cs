@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using System;
 
 namespace PetArtworksPlatform.Models.DTOs
@@ -9,6 +10,7 @@ namespace PetArtworksPlatform.Models.DTOs
         public string? Email { get; set; }
         public string? Bio { get; set; }
         public string? Location { get; set; }
+        public IdentityUser? MemberUser { get; set; }
         public int OwnerId => MemberId;
 
         public List<BasicMemberDTO> Followers { get; set; } = new List<BasicMemberDTO>();

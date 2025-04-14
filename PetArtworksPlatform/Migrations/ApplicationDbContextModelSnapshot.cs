@@ -386,12 +386,15 @@ namespace PetArtworksPlatform.Migrations
                     b.Property<string>("MemberName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("MemberUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MemberId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("MemberUserId");
 
                     b.ToTable("Members");
                 });
@@ -570,11 +573,11 @@ namespace PetArtworksPlatform.Migrations
 
             modelBuilder.Entity("PetArtworksPlatform.Models.Member", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "MemberUser")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("MemberUserId");
 
-                    b.Navigation("User");
+                    b.Navigation("MemberUser");
                 });
 
             modelBuilder.Entity("PetArtworksPlatform.Models.Pet", b =>

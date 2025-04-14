@@ -16,7 +16,7 @@ namespace PetArtworksPlatform.Models
         public string? Location { get; set; }
         public ICollection<Pet>? Pets { get; set; }
         public string? UserId { get; set; }
-        public IdentityUser? User { get; set; }
+        public IdentityUser? MemberUser { get; set; }
 
         // Many to Many Relationship: Followers and Following
         public ICollection<Connection> Followers { get; set; } = new List<Connection>();

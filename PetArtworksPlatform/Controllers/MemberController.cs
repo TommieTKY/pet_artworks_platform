@@ -32,6 +32,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="404">If no member is found with the given ID</response>
         
         [HttpGet("FindMember/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<MemberDTO>> GetMember(int id)
         {
             var member = await _context.Members
@@ -199,7 +200,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="400">If the ID in the URL does not match the ID in the request body</response>
         /// <response code="404">If the member with the given ID is not found</response>
         [HttpPut("UpdateMember/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> PutMember(int id, MemberDTO memberDto)
         {
             if (id != memberDto.MemberId)
@@ -257,7 +258,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Operation successful</response>
         /// <response code="404">If the member with the given ID is not found</response>
         [HttpDelete("DeleteMember/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> DeleteMember(int id)
         {
             var member = await _context.Members.FindAsync(id);

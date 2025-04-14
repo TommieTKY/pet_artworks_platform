@@ -112,7 +112,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> UpdateOwners(int petId, List<int> ownerIds)
         {
             var pet = await _context.Pets
@@ -149,7 +149,7 @@ namespace PetArtworksPlatform.Controllers
             return RedirectToAction(nameof(Details), new { id = petId });
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public IActionResult Create()
         {
             var owners = _context.Members
@@ -171,7 +171,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Create(PetDTO petDto)
         {
             if (ModelState.IsValid)
@@ -248,7 +248,7 @@ namespace PetArtworksPlatform.Controllers
                 .ToListAsync();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -288,7 +288,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Edit(int id, PetDTO petDto)
         {
             if (id != petDto.PetId)
@@ -361,7 +361,7 @@ namespace PetArtworksPlatform.Controllers
         }
 
         [HttpGet("Delete/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -394,7 +394,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var pet = await _context.Pets
@@ -415,7 +415,7 @@ namespace PetArtworksPlatform.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> AddArtwork(int petId, int newArtworkId)
         {
             var artworkIdDto = new ArtworkIdDto { ArtworkId = newArtworkId };
@@ -431,7 +431,7 @@ namespace PetArtworksPlatform.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> RemoveArtwork(int petId, int artworkId)
         {
             var artworkIdDto = new ArtworkIdDto { ArtworkId = artworkId };

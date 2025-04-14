@@ -16,7 +16,7 @@ namespace PetArtworksPlatform.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Index()
         {
             var connections = await _context.Connections
@@ -28,7 +28,7 @@ namespace PetArtworksPlatform.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public IActionResult Create()
         {
             return View();
@@ -36,7 +36,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public IActionResult Create(Connection connection)
         {
             if (ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace PetArtworksPlatform.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public IActionResult Delete(int id)
         {
             var connection = _context.Connections
@@ -77,7 +77,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public IActionResult DeleteConfirmed(int id)
         {
             var connection = _context.Connections.Find(id);

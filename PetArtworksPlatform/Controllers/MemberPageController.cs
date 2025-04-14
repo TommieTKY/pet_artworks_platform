@@ -18,7 +18,7 @@ namespace PetArtworksPlatform.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Index()
         {
             var members = await _context.Members
@@ -35,7 +35,7 @@ namespace PetArtworksPlatform.Controllers
             return View(members);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Details(int id)
         {
             var member = await _context.Members
@@ -106,7 +106,7 @@ namespace PetArtworksPlatform.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Edit(int id)
         {
             var member = await _context.Members.FindAsync(id);
@@ -126,7 +126,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Edit(int id, MemberDTO memberDto)
         {
             if (id != memberDto.MemberId) return BadRequest();
@@ -147,7 +147,7 @@ namespace PetArtworksPlatform.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Delete(int id)
         {
             var member = await _context.Members
@@ -165,7 +165,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var member = await _context.Members

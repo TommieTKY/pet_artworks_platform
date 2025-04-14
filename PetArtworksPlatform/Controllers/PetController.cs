@@ -107,7 +107,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="201">Returns the newly created pet</response>
         /// <response code="400">If the pet data is invalid or any owner does not exist</response>
         [HttpPost("AddPet")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<ActionResult<Pet>> PostPet(PetDTO petDto)
         {
             if (!ModelState.IsValid)
@@ -180,7 +180,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="400">If the update data is invalid</response>
         /// <response code="404">If the pet is not found</response>
         [HttpPut("UpdatePet/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> PutPet(int id, PetDTO petDto)
         {
             if (id != petDto.PetId)
@@ -250,7 +250,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Delete successful</response>
         /// <response code="404">If pet with given ID is not found</response>
         [HttpDelete("DeletePet/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> DeletePet(int id)
         {
             var pet = await _context.Pets
@@ -289,7 +289,7 @@ namespace PetArtworksPlatform.Controllers
         /// </returns>
         /// <response code="404">If pet with given ID is not found</response>
         [HttpGet("/api/Pet/Owners/{petId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<ActionResult<List<MemberDTO>>> GetPetOwners(int petId)
         {
             var owners = await _context.PetOwners
@@ -360,7 +360,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Operation successful</response>
         /// <response code="404">If pet or member with given ID is not found</response>
         [HttpPost("AddOwner/{petId}/{memberId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> AddOwner(int petId, int memberId)
         {
             var pet = await _context.Pets.FindAsync(petId);
@@ -411,7 +411,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Operation successful</response>
         /// <response code="404">If pet or member with given ID is not found</response>
         [HttpDelete("RemoveOwner/{petId}/{memberId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> RemoveOwner(int petId, int memberId)
         {
             var petOwner = await _context.PetOwners
@@ -438,7 +438,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="400">If the image is invalid</response>
         /// <response code="404">If the pet is not found</response>
         [HttpPost("UpdatePetImage/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> UpdatePetImage(int id, IFormFile petPic)
         {
             var pet = await _context.Pets.FindAsync(id);
@@ -511,7 +511,7 @@ namespace PetArtworksPlatform.Controllers
         }
 
         [HttpPost("AddArtwork/{petId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<ActionResult<Pet>> AddArtworkToPet(int petId, [FromBody] ArtworkIdDto artworkIdDto)
         {
             Pet? pet = await _context.Pets.Include(e => e.Artworks).Where(e => e.PetId == petId).FirstOrDefaultAsync();
@@ -549,7 +549,7 @@ namespace PetArtworksPlatform.Controllers
         }
 
         [HttpDelete("DeleteArtwork/{petId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> DeleteArtworkFromPet(int petId, [FromBody] ArtworkIdDto artworkIdDto)
         {
             Pet? pet = await _context.Pets.Include(e => e.Artworks).Where(e => e.PetId == petId).FirstOrDefaultAsync();
