@@ -32,7 +32,7 @@ namespace PetArtworksPlatform.Controllers
         /// Success message if follow is successful. Error message if already following.
         /// </returns>
         [HttpPost("NewFollow/{memberId}/{followingId}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> FollowUser(int memberId, int followingId)
         {
             // Member can not follow themself
@@ -76,7 +76,7 @@ namespace PetArtworksPlatform.Controllers
         /// Success message if follow is successful. Error message if already following.
         /// </returns>
         [HttpDelete("Unfollow/{memberId}/{followingId}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UnfollowUser(int memberId, int followingId)
         {
             var connection = await _context.Connections

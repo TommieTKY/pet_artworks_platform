@@ -18,6 +18,7 @@ namespace PetArtworksPlatform.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var members = await _context.Members
@@ -34,6 +35,7 @@ namespace PetArtworksPlatform.Controllers
             return View(members);
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int id)
         {
             var member = await _context.Members
@@ -78,7 +80,6 @@ namespace PetArtworksPlatform.Controllers
             return View(member);
         }
 
-        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -86,7 +87,6 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> Create(MemberDTO memberDto)
         {
             if (!ModelState.IsValid) return View(memberDto);
@@ -106,7 +106,7 @@ namespace PetArtworksPlatform.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             var member = await _context.Members.FindAsync(id);
@@ -126,7 +126,7 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, MemberDTO memberDto)
         {
             if (id != memberDto.MemberId) return BadRequest();
@@ -147,7 +147,7 @@ namespace PetArtworksPlatform.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var member = await _context.Members
@@ -164,9 +164,8 @@ namespace PetArtworksPlatform.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        // [HttpPost("DeleteConfirmed/{id}")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var member = await _context.Members

@@ -2,6 +2,7 @@ wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\image\artwork\1.jpg
 wwwroot\image\artwork\10.jpg
+wwwroot\image\artwork\11.jpg
 wwwroot\image\artwork\2.jpg
 wwwroot\image\artwork\3.jpg
 wwwroot\image\artwork\4.jpg

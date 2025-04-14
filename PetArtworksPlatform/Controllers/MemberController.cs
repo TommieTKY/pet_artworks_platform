@@ -30,6 +30,7 @@ namespace PetArtworksPlatform.Controllers
         /// </returns>
         /// <response code="200">Returns the member's information</response>
         /// <response code="404">If no member is found with the given ID</response>
+        
         [HttpGet("FindMember/{id}")]
         public async Task<ActionResult<MemberDTO>> GetMember(int id)
         {
@@ -122,6 +123,7 @@ namespace PetArtworksPlatform.Controllers
         /// </returns>
         /// <response code="200">Returns a list of members</response>
         [HttpGet("ListMembers")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<MemberDTO>>> GetMembers()
         {
             var members = await _context.Members
@@ -159,7 +161,6 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="201">Returns the newly created member</response>
         /// <response code="400">If the input data is invalid</response>
         [HttpPost("AddMember")]
-        [Authorize]
         public async Task<ActionResult<MemberDTO>> PostMember(MemberDTO memberDto)
         {
             var newMember = new Member
@@ -198,7 +199,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="400">If the ID in the URL does not match the ID in the request body</response>
         /// <response code="404">If the member with the given ID is not found</response>
         [HttpPut("UpdateMember/{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutMember(int id, MemberDTO memberDto)
         {
             if (id != memberDto.MemberId)
@@ -256,7 +257,7 @@ namespace PetArtworksPlatform.Controllers
         /// <response code="204">Operation successful</response>
         /// <response code="404">If the member with the given ID is not found</response>
         [HttpDelete("DeleteMember/{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteMember(int id)
         {
             var member = await _context.Members.FindAsync(id);

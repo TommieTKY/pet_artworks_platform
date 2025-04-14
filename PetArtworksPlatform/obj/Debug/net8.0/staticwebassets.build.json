@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7FoUC9A8/TV42Jc+OWlQDkHduNJZEdaaRigDBgU60A0=",
+  "Hash": "UEE7RlqLKtLDq1mY2S2cosLmDb6eJCVr+sc7wfGszL8=",
   "Source": "PetArtworksPlatform",
   "BasePath": "_content/PetArtworksPlatform",
   "Mode": "Default",
@@ -1401,6 +1401,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\artwork\\10.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\artwork\\11.jpg",
+      "SourceId": "PetArtworksPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\",
+      "BasePath": "_content/PetArtworksPlatform",
+      "RelativePath": "image/artwork/11#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cnpdz5rkct",
+      "Integrity": "6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\artwork\\11.jpg"
     },
     {
       "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\artwork\\2.jpg",
@@ -5608,6 +5629,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
+        }
+      ]
+    },
+    {
+      "Route": "image/artwork/11.cnpdz5rkct.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\artwork\\11.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4872"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 01:41:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cnpdz5rkct"
+        },
+        {
+          "Name": "label",
+          "Value": "image/artwork/11.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="
+        }
+      ]
+    },
+    {
+      "Route": "image/artwork/11.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\artwork\\11.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4872"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 01:41:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="
         }
       ]
     },
