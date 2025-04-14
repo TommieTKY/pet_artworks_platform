@@ -86,6 +86,7 @@ namespace PetArtworksPlatform.Controllers
             ArtistDto.ArtistName = Artist.ArtistName;
             ArtistDto.ArtistBiography = Artist.ArtistBiography;
             ArtistDto.ListArtworks = Artist.Artworks?.Select(a => new ArtworkForOtherDto { ArtworkId = a.ArtworkID, ArtworkTitle = a.ArtworkTitle }).ToList();
+            ArtistDto.ArtistUser = Artist.ArtistUser;
 
             return ArtistDto;
         }

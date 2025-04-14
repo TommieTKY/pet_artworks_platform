@@ -12,7 +12,7 @@
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("ArtistUser")))
 {
     <p style="margin-top:20px;">
-        <a asp-action="New">Create New</a>
+        <a asp-action="New" class="btn btn-success">Create New</a>
     </p>
 }
 
@@ -48,13 +48,11 @@
                     <img style="width:auto; height:50px;" src="@item.ArtworkImagePath" />
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ArtworkId">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.ArtworkId" class="btn btn-info">Details</a>
                     @if (Model.isAdmin)
                     {
-                        <span> | </span>
-                        <a asp-action="Edit" asp-route-id="@item.ArtworkId">Edit</a>
-                        <span> | </span>
-                        <a asp-action="ConfirmDelete" asp-route-id="@item.ArtworkId">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.ArtworkId" class="btn btn-warning">Edit</a>
+                        <a asp-action="ConfirmDelete" asp-route-id="@item.ArtworkId" class="btn btn-danger">Delete</a>
                     }
                 </td>
             </tr>

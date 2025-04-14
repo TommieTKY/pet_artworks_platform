@@ -178,15 +178,22 @@ namespace PetArtworksPlatform.Controllers
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             string currentId = User.Id;
 
-            if (currentId != id.ToString())
+            var selectedArtwork = (await _artworkApi.FindArtwork(id)).Value;
+            var artworkArtist = (await _artistsApi.FindArtist(selectedArtwork.ArtistID)).Value;
+            if (artworkArtist == null)
             {
-                return RedirectToAction("Details", new { id = id });
+                return View("Error");
             }
 
-            var selectedArtwork = (await _artworkApi.FindArtwork(id)).Value;
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+
+            if (!isUserAdmin && artworkArtist.ArtistUser?.Id != User.Id)
+            {
+                return Forbid();
+            }
+
             return View(selectedArtwork);
         }
-
 
         // POST: ArtworkPage/Delete/{id} -> Handles the deletion of an artwork
         [HttpPost]
@@ -196,9 +203,19 @@ namespace PetArtworksPlatform.Controllers
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             string currentId = User.Id;
 
-            if (currentId != id.ToString())
+            var selectedArtwork = (await _artworkApi.FindArtwork(id)).Value;
+            var artworkArtist = (await _artistsApi.FindArtist(selectedArtwork.ArtistID)).Value;
+
+            if (artworkArtist == null)
             {
-                return RedirectToAction("Details", new { id = id });
+                return View("Error");
+            }
+
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
+
+            if (!isUserAdmin && artworkArtist.ArtistUser?.Id != User.Id)
+            {
+                return Forbid();
             }
 
             await _artworkApi.DeleteArtwork(id);
@@ -211,37 +228,35 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-            string currentId = User.Id;
 
-            var selectedArtworkResult = await _artworkApi.FindArtwork(id);
-            if (selectedArtworkResult.Value is not ArtworkItemDto artworkItemDto)
+            var selectedArtwork = (await _artworkApi.FindArtwork(id)).Value;
+            if (selectedArtwork is not ArtworkItemDto artworkItemDto)
             {
                 return View("Error");
             }
 
-            if (artworkItemDto.Artist?.ArtistUser?.Id != currentId)
+            var artworkArtist = (await _artistsApi.FindArtist(selectedArtwork.ArtistID)).Value;
+            if (artworkArtist == null)
             {
-                return RedirectToAction("Details", new { id = id });
+                return View("Error");
             }
-
             bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
 
-            List<ArtistToListDto> artists;
+            if (!isUserAdmin && artworkArtist.ArtistUser?.Id != User.Id)
+            {
+                return Forbid();
+            }
 
+            List<ArtistToListDto> artists;
             if (isUserAdmin)
             {
                 artists = (await _artistsApi.List(0, int.MaxValue)).Value.ToList();
             }
             else
             {
-                var userArtist = await _artistProfileApi.FindArtist();
-                if (userArtist.Value == null)
-                {
-                    return RedirectToAction("New", "ArtistProfilePage");
-                }
-                artists = new List<ArtistToListDto> { new ArtistToListDto { ArtistId = userArtist.Value.ArtistId, ArtistName = userArtist.Value.ArtistName, ArtistBiography = userArtist.Value.ArtistBiography } };
+                var userArtist = (await _artistProfileApi.FindArtist()).Value;
+                artists = new List<ArtistToListDto> { new ArtistToListDto { ArtistId = userArtist.ArtistId, ArtistName = userArtist.ArtistName, ArtistBiography = userArtist.ArtistBiography } };
             }
-
 
             var artworkDetails = new ViewArtworkEdit
             {
@@ -249,7 +264,6 @@ namespace PetArtworksPlatform.Controllers
                 ArtistList = artists
             };
             return View(artworkDetails);
-
         }
 
         // POST: ArtworkPage/Update -> Handles the update of an artwork's information

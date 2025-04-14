@@ -10,7 +10,7 @@
 @if (Model.isAdmin)
 {
     <p style="margin-top:20px;">
-        <a asp-action="New">Create New</a>
+        <a asp-action="New" class="btn btn-success">Create New</a>
     </p>
 }
 
@@ -47,13 +47,11 @@
                     @Html.DisplayFor(modelItem => item.ArtworkCount)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ArtistId">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.ArtistId" class="btn btn-info">Details</a>
                     @if (Model.isAdmin) 
                     {
-                        <span> | </span>
-                        <a asp-action="Edit" asp-route-id="@item.ArtistId"> Edit </a>
-                        <span> | </span>
-                        <a asp-action="ConfirmDelete" asp-route-id="@item.ArtistId"> Delete </a>
+                        <a asp-action="Edit" asp-route-id="@item.ArtistId" class="btn btn-warning">Edit</a>
+                        <a asp-action="ConfirmDelete" asp-route-id="@item.ArtistId" class="btn btn-danger"> Delete </a>
                     }
                 </td>
             </tr>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using PetArtworksPlatform.Migrations;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -260,15 +261,24 @@ namespace PetArtworksPlatform.Controllers
             IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             string currentId = User.Id;
 
-            if (currentId != id.ToString())
-            {
-                return Forbid();
-            }
+            bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
 
-            var artwork = await _context.Artworks.FindAsync(id);
+            Artwork artwork = await _context.Artworks.Include(a => a.Artist).FirstOrDefaultAsync(a => a.ArtworkID == id);
+
             if (artwork == null)
             {
                 return NotFound();
+            }
+
+            if (!isUserAdmin)
+            {
+                var artist = await _context.Artists.FirstOrDefaultAsync(a => a.ArtistUser.Id == currentId);
+                //Console.WriteLine($"Current User ID: {currentId}");
+                //Console.WriteLine($"Artwork Artist ID: {artwork.ArtistID}");
+                if (artist == null || artist.ArtistID != artwork.ArtistID)
+                {
+                    return Forbid();
+                }
             }
 
             _context.Artworks.Remove(artwork);

@@ -75,13 +75,11 @@
 </div>
 
 <div>
-    <a asp-action="List">Back to List</a>
+    <a asp-action="List" class="btn btn-secondary">Back to List</a>
     @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("ArtistUser")))
     {
-        <span> | </span>
-        <a asp-action="Edit" asp-route-id="@Model.Artwork.ArtworkId">Edit</a>
-        <span> | </span>
-        <a asp-action="ConfirmDelete" asp-route-id="@Model.Artwork.ArtworkId">Delete</a>
+        <a asp-action="Edit" asp-route-id="@Model.Artwork.ArtworkId" class="btn btn-warning">Edit</a>
+        <a asp-action="ConfirmDelete" asp-route-id="@Model.Artwork.ArtworkId" class="btn btn-danger">Delete</a>
     }
 </div>
 
