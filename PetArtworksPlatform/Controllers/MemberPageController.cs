@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PetArtworksPlatform.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -109,8 +110,17 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Edit(int id)
         {
-            var member = await _context.Members.FindAsync(id);
+            var member = await _context.Members
+                .Include(m => m.MemberUser)
+                .FirstOrDefaultAsync(m => m.MemberId == id);
+
             if (member == null) return NotFound();
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!User.IsInRole("Admin") && member.UserId != currentUserId)
+            {
+                return Forbid(); 
+            }
 
             var memberDto = new MemberDTO
             {
@@ -133,8 +143,17 @@ namespace PetArtworksPlatform.Controllers
 
             if (!ModelState.IsValid) return View(memberDto);
 
-            var member = await _context.Members.FindAsync(id);
+            var member = await _context.Members
+                .Include(m => m.MemberUser)
+                .FirstOrDefaultAsync(m => m.MemberId == id);
+
             if (member == null) return NotFound();
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!User.IsInRole("Admin") && member.UserId != currentUserId)
+            {
+                return Forbid(); 
+            }
 
             member.MemberName = memberDto.MemberName;
             member.Email = memberDto.Email;
@@ -151,6 +170,7 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var member = await _context.Members
+                .Include(m => m.MemberUser)
                 .Where(m => m.MemberId == id)
                 .Select(m => new MemberDTO
                 {
@@ -160,6 +180,17 @@ namespace PetArtworksPlatform.Controllers
                 .FirstOrDefaultAsync();
 
             if (member == null) return NotFound();
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var memberWithUser = await _context.Members
+                .Include(m => m.MemberUser)
+                .FirstOrDefaultAsync(m => m.MemberId == id);
+
+            if (!User.IsInRole("Admin") && memberWithUser.UserId != currentUserId)
+            {
+                return Forbid(); 
+            }
+
             return View(member);
         }
 
@@ -169,6 +200,7 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var member = await _context.Members
+                .Include(m => m.MemberUser)
                 .Include(m => m.Followers)
                 .Include(m => m.Following)
                 .Include(m => m.PetOwners)
@@ -177,6 +209,12 @@ namespace PetArtworksPlatform.Controllers
             if (member == null)
             {
                 return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!User.IsInRole("Admin") && member.UserId != currentUserId)
+            {
+                return Forbid(); 
             }
 
             var followers = _context.Connections
@@ -240,3 +278,4 @@ namespace PetArtworksPlatform.Controllers
         }
     }
 }
+

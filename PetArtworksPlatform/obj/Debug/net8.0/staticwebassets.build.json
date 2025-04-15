@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bgh9aDOo/Y0Kdk4+S4IuM1bXLkeYGD3c9eASOoYWvv0=",
+  "Hash": "PrSTlRAMhgPt7BRQ+KcA/6pKNoL2sA5Gp3SwMAI8JvU=",
   "Source": "PetArtworksPlatform",
   "BasePath": "_content/PetArtworksPlatform",
   "Mode": "Default",
@@ -1753,8 +1753,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "2r68edr3b8",
-      "Integrity": "0pm8wQZF0mWKDApv6+DNBfPj3gR9441fhsATDKmJCo8=",
+      "Fingerprint": "cnpdz5rkct",
+      "Integrity": "6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\pet\\2.jpg"
@@ -6987,7 +6987,7 @@
       ]
     },
     {
-      "Route": "image/pet/2.2r68edr3b8.jpg",
+      "Route": "image/pet/2.cnpdz5rkct.jpg",
       "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\2.jpg",
       "Selectors": [],
       "ResponseHeaders": [
@@ -6997,7 +6997,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2634"
+          "Value": "4872"
         },
         {
           "Name": "Content-Type",
@@ -7005,11 +7005,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0pm8wQZF0mWKDApv6+DNBfPj3gR9441fhsATDKmJCo8=\""
+          "Value": "\"6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 03:48:47 GMT"
+          "Value": "Tue, 15 Apr 2025 03:43:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7019,7 +7019,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2r68edr3b8"
+          "Value": "cnpdz5rkct"
         },
         {
           "Name": "label",
@@ -7027,7 +7027,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-0pm8wQZF0mWKDApv6+DNBfPj3gR9441fhsATDKmJCo8="
+          "Value": "sha256-6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="
         }
       ]
     },
@@ -7042,7 +7042,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2634"
+          "Value": "4872"
         },
         {
           "Name": "Content-Type",
@@ -7050,11 +7050,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0pm8wQZF0mWKDApv6+DNBfPj3gR9441fhsATDKmJCo8=\""
+          "Value": "\"6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 03:48:47 GMT"
+          "Value": "Tue, 15 Apr 2025 03:43:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7064,7 +7064,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0pm8wQZF0mWKDApv6+DNBfPj3gR9441fhsATDKmJCo8="
+          "Value": "sha256-6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="
         }
       ]
     },
@@ -7091,7 +7091,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 03:52:00 GMT"
+          "Value": "Tue, 15 Apr 2025 03:46:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7128,7 +7128,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 03:52:00 GMT"
+          "Value": "Tue, 15 Apr 2025 03:46:06 GMT"
         },
         {
           "Name": "Cache-Control",

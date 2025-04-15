@@ -5,6 +5,7 @@ using PetArtworksPlatform.Models;
 using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -30,7 +31,7 @@ namespace PetArtworksPlatform.Controllers
         /// </returns>
         /// <response code="200">Returns the member's information</response>
         /// <response code="404">If no member is found with the given ID</response>
-        
+
         [HttpGet("FindMember/{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<MemberDTO>> GetMember(int id)
@@ -208,10 +209,19 @@ namespace PetArtworksPlatform.Controllers
                 return BadRequest("Member ID in the URL does not match the ID in the body.");
             }
 
-            var member = await _context.Members.FindAsync(id);
+            var member = await _context.Members
+                .Include(m => m.MemberUser)
+                .FirstOrDefaultAsync(m => m.MemberId == id);
+
             if (member == null)
             {
                 return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!User.IsInRole("Admin") && member.UserId != currentUserId)
+            {
+                return Forbid(); 
             }
 
             member.MemberName = memberDto.MemberName;
@@ -261,10 +271,19 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> DeleteMember(int id)
         {
-            var member = await _context.Members.FindAsync(id);
+            var member = await _context.Members
+                .Include(m => m.MemberUser)
+                .FirstOrDefaultAsync(m => m.MemberId == id);
+
             if (member == null)
             {
                 return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!User.IsInRole("Admin") && member.UserId != currentUserId)
+            {
+                return Forbid(); 
             }
 
             _context.Members.Remove(member);
@@ -274,3 +293,4 @@ namespace PetArtworksPlatform.Controllers
         }
     }
 }
+

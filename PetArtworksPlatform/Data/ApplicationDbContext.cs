@@ -22,6 +22,10 @@ public class ApplicationDbContext : IdentityDbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Member>()
+            .HasIndex(m => m.Email)
+            .IsUnique();
+
         modelBuilder.Entity<PetOwner>()
             .HasKey(po => new { po.PetId, po.OwnerId });
 
