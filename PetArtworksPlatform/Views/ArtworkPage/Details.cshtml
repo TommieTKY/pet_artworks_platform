@@ -5,7 +5,26 @@
 
 @{
     ViewData["Title"] = "View Artwork";
+    bool isOwner = false;
+    string? currentUserId = null;
+
+    if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin")){
+        isOwner = true;
+    }
+
+    if (SignInManager.IsSignedIn(User) && User.IsInRole("ArtistUser"))
+    {
+        currentUserId = (await UserManager.GetUserAsync(User))?.Id;
+        // if (Model.Artwork?.Artist?.ArtistUser != null)
+        // {
+        //     isOwner = (currentUserId != null && currentUserId == Model.Artwork.Artist.ArtistUser.Id);
+        // }
+    }
+
 }
+<p>User ID: @currentUserId</p>
+<p>ArtworkArtist Artist Id: @Model.Artist.ArtistId</p>
+<p>ArtworkArtist Owner Id: @Model.Artist.ArtistUser?.Id</p>
 
 <h1 style="margin-bottom: 1rem;">@Model.Artwork.ArtworkTitle</h1>
 
@@ -76,7 +95,8 @@
 
 <div>
     <a asp-action="List" class="btn btn-secondary">Back to List</a>
-    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("ArtistUser")))
+    @* @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("ArtistUser"))) *@
+    @if (isOwner)
     {
         <a asp-action="Edit" asp-route-id="@Model.Artwork.ArtworkId" class="btn btn-warning">Edit</a>
         <a asp-action="ConfirmDelete" asp-route-id="@Model.Artwork.ArtworkId" class="btn btn-danger">Delete</a>

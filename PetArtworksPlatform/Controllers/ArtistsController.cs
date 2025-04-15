@@ -73,12 +73,15 @@ namespace PetArtworksPlatform.Controllers
         [HttpGet(template: "FindArtist/{ArtistID}")]
         public async Task<ActionResult<ArtistPersonDto>> FindArtist(int ArtistID)
         {
-            Artist Artist = await _context.Artists.Include(a => a.Artworks).Where(a => a.ArtistID == ArtistID).FirstOrDefaultAsync();
+            Artist Artist = await _context.Artists.Include(a => a.ArtistUser).Include(a => a.Artworks).Where(a => a.ArtistID == ArtistID).FirstOrDefaultAsync();
 
             if (Artist == null)
             {
                 return NotFound();
             }
+
+            // Debugging statements
+            System.Diagnostics.Debug.WriteLine($"ArtistUser: {Artist.ArtistUser?.Id}");
 
             ArtistPersonDto ArtistDto = new ArtistPersonDto();
 

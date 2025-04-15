@@ -39,5 +39,6 @@ namespace PetArtworksPlatform.Models
     {
         public int ArtistId { get; set; }
         public string ArtistName { get; set; }
+        //public IdentityUser? ArtistUser { get; set; }
     }
 }

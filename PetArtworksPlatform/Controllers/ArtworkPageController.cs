@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using PetArtworksPlatform.Models.ViewModels;
+using PetArtworksPlatform.Data;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -17,14 +18,16 @@ namespace PetArtworksPlatform.Controllers
         private readonly ArtistProfileController _artistProfileApi;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ApplicationDbContext _context;
 
-        public ArtworkPageController(ArtworksController artworkApi, ArtistsController artistsApi, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor, ArtistProfileController artistProfileApi)
+        public ArtworkPageController(ArtworksController artworkApi, ArtistsController artistsApi, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor, ArtistProfileController artistProfileApi, ApplicationDbContext context)
         {
             _artworkApi = artworkApi;
             _artistsApi = artistsApi;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
             _artistProfileApi = artistProfileApi;
+            _context = context;
         }
 
         // GET: ArtworkPage/List -> A webpage that shows all artworks in the db
@@ -60,20 +63,25 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var selectedArtwork = (await _artworkApi.FindArtwork(id)).Value;
-
             if (selectedArtwork == null)
             {
                 return NotFound();
             }
 
             var artist = (await _artistsApi.FindArtist(selectedArtwork.ArtistID)).Value;
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            // Debugging statements
+            System.Diagnostics.Debug.WriteLine($"ArtistUser: {artist.ArtistUser?.Id}");
 
             var viewModel = new ViewArtworkDetails
             {
                 Artwork = selectedArtwork,
                 Artist = artist
             };
-
             return View(viewModel);
         }
 
