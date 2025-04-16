@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\PetArtworksPlatform.sqcq273fgv.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\css\\lightbox.min.css",
+      "PackagePath": "staticwebassets\\css\\lightbox.min.css"
+    },
+    {
       "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -65,6 +69,22 @@
       "PackagePath": "staticwebassets\\image\\artwork\\9.jpg"
     },
     {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\lightbox2\\close.png",
+      "PackagePath": "staticwebassets\\image\\lightbox2\\close.png"
+    },
+    {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\lightbox2\\loading.gif",
+      "PackagePath": "staticwebassets\\image\\lightbox2\\loading.gif"
+    },
+    {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\lightbox2\\next.png",
+      "PackagePath": "staticwebassets\\image\\lightbox2\\next.png"
+    },
+    {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\lightbox2\\prev.png",
+      "PackagePath": "staticwebassets\\image\\lightbox2\\prev.png"
+    },
+    {
       "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\1.jpg",
       "PackagePath": "staticwebassets\\image\\pet\\1.jpg"
     },
@@ -115,6 +135,14 @@
     {
       "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\9.jpg",
       "PackagePath": "staticwebassets\\image\\pet\\9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\js\\lightbox-plus-jquery.min.js",
+      "PackagePath": "staticwebassets\\js\\lightbox-plus-jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\js\\lightbox-plus-jquery.min.map",
+      "PackagePath": "staticwebassets\\js\\lightbox-plus-jquery.min.map"
     },
     {
       "Id": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\js\\site.js",

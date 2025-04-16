@@ -1,3 +1,4 @@
+wwwroot\css\lightbox.min.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\image\artwork\1.jpg
@@ -13,6 +14,10 @@ wwwroot\image\artwork\6.jpg
 wwwroot\image\artwork\7.jpg
 wwwroot\image\artwork\8.jpg
 wwwroot\image\artwork\9.jpg
+wwwroot\image\lightbox2\close.png
+wwwroot\image\lightbox2\loading.gif
+wwwroot\image\lightbox2\next.png
+wwwroot\image\lightbox2\prev.png
 wwwroot\image\pet\1.jpg
 wwwroot\image\pet\10.jpg
 wwwroot\image\pet\11.jpg
@@ -26,6 +31,8 @@ wwwroot\image\pet\6.jpg
 wwwroot\image\pet\7.jpg
 wwwroot\image\pet\8.jpg
 wwwroot\image\pet\9.jpg
+wwwroot\js\lightbox-plus-jquery.min.js
+wwwroot\js\lightbox-plus-jquery.min.map
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
