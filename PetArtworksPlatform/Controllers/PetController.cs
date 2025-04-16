@@ -6,6 +6,7 @@ using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
 using PetArtworksPlatform.Models.DTOs;
 using System.Linq;
+using System.Security.Claims;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -183,6 +184,8 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> PutPet(int id, PetDTO petDto)
         {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (id != petDto.PetId)
             {
                 return BadRequest("ID mismatch");
@@ -190,11 +193,23 @@ namespace PetArtworksPlatform.Controllers
 
             var pet = await _context.Pets
                 .Include(p => p.PetOwners)
+                    .ThenInclude(po => po.Owner)
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
             {
                 return NotFound();
+            }
+
+            if (!User.IsInRole("Admin"))
+            {
+                bool isOwner = pet.PetOwners
+                    .Any(po => po.Owner.UserId == currentUserId);
+
+                if (!isOwner)
+                {
+                    return Forbid("You are not authorized to update this pet.");
+                }
             }
 
             pet.Name = petDto.Name;
@@ -231,42 +246,6 @@ namespace PetArtworksPlatform.Controllers
 
             _context.PetOwners.AddRange(newOwners);
 
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        /// <summary>
-        /// Deletes a specific pet from the system
-        /// </summary>
-        /// <param name="id">The ID of the pet to delete</param>
-        /// <example>
-        /// DELETE api/Pet/DeletePet/5
-        /// </example>
-        /// <returns>
-        /// No content if the deletion is successful
-        /// </returns>
-        /// <response code="204">Delete successful</response>
-        /// <response code="404">If pet with given ID is not found</response>
-        [HttpDelete("DeletePet/{id}")]
-        [Authorize(Roles = "Admin, MemberUser")]
-        public async Task<IActionResult> DeletePet(int id)
-        {
-            var pet = await _context.Pets
-                .Include(p => p.PetOwners)
-                .FirstOrDefaultAsync(p => p.PetId == id);
-
-            if (pet == null)
-            {
-                return NotFound();
-            }
-
-            // Delete PetOwner 
-            _context.PetOwners.RemoveRange(pet.PetOwners);
-
-            // Delete Pet
-            _context.Pets.Remove(pet);
             await _context.SaveChangesAsync();
 
             return NoContent();

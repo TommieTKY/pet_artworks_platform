@@ -5,6 +5,7 @@ using PetArtworksPlatform.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using System.Security.Claims;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -258,11 +259,25 @@ namespace PetArtworksPlatform.Controllers
 
             var pet = await _context.Pets
                 .Include(p => p.PetOwners)
+                    .ThenInclude(po => po.Owner)
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
             {
                 return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!User.IsInRole("Admin"))
+            {
+                bool isOwner = pet.PetOwners
+                    .Any(po => po.Owner.UserId == currentUserId);
+
+                if (!isOwner)
+                {
+                    return Forbid(); 
+                }
             }
 
             var petDto = new PetDTO
@@ -296,6 +311,28 @@ namespace PetArtworksPlatform.Controllers
                 return NotFound();
             }
 
+            var pet = await _context.Pets
+                .Include(p => p.PetOwners)
+                    .ThenInclude(po => po.Owner)
+                .FirstOrDefaultAsync(p => p.PetId == id);
+
+            if (pet == null)
+            {
+                return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!User.IsInRole("Admin"))
+            {
+                bool isOwner = pet.PetOwners
+                    .Any(po => po.Owner.UserId == currentUserId);
+                if (!isOwner)
+                {
+                    return Forbid();
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 petDto.OwnerList = await _context.Members
@@ -307,15 +344,6 @@ namespace PetArtworksPlatform.Controllers
                     .ToListAsync();
 
                 return View(petDto);
-            }
-
-            var pet = await _context.Pets
-                .Include(p => p.PetOwners)
-                .FirstOrDefaultAsync(p => p.PetId == id);
-
-            if (pet == null)
-            {
-                return NotFound();
             }
 
             pet.Name = petDto.Name;
@@ -371,11 +399,24 @@ namespace PetArtworksPlatform.Controllers
 
             var pet = await _context.Pets
                 .Include(p => p.PetOwners)
+                    .ThenInclude(po => po.Owner)
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
             {
                 return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!User.IsInRole("Admin"))
+            {
+                bool isOwner = pet.PetOwners
+                    .Any(po => po.Owner.UserId == currentUserId);
+                if (!isOwner)
+                {
+                    return Forbid();
+                }
             }
 
             var petDto = new PetDTO
@@ -399,11 +440,24 @@ namespace PetArtworksPlatform.Controllers
         {
             var pet = await _context.Pets
                 .Include(p => p.PetOwners)
+                    .ThenInclude(po => po.Owner)
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
             {
                 return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!User.IsInRole("Admin"))
+            {
+                bool isOwner = pet.PetOwners
+                    .Any(po => po.Owner.UserId == currentUserId);
+                if (!isOwner)
+                {
+                    return Forbid();
+                }
             }
 
             _context.PetOwners.RemoveRange(pet.PetOwners);

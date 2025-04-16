@@ -923,22 +923,6 @@
   },
   {
     "ContainingType": "PetArtworksPlatform.Controllers.PetController",
-    "Method": "DeletePet",
-    "RelativePath": "api/Pet/DeletePet/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PetArtworksPlatform.Controllers.PetController",
     "Method": "GetPet",
     "RelativePath": "api/Pet/FindPet/{id}",
     "HttpMethod": "GET",
