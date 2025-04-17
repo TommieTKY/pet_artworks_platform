@@ -2319,7 +2319,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2407"
+          "Value": "2403"
         },
         {
           "Name": "Content-Type",
@@ -2327,22 +2327,22 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"lR1xw8JajkqTQLv+Iql1B8l2z4jrSBjWDujFMLE3m6E=\""
+          "Value": "\"/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 16 Apr 2025 20:51:56 GMT"
+          "Value": "Wed, 16 Apr 2025 20:54:29 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-lR1xw8JajkqTQLv+Iql1B8l2z4jrSBjWDujFMLE3m6E="
+          "Value": "sha256-/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4="
         }
       ]
     },
     {
-      "Route": "css/lightbox.min.zy80tinqz2.css",
+      "Route": "css/lightbox.min.qagaldsnmd.css",
       "AssetFile": "css/lightbox.min.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2356,7 +2356,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2407"
+          "Value": "2403"
         },
         {
           "Name": "Content-Type",
@@ -2364,21 +2364,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"lR1xw8JajkqTQLv+Iql1B8l2z4jrSBjWDujFMLE3m6E=\""
+          "Value": "\"/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 16 Apr 2025 20:51:56 GMT"
+          "Value": "Wed, 16 Apr 2025 20:54:29 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "zy80tinqz2"
+          "Value": "qagaldsnmd"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-lR1xw8JajkqTQLv+Iql1B8l2z4jrSBjWDujFMLE3m6E="
+          "Value": "sha256-/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4="
         },
         {
           "Name": "label",

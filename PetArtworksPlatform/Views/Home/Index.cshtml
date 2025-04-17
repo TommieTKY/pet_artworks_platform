@@ -3,6 +3,38 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4 my-5 pb-4">Welcome to Pet Artworks Platform</h1>
+    <div class="row gx-5">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card border-warning mb-3">
+                <div class="card-header">
+                    ArtGallery
+                </div>
+                <div class="card-body ">
+                    <h5 class="card-title my-4">If you are looking for ArtGallery...</h5>
+                    <div class="text-center">
+                        <a class="btn btn-warning btn-lg mx-auto" asp-area="" asp-controller="ArtistPage" asp-action="List">Artist</a>
+                        <a class="btn btn-warning btn-lg mx-4" asp-area="" asp-controller="ArtworkPage" asp-action="List">Artwork</a>
+                        <a class="btn btn-warning btn-lg mx-auto" asp-area="" asp-controller="ExhibitionPage" asp-action="List">Exhibition</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    Pawpals
+                </div>
+                <div class="card-body ">
+                    <h5 class="card-title my-4">If you are looking for Pawpals...</h5>
+                    <div class="text-center">
+                        <a class="btn btn-warning btn-lg mx-auto" asp-area="" asp-controller="MemberPage" asp-action="Index">Member</a>
+                        <a class="btn btn-warning btn-lg mx-4" asp-area="" asp-controller="PetPage" asp-action="List">PetList</a>
+                        <a class="btn btn-warning btn-lg mx-auto" asp-area="" asp-controller="ConnectionPage" asp-action="Index">Connection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

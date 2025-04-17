@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>zy80tinqz2</Fingerprint>
-      <Integrity>lR1xw8JajkqTQLv+Iql1B8l2z4jrSBjWDujFMLE3m6E=</Integrity>
+      <Fingerprint>qagaldsnmd</Fingerprint>
+      <Integrity>/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\lightbox.min.css'))</OriginalItemSpec>

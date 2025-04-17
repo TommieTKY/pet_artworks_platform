@@ -3,14 +3,14 @@
     <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/css/lightbox.min.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\lightbox.min.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-lR1xw8JajkqTQLv\u002BIql1B8l2z4jrSBjWDujFMLE3m6E="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2407"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022lR1xw8JajkqTQLv\u002BIql1B8l2z4jrSBjWDujFMLE3m6E=\u0022"},{"Name":"Last-Modified","Value":"Wed, 16 Apr 2025 20:51:56 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2403"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 16 Apr 2025 20:54:29 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/css/lightbox.min.zy80tinqz2.css">
+    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/css/lightbox.min.qagaldsnmd.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\lightbox.min.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"zy80tinqz2"},{"Name":"integrity","Value":"sha256-lR1xw8JajkqTQLv\u002BIql1B8l2z4jrSBjWDujFMLE3m6E="},{"Name":"label","Value":"_content/PetArtworksPlatform/css/lightbox.min.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2407"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022lR1xw8JajkqTQLv\u002BIql1B8l2z4jrSBjWDujFMLE3m6E=\u0022"},{"Name":"Last-Modified","Value":"Wed, 16 Apr 2025 20:51:56 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"qagaldsnmd"},{"Name":"integrity","Value":"sha256-/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4="},{"Name":"label","Value":"_content/PetArtworksPlatform/css/lightbox.min.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2403"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/oUcfqaA30WTj3WAlVMWJSmLg1zGeK7xtQjjPKU7Bb4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 16 Apr 2025 20:54:29 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
