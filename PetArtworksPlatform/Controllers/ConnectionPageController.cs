@@ -5,6 +5,8 @@ using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using PetArtworksPlatform.Models.ViewModels;
+using PetArtworksPlatform.Models.DTOs;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -29,7 +31,7 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> Index()
         {
             var currentMemberId = await GetCurrentMemberId();
-            if (currentMemberId == null)
+            if (!User.IsInRole("Admin") && currentMemberId == null)
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -51,85 +53,178 @@ namespace PetArtworksPlatform.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            bool isAdmin = User.IsInRole("Admin");
             var currentMemberId = await GetCurrentMemberId();
-            if (currentMemberId == null)
+
+            if (!isAdmin && currentMemberId == null)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var followingIds = await _context.Connections
-                .Where(c => c.FollowerId == currentMemberId)
-                .Select(c => c.FollowingId)
-                .ToListAsync();
+            var viewModel = new ConnectionCreateViewModel
+            {
+                IsAdmin = isAdmin,
+                CurrentMemberId = currentMemberId
+            };
 
-            var availableUsers = await _context.Members
-                .Where(m => m.MemberId != currentMemberId && !followingIds.Contains(m.MemberId))
-                .Select(m => new { m.MemberId, m.MemberName })
-                .ToListAsync();
+            if (isAdmin)
+            {
+                var allMembers = await _context.Members
+                    .Select(m => new BasicMemberDTO
+                    {
+                        MemberId = m.MemberId,
+                        MemberName = m.MemberName
+                    })
+                    .ToListAsync();
 
-            ViewBag.AvailableUsers = availableUsers;
-            return View();
+                viewModel.AllMembers = allMembers;
+
+                if (currentMemberId != null)
+                {
+                    var followingIds = await _context.Connections
+                        .Where(c => c.FollowerId == currentMemberId)
+                        .Select(c => c.FollowingId)
+                        .ToListAsync();
+
+                    var availableUsers = allMembers
+                        .Where(m => m.MemberId != currentMemberId && !followingIds.Contains(m.MemberId))
+                        .ToList();
+
+                    viewModel.AvailableUsers = availableUsers;
+                }
+                else
+                {
+                    viewModel.AvailableUsers = allMembers;
+                }
+            }
+            else
+            {
+                var followingIds = await _context.Connections
+                    .Where(c => c.FollowerId == currentMemberId)
+                    .Select(c => c.FollowingId)
+                    .ToListAsync();
+
+                var availableUsers = await _context.Members
+                    .Where(m => m.MemberId != currentMemberId && !followingIds.Contains(m.MemberId))
+                    .Select(m => new BasicMemberDTO
+                    {
+                        MemberId = m.MemberId,
+                        MemberName = m.MemberName
+                    })
+                    .ToListAsync();
+
+                viewModel.AvailableUsers = availableUsers;
+            }
+
+            return View("Create", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int followingId)
+        public async Task<IActionResult> Create(int followingId, int? followerId = null)
+        {
+            try
+            {
+                bool isAdmin = User.IsInRole("Admin");
+                var currentMemberId = await GetCurrentMemberId();
+
+                if (!isAdmin && currentMemberId == null)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+
+                int actualFollowerId = isAdmin && followerId.HasValue
+                    ? followerId.Value
+                    : currentMemberId.Value;
+
+                if (actualFollowerId == followingId)
+                {
+                    ModelState.AddModelError(string.Empty, "You cannot follow yourself.");
+                    return await LoadAvailableUsersAndReturnView(isAdmin);
+                }
+
+                var targetUser = await _context.Members.FindAsync(followingId);
+                if (targetUser == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Selected user does not exist.");
+                    return await LoadAvailableUsersAndReturnView(isAdmin);
+                }
+
+                var existing = await _context.Connections
+                    .FirstOrDefaultAsync(c => c.FollowerId == actualFollowerId && c.FollowingId == followingId);
+                if (existing != null)
+                {
+                    ModelState.AddModelError(string.Empty, "You are already following this user.");
+                    return await LoadAvailableUsersAndReturnView(isAdmin);
+                }
+
+                var connection = new Connection
+                {
+                    FollowerId = actualFollowerId,
+                    FollowingId = followingId
+                };
+
+                _context.Connections.Add(connection);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Successfully followed user!";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating connection: {ex.Message}");
+                ModelState.AddModelError(string.Empty, $"Error: {ex.Message}");
+                return await LoadAvailableUsersAndReturnView(User.IsInRole("Admin"));
+            }
+        }
+        private async Task<IActionResult> LoadAvailableUsersAndReturnView(bool isAdmin = false)
         {
             var currentMemberId = await GetCurrentMemberId();
-            if (currentMemberId == null)
+
+            var allMembers = await _context.Members
+                .Select(m => new BasicMemberDTO
+                {
+                    MemberId = m.MemberId,
+                    MemberName = m.MemberName
+                })
+                .ToListAsync();
+
+            var availableUsers = isAdmin && currentMemberId == null
+                ? allMembers
+                : allMembers.Where(m => m.MemberId != currentMemberId).ToList();
+
+            if (currentMemberId != null)
             {
-                return RedirectToAction("Login", "Account");
+                var followingIds = await _context.Connections
+                    .Where(c => c.FollowerId == currentMemberId)
+                    .Select(c => c.FollowingId)
+                    .ToListAsync();
+
+                availableUsers = availableUsers
+                    .Where(m => !followingIds.Contains(m.MemberId))
+                    .ToList();
             }
 
-            if (currentMemberId == followingId)
+            var viewModel = new ConnectionCreateViewModel
             {
-                ModelState.AddModelError(string.Empty, "You cannot follow yourself.");
-                return await LoadAvailableUsersAndReturnView();
-            }
-
-            var existingConnection = await _context.Connections
-                .FirstOrDefaultAsync(c => c.FollowerId == currentMemberId &&
-                                        c.FollowingId == followingId);
-
-            if (existingConnection != null)
-            {
-                ModelState.AddModelError(string.Empty, "You are already following this user.");
-                return await LoadAvailableUsersAndReturnView();
-            }
-
-            var newConnection = new Connection
-            {
-                FollowerId = currentMemberId.Value,
-                FollowingId = followingId
+                IsAdmin = isAdmin,
+                CurrentMemberId = currentMemberId,
+                AllMembers = allMembers,
+                AvailableUsers = availableUsers
             };
 
-            _context.Connections.Add(newConnection);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return View("Create", viewModel); 
         }
 
-        private async Task<IActionResult> LoadAvailableUsersAndReturnView()
-        {
-            var currentMemberId = await GetCurrentMemberId();
-            var followingIds = await _context.Connections
-                .Where(c => c.FollowerId == currentMemberId)
-                .Select(c => c.FollowingId)
-                .ToListAsync();
-
-            var availableUsers = await _context.Members
-                .Where(m => m.MemberId != currentMemberId && !followingIds.Contains(m.MemberId))
-                .Select(m => new { m.MemberId, m.MemberName })
-                .ToListAsync();
-
-            ViewBag.AvailableUsers = availableUsers;
-            return View();
-        }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            bool isAdmin = User.IsInRole("Admin");
+            
             var currentMemberId = await GetCurrentMemberId();
-            if (currentMemberId == null)
+
+            if (!isAdmin && currentMemberId == null)
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -156,8 +251,11 @@ namespace PetArtworksPlatform.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            bool isAdmin = User.IsInRole("Admin");
+
             var currentMemberId = await GetCurrentMemberId();
-            if (currentMemberId == null)
+
+            if (!isAdmin && currentMemberId == null)
             {
                 return RedirectToAction("Login", "Account");
             }

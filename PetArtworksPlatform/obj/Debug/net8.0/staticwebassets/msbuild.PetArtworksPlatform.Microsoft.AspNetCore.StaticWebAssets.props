@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>112mxwzpfi</Fingerprint>
-      <Integrity>O5tjynW1rPXtM7ic6v0sB4QvDIoe6Bp5ARp4kVyaer0=</Integrity>
+      <Fingerprint>x7y137c67f</Fingerprint>
+      <Integrity>g/0JLnuX2eXJUb7J2FaauhBN8XaGzI2fWBDLYXIqAkY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
@@ -552,8 +552,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nejxt6ye5u</Fingerprint>
-      <Integrity>gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=</Integrity>
+      <Fingerprint>yrx1cf7vxz</Fingerprint>
+      <Integrity>wkYb2VrvOZO0z6BC2isGhGPsno9rjiwei18SnbtJYmQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\4.jpg'))</OriginalItemSpec>

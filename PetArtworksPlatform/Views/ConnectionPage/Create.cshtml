@@ -1,25 +1,64 @@
-﻿@model PetArtworksPlatform.Models.Connection
+﻿@* @model PetArtworksPlatform.Models.Connection *@
 
-<h2>Create Connection</h2>
-@if (!ViewData.ModelState.IsValid)
+@* @{ *@
+@*     bool isAdmin = ViewBag.IsAdmin ?? false; *@
+@* } *@
+
+@* <h2>Create Connection</h2> *@
+@* @if (!ViewData.ModelState.IsValid) *@
+@*     { *@
+@*         <div class="alert alert-danger"> *@
+@*             @Html.ValidationSummary(false, "", new { @class = "text-danger" }) *@
+@*         </div> *@
+@*     } *@
+@* <br> *@
+@* <form asp-action="Create" method="post"> *@
+@*     @Html.AntiForgeryToken() *@
+@*         @if (isAdmin) *@
+@*         { *@
+@*             <div class="form-group"> *@
+@*                 <label for="followerId">Select User to Follow:</label> *@
+@*                 <select class="form-control" id="followerId" name="followerId" required> *@
+@*                     <option value="">-- Select User --</option> *@
+@*                     @foreach (var user in ViewBag.AvailableUsers) *@
+@*                     { *@
+@*                         <option value="@user.MemberId">@user.MemberName (ID: @user.MemberId)</option> *@
+@*                     } *@
+@*                 </select> *@
+@*             </div> *@
+@*         } *@
+@*     <br> *@
+@*     <button type="submit" class="btn btn-success">Create</button> *@
+@*     <a asp-action="Index" class="btn btn-secondary">Cancel</a> *@
+@* </form> *@
+
+@model PetArtworksPlatform.Models.ViewModels.ConnectionCreateViewModel
+
+<h2>Create New Connection</h2>
+
+<form asp-action="Create" method="post">
+    @if (Model.IsAdmin)
     {
-        <div class="alert alert-danger">
-            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="followerId">Follower (Admin choose on behalf):</label>
+            <select class="form-control" name="followerId">
+                @foreach (var member in Model.AllMembers)
+                {
+                    <option value="@member.MemberId">@member.MemberName</option>
+                }
+            </select>
         </div>
     }
-<br>
-<form asp-action="Create" method="post">
+
     <div class="form-group">
-        <label for="followingId">Select User to Follow:</label>
-        <select class="form-control" id="followingId" name="followingId" required>
-            <option value="">-- Select User --</option>
-            @foreach (var user in ViewBag.AvailableUsers)
+        <label for="followingId">User to Follow:</label>
+        <select class="form-control" name="followingId">
+            @foreach (var user in Model.AvailableUsers)
             {
-                <option value="@user.MemberId">@user.MemberName (ID: @user.MemberId)</option>
+                <option value="@user.MemberId">@user.MemberName</option>
             }
         </select>
     </div>
-    <br>
-    <button type="submit" class="btn btn-success">Create</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+    <button type="submit" class="btn btn-primary">Follow</button>
 </form>
