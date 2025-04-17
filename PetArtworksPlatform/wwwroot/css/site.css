@@ -39,3 +39,9 @@ body {
 .status-future {
     background-color: blue;
 }
+
+
+.lightbox {
+    top: 45% !important;
+    transform: translateY(-50%) !important;
+}

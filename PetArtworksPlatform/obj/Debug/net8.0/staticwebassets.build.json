@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8SQ9/4jnDduByFETPU3mdfCPU9jUXurAYOCa4guFcso=",
+  "Hash": "IrywR5H6+s4U4/pVKidMdJMUA+RiShvML8i4k+MrcSw=",
   "Source": "PetArtworksPlatform",
   "BasePath": "_content/PetArtworksPlatform",
   "Mode": "Default",
@@ -1354,8 +1354,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xwpg8lil2t",
-      "Integrity": "McOIlKc8p7gE4exphJ0RSxp2Si+LgiCeI2JBmccw88M=",
+      "Fingerprint": "112mxwzpfi",
+      "Integrity": "O5tjynW1rPXtM7ic6v0sB4QvDIoe6Bp5ARp4kVyaer0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -3419,6 +3419,51 @@
       ]
     },
     {
+      "Route": "css/site.112mxwzpfi.css",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "813"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"O5tjynW1rPXtM7ic6v0sB4QvDIoe6Bp5ARp4kVyaer0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 20:39:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "112mxwzpfi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-O5tjynW1rPXtM7ic6v0sB4QvDIoe6Bp5ARp4kVyaer0="
+        }
+      ]
+    },
+    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -3429,7 +3474,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "643"
+          "Value": "813"
         },
         {
           "Name": "Content-Type",
@@ -3437,11 +3482,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"McOIlKc8p7gE4exphJ0RSxp2Si+LgiCeI2JBmccw88M=\""
+          "Value": "\"O5tjynW1rPXtM7ic6v0sB4QvDIoe6Bp5ARp4kVyaer0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 15:42:35 GMT"
+          "Value": "Thu, 17 Apr 2025 20:39:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3451,52 +3496,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-McOIlKc8p7gE4exphJ0RSxp2Si+LgiCeI2JBmccw88M="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.xwpg8lil2t.css",
-      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "643"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"McOIlKc8p7gE4exphJ0RSxp2Si+LgiCeI2JBmccw88M=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 15:42:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "xwpg8lil2t"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-McOIlKc8p7gE4exphJ0RSxp2Si+LgiCeI2JBmccw88M="
+          "Value": "sha256-O5tjynW1rPXtM7ic6v0sB4QvDIoe6Bp5ARp4kVyaer0="
         }
       ]
     },
