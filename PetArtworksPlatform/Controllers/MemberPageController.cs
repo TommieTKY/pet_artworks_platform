@@ -22,6 +22,11 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Index()
         {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentMember = await _context.Members
+                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+            ViewBag.CurrentMemberId = currentMember?.MemberId;
+
             var members = await _context.Members
                 .Select(m => new MemberDTO
                 {

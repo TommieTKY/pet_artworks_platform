@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PetArtworksPlatform.Controllers
 {
+    [Authorize(Roles = "Admin, MemberUser")]
     public class ConnectionPageController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,60 +18,139 @@ namespace PetArtworksPlatform.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin, MemberUser")]
+        private async Task<int?> GetCurrentMemberId()
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentMember = await _context.Members
+                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+            return currentMember?.MemberId;
+        }
+
         public async Task<IActionResult> Index()
         {
-            var connections = await _context.Connections
+            var currentMemberId = await GetCurrentMemberId();
+            if (currentMemberId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var query = _context.Connections
                 .Include(c => c.Follower)
                 .Include(c => c.Following)
-                .ToListAsync();
+                .AsQueryable();
 
+            if (!User.IsInRole("Admin"))
+            {
+                query = query.Where(c => c.FollowerId == currentMemberId);
+            }
+
+            var connections = await query.ToListAsync();
             return View(connections);
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin, MemberUser")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            // 获取可关注的用户列表（排除自己和已关注的用户）
+            var currentMemberId = await GetCurrentMemberId();
+            if (currentMemberId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var followingIds = await _context.Connections
+                .Where(c => c.FollowerId == currentMemberId)
+                .Select(c => c.FollowingId)
+                .ToListAsync();
+
+            var availableUsers = await _context.Members
+                .Where(m => m.MemberId != currentMemberId && !followingIds.Contains(m.MemberId))
+                .Select(m => new { m.MemberId, m.MemberName })
+                .ToListAsync();
+
+            ViewBag.AvailableUsers = availableUsers;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin, MemberUser")]
-        public IActionResult Create(Connection connection)
+        public async Task<IActionResult> Create(int followingId)
         {
-            if (ModelState.IsValid)
+            var currentMemberId = await GetCurrentMemberId();
+            if (currentMemberId == null)
             {
-                var existingConnection = _context.Connections
-                    .FirstOrDefault(c => c.FollowerId == connection.FollowerId && c.FollowingId == connection.FollowingId);
-
-                if (existingConnection != null)
-                {
-                    ModelState.AddModelError(string.Empty, "This connection already exists.");
-                    return View(connection);
-                }
-
-                _context.Connections.Add(connection);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login", "Account");
             }
-            return View(connection);
+
+            // 检查是否尝试关注自己
+            if (currentMemberId == followingId)
+            {
+                ModelState.AddModelError(string.Empty, "You cannot follow yourself.");
+                return await LoadAvailableUsersAndReturnView();
+            }
+
+            // 检查是否已关注
+            var existingConnection = await _context.Connections
+                .FirstOrDefaultAsync(c => c.FollowerId == currentMemberId &&
+                                        c.FollowingId == followingId);
+
+            if (existingConnection != null)
+            {
+                ModelState.AddModelError(string.Empty, "You are already following this user.");
+                return await LoadAvailableUsersAndReturnView();
+            }
+
+            // 创建新关注关系
+            var newConnection = new Connection
+            {
+                FollowerId = currentMemberId.Value,
+                FollowingId = followingId
+            };
+
+            _context.Connections.Add(newConnection);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
+        private async Task<IActionResult> LoadAvailableUsersAndReturnView()
+        {
+            var currentMemberId = await GetCurrentMemberId();
+            var followingIds = await _context.Connections
+                .Where(c => c.FollowerId == currentMemberId)
+                .Select(c => c.FollowingId)
+                .ToListAsync();
+
+            var availableUsers = await _context.Members
+                .Where(m => m.MemberId != currentMemberId && !followingIds.Contains(m.MemberId))
+                .Select(m => new { m.MemberId, m.MemberName })
+                .ToListAsync();
+
+            ViewBag.AvailableUsers = availableUsers;
+            return View();
+        }
 
         [HttpGet]
-        [Authorize(Roles = "Admin, MemberUser")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var connection = _context.Connections
+            var currentMemberId = await GetCurrentMemberId();
+            if (currentMemberId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var connection = await _context.Connections
                 .Include(c => c.Follower)
                 .Include(c => c.Following)
-                .FirstOrDefault(c => c.ConnectionId == id);
+                .FirstOrDefaultAsync(c => c.ConnectionId == id);
 
             if (connection == null)
             {
                 return NotFound();
+            }
+
+            if (!User.IsInRole("Admin") && connection.FollowerId != currentMemberId)
+            {
+                return Forbid();
             }
 
             return View(connection);
@@ -77,15 +158,27 @@ namespace PetArtworksPlatform.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin, MemberUser")]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var connection = _context.Connections.Find(id);
-            if (connection != null)
+            var currentMemberId = await GetCurrentMemberId();
+            if (currentMemberId == null)
             {
-                _context.Connections.Remove(connection);
-                _context.SaveChanges();
+                return RedirectToAction("Login", "Account");
             }
+
+            var connection = await _context.Connections.FindAsync(id);
+            if (connection == null)
+            {
+                return NotFound();
+            }
+
+            if (!User.IsInRole("Admin") && connection.FollowerId != currentMemberId)
+            {
+                return Forbid();
+            }
+
+            _context.Connections.Remove(connection);
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
     }

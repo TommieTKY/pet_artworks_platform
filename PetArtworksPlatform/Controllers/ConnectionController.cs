@@ -5,6 +5,7 @@ using PetArtworksPlatform.Models;
 using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -17,6 +18,14 @@ namespace PetArtworksPlatform.Controllers
         public ConnectionController(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        private async Task<int?> GetCurrentMemberId()
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentMember = await _context.Members
+                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+            return currentMember?.MemberId;
         }
 
         /// <summary>
@@ -35,13 +44,22 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<ActionResult> FollowUser(int memberId, int followingId)
         {
-            // Member can not follow themself
+            var currentMemberId = await GetCurrentMemberId();
+            if (currentMemberId == null)
+            {
+                return Unauthorized("User not logged in.");
+            }
+
+            if (!User.IsInRole("Admin") && currentMemberId != memberId)
+            {
+                return Forbid("You can only perform actions on your own account.");
+            }
+
             if (memberId == followingId)
             {
                 return BadRequest("You cannot follow yourself.");
             }
 
-            // Check the connection whether existing
             var existingConnection = await _context.Connections
                 .FirstOrDefaultAsync(c => c.FollowerId == memberId && c.FollowingId == followingId);
 
@@ -50,7 +68,6 @@ namespace PetArtworksPlatform.Controllers
                 return Conflict("You are already following this user.");
             }
 
-            // Create a new connection
             var newConnection = new Connection
             {
                 FollowerId = memberId,
@@ -79,6 +96,17 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> UnfollowUser(int memberId, int followingId)
         {
+            var currentMemberId = await GetCurrentMemberId();
+            if (currentMemberId == null)
+            {
+                return Unauthorized("User not logged in.");
+            }
+
+            if (!User.IsInRole("Admin") && currentMemberId != memberId)
+            {
+                return Forbid("You can only perform actions on your own account.");
+            }
+
             var connection = await _context.Connections
                 .FirstOrDefaultAsync(c => c.FollowerId == memberId && c.FollowingId == followingId);
 
@@ -92,7 +120,5 @@ namespace PetArtworksPlatform.Controllers
 
             return Ok("Unfollowed successfully");
         }
-
-
     }
 }

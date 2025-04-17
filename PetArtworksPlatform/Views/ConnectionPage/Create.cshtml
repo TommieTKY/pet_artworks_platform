@@ -10,13 +10,14 @@
 <br>
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label>Follower ID:</label>
-        <input asp-for="FollowerId" class="form-control" required />
-    </div>
-
-    <div class="form-group">
-        <label>Following ID:</label>
-        <input asp-for="FollowingId" class="form-control" required />
+        <label for="followingId">Select User to Follow:</label>
+        <select class="form-control" id="followingId" name="followingId" required>
+            <option value="">-- Select User --</option>
+            @foreach (var user in ViewBag.AvailableUsers)
+            {
+                <option value="@user.MemberId">@user.MemberName (ID: @user.MemberId)</option>
+            }
+        </select>
     </div>
     <br>
     <button type="submit" class="btn btn-success">Create</button>

@@ -1,5 +1,10 @@
 ﻿@model List<PetArtworksPlatform.Models.DTOs.MemberDTO>
 
+@{
+    ViewData["Title"] = "Index";
+    int? currentMemberId = ViewBag.CurrentMemberId;
+}
+
 <h2 class="text-center">Member List</h2>
 <p>
     <a asp-action="Create" class="btn btn-success">Create New Member</a>
@@ -25,9 +30,12 @@
                 <td>@member.Email</td>
                 <td>@member.Location</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@member.MemberId" class="btn btn-warning">Edit</a>
+                    @if (User.IsInRole("Admin") || (currentMemberId != null && member.MemberId == currentMemberId.Value))
+                    {
+                        <a asp-action="Edit" asp-route-id="@member.MemberId" class="btn btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@member.MemberId" class="btn btn-danger">Delete</a>
+                    }
                     <a asp-action="Details" asp-route-id="@member.MemberId" class="btn btn-info">Details</a>
-                    <a asp-action="Delete" asp-route-id="@member.MemberId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

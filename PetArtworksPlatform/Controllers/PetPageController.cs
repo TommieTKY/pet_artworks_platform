@@ -30,6 +30,11 @@ namespace PetArtworksPlatform.Controllers
 
         public async Task<IActionResult> List()
         {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentMember = await _context.Members
+                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+            ViewBag.CurrentMemberId = currentMember?.MemberId; 
+
             var petDTOs = await _context.Pets
                 .Include(p => p.PetOwners)
                 .Select(p => new PetDTO
