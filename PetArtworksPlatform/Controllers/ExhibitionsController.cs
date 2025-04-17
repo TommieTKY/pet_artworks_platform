@@ -5,6 +5,7 @@ using PetArtworksPlatform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Ganss.Xss;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -15,11 +16,13 @@ namespace PetArtworksPlatform.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public ExhibitionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
+        private IHtmlSanitizer _htmlSanitizer;
+        public ExhibitionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor, IHtmlSanitizer htmlSanitizer)
         {
             _context = context;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
+            _htmlSanitizer = htmlSanitizer;
         }
 
         /// <summary>
@@ -136,7 +139,7 @@ namespace PetArtworksPlatform.Controllers
             }
 
             exhibitionGet.ExhibitionTitle = exhibitionDto.ExhibitionTitle;
-            exhibitionGet.ExhibitionDescription = exhibitionDto.ExhibitionDescription;
+            exhibitionGet.ExhibitionDescription = _htmlSanitizer.Sanitize(exhibitionDto.ExhibitionDescription);
             exhibitionGet.StartDate = exhibitionDto.StartDate;
             exhibitionGet.EndDate = exhibitionDto.EndDate;
 
@@ -185,7 +188,7 @@ namespace PetArtworksPlatform.Controllers
             Exhibition exhibition = new Exhibition
             {
                 ExhibitionTitle = exhibitionDto.ExhibitionTitle,
-                ExhibitionDescription = exhibitionDto.ExhibitionDescription,
+                ExhibitionDescription = _htmlSanitizer.Sanitize(exhibitionDto.ExhibitionDescription),
                 StartDate = exhibitionDto.StartDate,
                 EndDate = exhibitionDto.EndDate
             };

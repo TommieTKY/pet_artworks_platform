@@ -10,25 +10,18 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 ---
 
-## Team Contributions
+## To run this project
 
-- ArtGallery MVP: Kit Ying Tong
-- PawPals MVP: Kexin Sun
-- Setup the database: Kit Ying Tong & Kexin Sun
-- Add artwork feature to pet's detail: Kit Ying Tong & Kexin Sun
-- Add Authorize feature: Kit Ying Tong
+Tools > NuGet Package Manager > Package Manager Console
+`update-database`
 
 ---
 
 ## Roles:
 
 - Admin: manage Pet Artworks Platform system.
-<!-- - GalleryAdmin(gallery@admin.ca): manage Art Gallery system.
-- ArtistUser(tommie@artist.ca, kelly@artist.ca): manage their own profile and artwork. -->
-
-Qqqq@111
-
-PetAdmin(pawpals@admin.ca): manage PawPals system.
+- ArtistUser: manage their profile and artworks.
+- MemberUser: manage their own pets, following and artworks.
 
 ---
 
@@ -55,6 +48,9 @@ PetAdmin(pawpals@admin.ca): manage PawPals system.
 - Authentication: Secure authentication for creating, editing, and deleting content.
 - Artwork Image Management: Upload and display images for artworks.
 - Exhibition Status: View a list of exhibitions with their status (past, ongoing, future)
+- Lightbox2
+- MCE
+- HTML Sanitizer
 
 ## Features - PawPals
 
@@ -195,8 +191,3 @@ PetAdmin(pawpals@admin.ca): manage PawPals system.
 - Bootstrap
 
 ---
-
-## To run this project
-
-Tools > NuGet Package Manager > Package Manager Console
-update-database

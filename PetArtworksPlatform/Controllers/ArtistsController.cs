@@ -7,7 +7,7 @@ using PetArtworksPlatform.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-//using Ganss.Xss;
+using Ganss.Xss;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -18,13 +18,13 @@ namespace PetArtworksPlatform.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        //private IHtmlSanitizer _htmlSanitizer;
-        public ArtistsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
+        private IHtmlSanitizer _htmlSanitizer;
+        public ArtistsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor, IHtmlSanitizer htmlSanitizer)
         {
             _context = context;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
-            //_htmlSanitizer = htmlSanitizer;
+            _htmlSanitizer = htmlSanitizer;
         }
 
         /// <summary>
@@ -128,8 +128,7 @@ namespace PetArtworksPlatform.Controllers
             }
 
             artistGet.ArtistName = artistDto.ArtistName;
-            artistGet.ArtistBiography = artistDto.ArtistBiography;
-            //artistGet.ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography);
+            artistGet.ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography);
 
             _context.Entry(artistGet).State = EntityState.Modified;
 
@@ -151,41 +150,6 @@ namespace PetArtworksPlatform.Controllers
             }
             return NoContent();
         }
-
-        //public async Task<IActionResult> UpdateArtist(int ArtistID, [FromBody] ArtistPersonDto artistDto)
-        //{
-        //    IdentityUser? User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-        //    string currentId = User.Id;
-
-        //    Artist Artist = await _context.Artists
-        //    .Include(a => a.ArtistUser)
-        //    .FirstOrDefaultAsync(a => a.ArtistID == ArtistID);
-
-        //    if (Artist == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    bool isUserAdmin = await _userManager.IsInRoleAsync(User, "Admin");
-
-        //    if ((Artist.ArtistUser?.Id != currentId) && !isUserAdmin)
-        //    {
-        //        return Forbid();
-        //    }
-
-        //    Console.WriteLine(currentId);
-        //    Console.WriteLine(Artist.ArtistUser?.Id);
-
-        //    if (string.IsNullOrWhiteSpace(artistDto.ArtistName) || string.IsNullOrWhiteSpace(artistDto.ArtistBiography))
-        //    {
-        //        return BadRequest(new { message = "Invalid artist data" });
-        //    }
-
-        //    Artist.ArtistName = artistDto.ArtistName;
-        //    Artist.ArtistBiography = artistDto.ArtistBiography;
-
-        //    _context.Entry(Artist).State = EntityState.Modified;
-        //}
 
         /// <summary>
         /// Adds a new artist to the database.
@@ -211,7 +175,7 @@ namespace PetArtworksPlatform.Controllers
             Artist artist = new Artist
             {
                 ArtistName = artistDto.ArtistName,
-                ArtistBiography = artistDto.ArtistBiography
+                ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography)
             };
 
             _context.Artists.Add(artist);

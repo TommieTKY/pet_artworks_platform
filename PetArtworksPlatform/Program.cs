@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Controllers;
 using PetArtworksPlatform.Data;
+using Ganss.Xss;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddEndpointsApiExplorer();
+
+IHtmlSanitizer sanitizer = new HtmlSanitizer();
+builder.Services.AddSingleton<IHtmlSanitizer>(sanitizer);
+
 builder.Services.AddSwaggerGen();
 
 // Register Controller

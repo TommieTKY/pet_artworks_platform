@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetArtworksPlatform.Data;
 using PetArtworksPlatform.Models;
+using Ganss.Xss;
 
 namespace PetArtworksPlatform.Controllers
 {
@@ -15,6 +16,7 @@ namespace PetArtworksPlatform.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private IHtmlSanitizer _htmlSanitizer;
         public ArtistProfileController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
@@ -75,7 +77,7 @@ namespace PetArtworksPlatform.Controllers
             Artist artist = new Artist
             {
                 ArtistName = artistDto.ArtistName,
-                ArtistBiography = artistDto.ArtistBiography,
+                ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography),
                 ArtistUser = User,
 
             };
@@ -113,7 +115,7 @@ namespace PetArtworksPlatform.Controllers
             }
 
             Artist.ArtistName = artistDto.ArtistName;
-            Artist.ArtistBiography = artistDto.ArtistBiography;
+            Artist.ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography);
 
             _context.Entry(Artist).State = EntityState.Modified;
 
