@@ -96,6 +96,42 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pbkiD\u002B21aMainSVZV3om\u002Bm2pJFuc35aXeyWqyTcYKWM="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1903174"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022pbkiD\u002B21aMainSVZV3om\u002Bm2pJFuc35aXeyWqyTcYKWM=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Apr 2025 20:26:09 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/14.cnpdz5rkct.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\14.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"cnpdz5rkct"},{"Name":"integrity","Value":"sha256-6FU8V\u002BEOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="},{"Name":"label","Value":"_content/PetArtworksPlatform/image/artwork/14.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4872"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00226FU8V\u002BEOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 16:27:15 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/14.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\14.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-6FU8V\u002BEOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"4872"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00226FU8V\u002BEOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 16:27:15 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/15.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\15.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-DgaVtBu1EpO908MQ15FAAfv\u002BXXzHy0hiK\u002BAL2TbJCuE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"17964"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022DgaVtBu1EpO908MQ15FAAfv\u002BXXzHy0hiK\u002BAL2TbJCuE=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 16:30:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/15.qei79qdiei.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\15.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"qei79qdiei"},{"Name":"integrity","Value":"sha256-DgaVtBu1EpO908MQ15FAAfv\u002BXXzHy0hiK\u002BAL2TbJCuE="},{"Name":"label","Value":"_content/PetArtworksPlatform/image/artwork/15.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17964"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022DgaVtBu1EpO908MQ15FAAfv\u002BXXzHy0hiK\u002BAL2TbJCuE=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 16:30:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/16.fqkcxikatr.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\16.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"fqkcxikatr"},{"Name":"integrity","Value":"sha256-9/y6PoVOR6QfRIPkL\u002B\u002BfJ7x8KPpmhkqwfApi4Jnf71g="},{"Name":"label","Value":"_content/PetArtworksPlatform/image/artwork/16.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5423"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00229/y6PoVOR6QfRIPkL\u002B\u002BfJ7x8KPpmhkqwfApi4Jnf71g=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 16:32:14 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/16.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\16.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-9/y6PoVOR6QfRIPkL\u002B\u002BfJ7x8KPpmhkqwfApi4Jnf71g="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"5423"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00229/y6PoVOR6QfRIPkL\u002B\u002BfJ7x8KPpmhkqwfApi4Jnf71g=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 16:32:14 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/PetArtworksPlatform/image/artwork/2.2r68edr3b8.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\artwork\2.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

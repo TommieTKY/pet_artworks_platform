@@ -6,6 +6,9 @@ wwwroot\image\artwork\10.jpg
 wwwroot\image\artwork\11.jpg
 wwwroot\image\artwork\12.jpg
 wwwroot\image\artwork\13.jpg
+wwwroot\image\artwork\14.jpg
+wwwroot\image\artwork\15.jpg
+wwwroot\image\artwork\16.jpg
 wwwroot\image\artwork\2.jpg
 wwwroot\image\artwork\3.jpg
 wwwroot\image\artwork\4.jpg

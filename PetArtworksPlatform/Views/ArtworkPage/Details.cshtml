@@ -15,16 +15,12 @@
     if (SignInManager.IsSignedIn(User) && User.IsInRole("ArtistUser"))
     {
         currentUserId = (await UserManager.GetUserAsync(User))?.Id;
-        // if (Model.Artwork?.Artist?.ArtistUser != null)
-        // {
-        //     isOwner = (currentUserId != null && currentUserId == Model.Artwork.Artist.ArtistUser.Id);
-        // }
+        if (Model.Artist.ArtistUser != null)
+        {
+            isOwner = currentUserId == Model.Artist.ArtistUser.Id;
+        }
     }
-
 }
-<p>User ID: @currentUserId</p>
-<p>ArtworkArtist Artist Id: @Model.Artist.ArtistId</p>
-<p>ArtworkArtist Owner Id: @Model.Artist.ArtistUser?.Id</p>
 
 <h1 style="margin-bottom: 1rem;">@Model.Artwork.ArtworkTitle</h1>
 
@@ -57,7 +53,7 @@
                     Artwork Image
                 </dt>
                 <dd class="col-sm-8">
-                    <a data-lightbox="artwork-group" href="@Model.Artwork.ArtworkImagePath" data-title="@Model.Artwork.ArtworkTitle"><img src="@Model.Artwork.ArtworkImagePath" alt="@Model.Artwork.ArtworkTitle" /></a>
+                    <a data-lightbox="artwork-group" href="@Model.Artwork.ArtworkImagePath" data-title="@Model.Artwork.ArtworkTitle"><img src="@Model.Artwork.ArtworkImagePath" alt="@Model.Artwork.ArtworkTitle" style="width:300px; height:auto;" /></a>
                 </dd>
             }
             <dt class="col-sm-4">
@@ -95,7 +91,6 @@
 
 <div>
     <a asp-action="List" class="btn btn-secondary">Back to List</a>
-    @* @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("ArtistUser"))) *@
     @if (isOwner)
     {
         <a asp-action="Edit" asp-route-id="@Model.Artwork.ArtworkId" class="btn btn-warning">Edit</a>

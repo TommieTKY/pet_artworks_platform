@@ -68,19 +68,16 @@ namespace PetArtworksPlatform.Controllers
                 return NotFound();
             }
 
-            var artist = (await _artistsApi.FindArtist(selectedArtwork.ArtistID)).Value;
-            if (artist == null)
+            var artworkArtist = (await _artistsApi.FindArtist(selectedArtwork.ArtistID)).Value;
+            if (artworkArtist == null)
             {
                 return NotFound();
             }
 
-            // Debugging statements
-            System.Diagnostics.Debug.WriteLine($"ArtistUser: {artist.ArtistUser?.Id}");
-
             var viewModel = new ViewArtworkDetails
             {
                 Artwork = selectedArtwork,
-                Artist = artist
+                Artist = artworkArtist
             };
             return View(viewModel);
         }
