@@ -10,15 +10,6 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 ---
 
-## Roles:
-
-- **Admin**: manage Pet Artworks Platform system.
-- **ArtistUser**: manage their profile and artworks.
-- **MemberUser**: manage their own pets, following and artworks.
-- Regular users can view artist, artworks, exhibitions, pet, owner and connection.
-
----
-
 ## Key Features
 
 ### ArtGallery
@@ -76,7 +67,7 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 - **Admin**: Full access to manage the system, including artists, artworks, exhibitions, members, pets and connection.
 - **ArtistUser**: Manage their profile and artworks.
-- **MemberUser**: Manage their pets, followers, and associated artworks.
+- **MemberUser**: Manage their pets, followers, connections and associated artworks.
 - Guest: View artists, artworks, exhibitions, pets, owners, and connections.
 
 ---
@@ -115,5 +106,3 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 ### 2. Tools > NuGet Package Manager > Package Manager Console
 
 `update-database`
-
----
