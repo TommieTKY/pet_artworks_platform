@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,6 +45,10 @@
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ExhibitionsController.cs",
@@ -52,7 +56,7 @@
               "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ExhibitionsController.cs",
               "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ExhibitionsController.cs",
               "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ExhibitionsController.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAAAuwNUAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T19:27:24.727Z",
               "EditorCaption": ""
@@ -67,8 +71,7 @@
               "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtistsController.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAA5wIIAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T19:03:54.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T19:03:54.617Z"
             },
             {
               "$type": "Document",
@@ -80,8 +83,7 @@
               "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ArtistProfileController.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAzwJQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T19:03:35.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T19:03:35.835Z"
             }
           ]
         }

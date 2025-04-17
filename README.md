@@ -10,184 +10,110 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 ---
 
-## To run this project
-
-Tools > NuGet Package Manager > Package Manager Console
-`update-database`
-
----
-
 ## Roles:
 
-- Admin: manage Pet Artworks Platform system.
-- ArtistUser: manage their profile and artworks.
-- MemberUser: manage their own pets, following and artworks.
+- **Admin**: manage Pet Artworks Platform system.
+- **ArtistUser**: manage their profile and artworks.
+- **MemberUser**: manage their own pets, following and artworks.
+- Regular users can view artist, artworks, exhibitions, pet, owner and connection.
 
 ---
 
-## Features - ArtGallery
+## Key Features
 
-• Artists Management: View, find, add, update, and delete artists.
+### ArtGallery
 
-• Artworks Management: View, find, add, update, and delete artworks.
+- **Artists Management**:
 
-• Exhibitions Management: View, find, add, update, and delete exhibitions.
+  - Add, update, delete, and retrieve artist details.
+  - Associate artists with their artworks.
 
-• Artwork-Artist Association: Update the artist from artworks.
+- **Artworks Management**:
 
-• Artwork-Exhibition Association: Add and remove artworks from exhibitions.
+  - Add, update, and delete artworks.
+  - Associate artworks with exhibitions and pets.
 
-• View Artists: View a list of artists with details and associated artists.
+- **Exhibitions Management**:
 
-• View Artworks: View a list of artworks with details and associated artworks.
+  - Create, update, and delete exhibitions.
+  - Add or remove artworks from exhibitions.
+  - View ongoing, past, and future exhibitions.
 
-• View Exhibitions: View a list of exhibitions with details and associated exhibitions..
+- **Interactive Features**:
 
-• Extra features:
+  - Exhibition Status: View exhibitions categorized as past, ongoing, or future.
+  - Lightbox2 for enhanced image viewing.
+  - Rich text editing with TinyMCE.
+  - HTML sanitization for secure input handling.
+
+### PawPals
+
+- **Member Management**:
+  - Add, update, delete, and view member profiles.
+  - Manage followers and following relationships.
+  - View pets owned by members.
+- **Pet Management**:
+  - Add, update, delete, and view pet profiles.
+  - Manage pet owners directly from the pet details page.
+  - Add or remove artworks associated with pets.
+- **Connection Management**:
+  - Add and delete connections between members.
+
+### Core Integration
+
+- **Pet-Related Artworks**:
+  - Explore artworks featuring pets and access detailed pet information.
+  - Add or remove artworks directly from a pet's detail page.
+
+### Extra features:
 
 - Authentication: Secure authentication for creating, editing, and deleting content.
-- Artwork Image Management: Upload and display images for artworks.
-- Exhibition Status: View a list of exhibitions with their status (past, ongoing, future)
-- Lightbox2
-- MCE
-- HTML Sanitizer
+- Image Management: Upload and display images for artworks and pets.
 
-## Features - PawPals
+---
 
-### Member Page
+## Roles and Permissions
 
-- **Index**: Displays a list of all members.
-- **Create**: Adds a new member.
-- **Details**: Shows detailed information about a specific member.
-  - **Profile Information**: Displays member's name, email, bio, and location.
-  - **Followers & Following**: View a list of followers and members being followed.
-  - **Pets**: Displays all pets owned by the member with their details and images.
-- **Edit**: Updates member information.
-- **Delete**: Deletes an existing member after confirmation.
+- **Admin**: Full access to manage the system, including artists, artworks, exhibitions, members, pets and connection.
+- **ArtistUser**: Manage their profile and artworks.
+- **MemberUser**: Manage their pets, followers, and associated artworks.
+- Guest: View artists, artworks, exhibitions, pets, owners, and connections.
 
-### Pet Page
-
-- **List (Index)**: Displays all pets.
-- **Create**: Adds a new pet.
-- **Details**: Shows detailed information about a specific pet.
-  - **Profile Information**: Displays pet's name, id, type, breed, birthday, image, owners, and the related artworks.
-  - **_Artwork Management: Add and remove artworks associated with the pet._**
-  - **Owner Management**: Add, remove, and update pet owners directly from the details page.
-- **Edit**: Updates pet information.
-- **Delete**: Deletes an existing pet after confirmation.
-
-### Connection Page
-
-- **Index**: Displays a list of all connections.
-- **Create**: Adds a new connection.
-- **Delete**: Deletes an existing connection after confirmation.
-
-## Project Structure
-
-• Controllers: Contains API controllers for managing artists, artworks, exhibitions, pet, member and connection.
-
-• Models: Contains data models representing artists, artworks, exhibitions, pet, member and connection.
-
-• Data: Contains the database context and migrations.
-
-• Views: Contains the Razor views for the web pages. These views are used to render the HTML for the web pages.
-
-## API Endpoints
-
-### Artists
-
-• GET /api/Artists/List: Retrieves a list of all artists.
-
-• GET /api/Artists/FindArtist/{ArtistID}: Retrieves details of a specific artist.
-
-• POST /api/Artists/Add: Adds a new artist.
-
-• PUT /api/Artists/Update/{ArtistID}: Updates an existing artist.
-
-• DELETE /api/Artists/Delete/{id}: Deletes an artist.
-
-### Artworks
-
-• GET /api/Artworks/List: Retrieves a list of all artworks.
-
-• GET /api/Artworks/FindArtwork/{ArtworkID}: Retrieves details of a specific artwork.
-
-• POST /api/Artworks/Add: Adds a new artwork.
-
-• PUT /api/Artworks/Update/{ArtworkID}: Updates an existing artwork.
-
-• DELETE /api/Artworks/Delete/{id}: Deletes an artwork.
-
-### Exhibitions
-
-• GET /api/Exhibitions/List: Retrieves a list of all exhibitions.
-
-• GET /api/Exhibitions/FindExhibition/{ExhibitionID}: Retrieves details of a specific exhibition.
-
-• POST /api/Exhibitions/Add: Adds a new exhibition.
-
-• PUT /api/Exhibitions/Update/{ExhibitionID}: Updates an existing exhibition.
-
-• DELETE /api/Exhibitions/Delete/{id}: Deletes an exhibition.
-
-• POST /api/Exhibitions/AddArtwork/{ExhibitionID}: Adds an artwork to an exhibition.
-
-• DELETE /api/Exhibitions/DeleteArtwork/{ExhibitionID}: Removes an artwork from an exhibition.
-
-### Pet
-
-• GET /api/Pet/FindPet/{id}: Retrieves details of a specific pet.
-
-• GET /api/Pet/ListPets: Retrieves a list of all pets.
-
-• POST /api/Pet/AddPet: Adds a new pet.
-
-• PUT /api/Pet/UpdatePet/{id}: Updates an existing pet.
-
-• DELETE /api/Pet/DeletePet/{id}: Deletes a pet.
-
-• GET /api/Pet/Owners/{petId}: Retrieves all owners of a specific pet.
-
-• GET /api/Pet/MemberPets/{memberId}: Retrieves all pets owned by a specific member.
-
-• POST /api/Pet/AddOwner/{petId}/{memberId}: Adds an owner to a pet.
-
-• DELETE /api/Pet/RemoveOwner/{petId}/{memberId}: Removes an owner from a pet.
-
-• POST /api/Pet/UpdatePetImage/{id}: Updates the image of a specific pet.
-
-• **POST /api/Pet/AddArtwork/{petId}: Adds an artwork to a pet.**
-
-• **DELETE /api/Pet/DeleteArtwork/{petId}: Removes an artwork from a pet.**
-
-### Member
-
-• GET /api/Member/FindMember/{id}: Retrieves details of a specific member.
-
-• GET /api/Member/Followers/{memberId}: Retrieves all followers of a specific member.
-
-• GET /api/Member/Following/{memberId}: Retrieves all members that a specific member is following.
-
-• GET /api/Member/ListMembers: Retrieves a list of all members.
-
-• POST /api/Member/AddMember: Adds a new member.
-
-• PUT /api/Member/UpdateMember/{id}: Updates an existing member.
-
-• DELETE /api/Member/DeleteMember/{id}: Deletes a member.
-
-### Connection
-
-• POST /api/Connection/NewFollow/{memberId}/{followingId}: Creates a connection where one member follows another.
-
-• DELETE /api/Connection/Unfollow/{memberId}/{followingId}: Removes a connection where one member follows another.
+---
 
 ## Technologies Used
 
-- .NET 8
-- Blazor
-- ASP.NET Core MVC
-- Entity Framework Core
-- Bootstrap
+- **Frontend**: Blazor (Server-side)
+- **Backend**: ASP.NET Core MVC
+- **Database**: Entity Framework Core with SQL Server
+- **Authentication**: ASP.NET Core Identity
+- **HTML Sanitization**: `Ganss.XSS` library
+- **Styling**: Bootstrap
+- **Target Framework**: .NET 8
+- **Language**: C# 12.0
+
+---
+
+## Prerequisites
+
+- .NET 8 SDK
+- SQL Server
+- Visual Studio (recommended for development)
+- NuGet packages:
+  - `Microsoft.EntityFrameworkCore`
+  - `Microsoft.AspNetCore.Identity`
+  - `Ganss.XSS`
+
+---
+
+## To run this project
+
+### 1. Clone the Repository
+
+`git clone https://github.com/TommieTKY/pet_artworks_platform.git`
+
+### 2. Tools > NuGet Package Manager > Package Manager Console
+
+`update-database`
 
 ---
