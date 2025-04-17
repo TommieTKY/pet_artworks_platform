@@ -51,7 +51,6 @@ namespace PetArtworksPlatform.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            // 获取可关注的用户列表（排除自己和已关注的用户）
             var currentMemberId = await GetCurrentMemberId();
             if (currentMemberId == null)
             {
@@ -82,14 +81,12 @@ namespace PetArtworksPlatform.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            // 检查是否尝试关注自己
             if (currentMemberId == followingId)
             {
                 ModelState.AddModelError(string.Empty, "You cannot follow yourself.");
                 return await LoadAvailableUsersAndReturnView();
             }
 
-            // 检查是否已关注
             var existingConnection = await _context.Connections
                 .FirstOrDefaultAsync(c => c.FollowerId == currentMemberId &&
                                         c.FollowingId == followingId);
@@ -100,7 +97,6 @@ namespace PetArtworksPlatform.Controllers
                 return await LoadAvailableUsersAndReturnView();
             }
 
-            // 创建新关注关系
             var newConnection = new Connection
             {
                 FollowerId = currentMemberId.Value,

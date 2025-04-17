@@ -32,15 +32,6 @@
                             <a class="nav-link text-dark" href="/Swagger/index.html">API</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-warning fw-bolder" asp-area="" asp-controller="ArtistPage" asp-action="List">Artist</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-warning fw-bolder" asp-area="" asp-controller="ArtworkPage" asp-action="List">Artwork</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-warning fw-bolder" asp-area="" asp-controller="ExhibitionPage" asp-action="List">Exhibition</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark fw-bolder" asp-area="" asp-controller="MemberPage" asp-action="Index">Member</a>
                         </li>
                         <li class="nav-item">
@@ -48,6 +39,15 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark fw-bolder" asp-area="" asp-controller="ConnectionPage" asp-action="Index">Connection</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning fw-bolder" asp-area="" asp-controller="ArtistPage" asp-action="List">Artist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning fw-bolder" asp-area="" asp-controller="ArtworkPage" asp-action="List">Artwork</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning fw-bolder" asp-area="" asp-controller="ExhibitionPage" asp-action="List">Exhibition</a>
                         </li>
                         <li class="nav-item" style="display: @(SignInManager.IsSignedIn(User) && User.IsInRole("ArtistUser") ? "block" : "none")">
                             <a class="nav-link text-warning fw-bolder" asp-area="" asp-controller="ArtistProfilePage" asp-action="Details">My Artist Profile</a>

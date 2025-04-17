@@ -24,7 +24,7 @@
                 @Html.DisplayNameFor(model => model.ExhibitionDescription)
             </dt>
             <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.ExhibitionDescription)
+                @Html.Raw(@Model.ExhibitionDescription)
             </dd>
             <dt class="col-sm-4">
                 @Html.DisplayNameFor(model => model.StartDate)

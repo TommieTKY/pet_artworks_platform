@@ -7,7 +7,7 @@
 <h1>New Exhibition</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group mb-4">
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group mb-4">
                 <label asp-for="ExhibitionDescription" class="control-label"></label>
-                <textarea asp-for="ExhibitionDescription" class="form-control" rows="4" cols="50"></textarea>
+                <textarea asp-for="ExhibitionDescription" class="form-control mce" rows="4" cols="50"></textarea>
                 <span asp-validation-for="ExhibitionDescription" class="text-danger"></span>
             </div>
             <div class="form-group mb-4">

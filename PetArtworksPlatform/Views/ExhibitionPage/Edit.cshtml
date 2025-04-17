@@ -7,7 +7,7 @@
 <h1>Edit Exhibition</h1>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <form asp-action="Update" asp-route-id="@Model.Exhibition.ExhibitionId">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Exhibition.ExhibitionId" />
@@ -18,7 +18,7 @@
             </div>
             <div class="form-group mb-4">
                 <label asp-for="Exhibition.ExhibitionDescription" class="control-label"></label>
-                <textarea asp-for="Exhibition.ExhibitionDescription" class="form-control" rows="4" cols="50"></textarea>
+                <textarea asp-for="Exhibition.ExhibitionDescription" class="form-control mce" rows="4" cols="50"></textarea>
                 <span asp-validation-for="Exhibition.ExhibitionDescription" class="text-danger"></span>
             </div>
             <div class="form-group mb-4">
