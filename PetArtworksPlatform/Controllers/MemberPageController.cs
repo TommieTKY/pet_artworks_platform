@@ -86,23 +86,48 @@ namespace PetArtworksPlatform.Controllers
             return View(member);
         }
 
-        public IActionResult Create()
+        [Authorize(Roles = "Admin, MemberUser")]
+        public async Task<IActionResult> Create()
         {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var existingMember = await _context.Members
+                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+
+            if (existingMember != null)
+            {
+                TempData["Error"] = "You already have a member account.";
+                return RedirectToAction(nameof(Index));
+            }
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Create(MemberDTO memberDto)
         {
             if (!ModelState.IsValid) return View(memberDto);
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var existingMember = await _context.Members
+                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+
+            if (existingMember != null)
+            {
+                TempData["Error"] = "You already have a member profile.";
+                return RedirectToAction(nameof(Index));
+            }
 
             var member = new Member
             {
                 MemberName = memberDto.MemberName,
                 Email = memberDto.Email,
                 Bio = memberDto.Bio,
-                Location = memberDto.Location
+                Location = memberDto.Location,
+                UserId = currentUserId 
             };
 
             _context.Members.Add(member);

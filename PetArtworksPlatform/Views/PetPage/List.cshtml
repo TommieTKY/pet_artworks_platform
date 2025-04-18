@@ -57,13 +57,15 @@
                     }
                 </td>
                 <td>
-                    @if (User.IsInRole("Admin") || (currentMemberId != null && item.OwnerIds.Contains(currentMemberId.Value)))
+                    <a asp-action="Details" asp-route-id="@item.PetId" class="btn btn-info">Details</a>
+
+                    @if (User.Identity.IsAuthenticated &&
+                   (User.IsInRole("Admin") || (currentMemberId != null && item.OwnerIds.Contains(currentMemberId.Value))))
                     {
                         <a asp-action="Edit" asp-route-id="@item.PetId" class="btn btn-warning">Edit</a>
                         <a asp-action="Delete" asp-route-id="@item.PetId" class="btn btn-danger">Delete</a>
                     }
-                    <a asp-action="Details" asp-route-id="@item.PetId" class="btn btn-info">Details</a>
-            </td>
+                </td>
         </tr>
 }
     </tbody>

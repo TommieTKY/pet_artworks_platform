@@ -115,7 +115,8 @@ namespace PetArtworksPlatform.Controllers
             }
 
             Artist.ArtistName = artistDto.ArtistName;
-            Artist.ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography);
+            //Artist.ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography);
+            Artist.ArtistBiography = (artistDto.ArtistBiography);
 
             _context.Entry(Artist).State = EntityState.Modified;
 

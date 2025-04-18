@@ -26,6 +26,9 @@ wwwroot\image\pet\10.jpg
 wwwroot\image\pet\11.jpg
 wwwroot\image\pet\12.jpg
 wwwroot\image\pet\13.jpg
+wwwroot\image\pet\15.jpg
+wwwroot\image\pet\16.jpg
+wwwroot\image\pet\17.jpg
 wwwroot\image\pet\2.jpg
 wwwroot\image\pet\3.jpg
 wwwroot\image\pet\4.jpg

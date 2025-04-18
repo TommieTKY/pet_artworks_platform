@@ -113,6 +113,14 @@ namespace PetArtworksPlatform.Controllers
                 }).ToList() ?? new List<ArtworkToListDto>()
             };
 
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentMember = await _context.Members
+                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+
+            ViewBag.CurrentMemberId = currentMember?.MemberId;
+            ViewBag.IsOwner = pet.PetOwners.Any(po => po.Owner.UserId == currentUserId);
+            ViewBag.IsAdmin = User.IsInRole("Admin");
+
             return View(petDetails);
         }
 
@@ -121,8 +129,11 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> UpdateOwners(int petId, List<int> ownerIds)
         {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             var pet = await _context.Pets
                 .Include(p => p.PetOwners)
+                    .ThenInclude(po => po.Owner)
                 .FirstOrDefaultAsync(p => p.PetId == petId);
 
             if (pet == null)
@@ -130,27 +141,44 @@ namespace PetArtworksPlatform.Controllers
                 return NotFound();
             }
 
-            // Update owners
             var existingOwners = pet.PetOwners.ToList();
 
-            // Remove owners that are not in the new list
-            _context.PetOwners.RemoveRange(existingOwners.Where(po => !ownerIds.Contains(po.OwnerId)));
+            if (ownerIds != null && ownerIds.Any())
+            {
+                _context.PetOwners.RemoveRange(existingOwners.Where(po => !ownerIds.Contains(po.OwnerId)));
+            }
 
-            // Add new owners
+            if (!User.IsInRole("Admin"))
+            {
+                var isOwner = pet.PetOwners.Any(po => po.Owner.UserId == currentUserId);
+                if (!isOwner)
+                {
+                    return Forbid();
+                }
+            }
+
             var newOwners = ownerIds?
                 .Where(ownerId => !existingOwners.Any(po => po.OwnerId == ownerId))
                 .Select(ownerId => new PetOwner
                 {
                     PetId = petId,
                     OwnerId = ownerId
-                }).ToList();
+                })
+                .ToList();
 
             if (newOwners != null && newOwners.Any())
             {
                 _context.PetOwners.AddRange(newOwners);
             }
 
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error updating owners: {ex.Message}");
+            }
 
             return RedirectToAction(nameof(Details), new { id = petId });
         }
@@ -158,18 +186,9 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public IActionResult Create()
         {
-            var owners = _context.Members
-                .Select(m => new MemberDTO
-                {
-                    MemberId = m.MemberId,
-                    MemberName = m.MemberName
-                })
-                .ToList();
-
             var petDto = new PetDTO
             {
-                OwnerList = owners,
-                OwnerIds = new List<int>()
+                OwnerIds = new List<int>() 
             };
 
             return View(petDto);
@@ -182,17 +201,6 @@ namespace PetArtworksPlatform.Controllers
         {
             if (ModelState.IsValid)
             {
-                foreach (var ownerId in petDto.OwnerIds)
-                {
-                    var owner = await _context.Members.FindAsync(ownerId);
-                    if (owner == null)
-                    {
-                        ModelState.AddModelError("OwnerIds", $"Owner with ID {ownerId} not found");
-                        petDto.OwnerList = await GetOwnerList();
-                        return View(petDto);
-                    }
-                }
-
                 var pet = new Pet
                 {
                     Name = petDto.Name,
@@ -223,23 +231,22 @@ namespace PetArtworksPlatform.Controllers
                     }
                 }
 
-                // Add owners
-                foreach (var ownerId in petDto.OwnerIds)
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var currentUser = await _context.Members.FirstOrDefaultAsync(m => m.UserId == currentUserId);
+                if (currentUser != null)
                 {
                     var petOwner = new PetOwner
                     {
                         PetId = pet.PetId,
-                        OwnerId = ownerId
+                        OwnerId = currentUser.MemberId
                     };
                     _context.PetOwners.Add(petOwner);
+                    await _context.SaveChangesAsync();
                 }
-
-                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(List));
             }
 
-            petDto.OwnerList = await GetOwnerList();
             return View(petDto);
         }
 
@@ -312,9 +319,7 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> Edit(int id, PetDTO petDto)
         {
             if (id != petDto.PetId)
-            {
                 return NotFound();
-            }
 
             var pet = await _context.Pets
                 .Include(p => p.PetOwners)
@@ -322,32 +327,19 @@ namespace PetArtworksPlatform.Controllers
                 .FirstOrDefaultAsync(p => p.PetId == id);
 
             if (pet == null)
-            {
                 return NotFound();
-            }
 
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             if (!User.IsInRole("Admin"))
             {
-                bool isOwner = pet.PetOwners
-                    .Any(po => po.Owner.UserId == currentUserId);
+                bool isOwner = pet.PetOwners.Any(po => po.Owner.UserId == currentUserId);
                 if (!isOwner)
-                {
                     return Forbid();
-                }
             }
+
 
             if (!ModelState.IsValid)
             {
-                petDto.OwnerList = await _context.Members
-                    .Select(m => new MemberDTO
-                    {
-                        MemberId = m.MemberId,
-                        MemberName = m.MemberName
-                    })
-                    .ToListAsync();
-
                 return View(petDto);
             }
 
@@ -360,17 +352,13 @@ namespace PetArtworksPlatform.Controllers
             {
                 var imageDirectory = Path.Combine("wwwroot", "image", "pet");
                 if (!Directory.Exists(imageDirectory))
-                {
                     Directory.CreateDirectory(imageDirectory);
-                }
 
                 if (pet.HasPic)
                 {
                     string oldFilePath = Path.Combine(imageDirectory, $"{pet.PetId}{pet.PicExtension}");
                     if (System.IO.File.Exists(oldFilePath))
-                    {
                         System.IO.File.Delete(oldFilePath);
-                    }
                 }
 
                 string fileExtension = Path.GetExtension(petDto.PetImage.FileName);
@@ -387,11 +375,11 @@ namespace PetArtworksPlatform.Controllers
             }
 
             _context.Update(pet);
-
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(List));
         }
+
 
         [HttpGet("Delete/{id}")]
         [Authorize(Roles = "Admin, MemberUser")]

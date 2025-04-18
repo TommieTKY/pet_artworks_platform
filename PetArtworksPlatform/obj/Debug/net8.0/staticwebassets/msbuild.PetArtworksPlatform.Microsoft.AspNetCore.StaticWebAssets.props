@@ -462,8 +462,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>skrvgeh5rf</Fingerprint>
-      <Integrity>XPUjHs4h2asEz5+ZwwPSheYDA5U8OCTU+u/50YeL/rw=</Integrity>
+      <Fingerprint>7dc7kirtw9</Fingerprint>
+      <Integrity>pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\11.jpg'))</OriginalItemSpec>
@@ -503,6 +503,60 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\13.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\15.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>PetArtworksPlatform</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/PetArtworksPlatform</BasePath>
+      <RelativePath>image/pet/15.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>7dc7kirtw9</Fingerprint>
+      <Integrity>pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\15.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\16.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>PetArtworksPlatform</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/PetArtworksPlatform</BasePath>
+      <RelativePath>image/pet/16.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>7dc7kirtw9</Fingerprint>
+      <Integrity>pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\16.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\17.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>PetArtworksPlatform</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/PetArtworksPlatform</BasePath>
+      <RelativePath>image/pet/17.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>7dc7kirtw9</Fingerprint>
+      <Integrity>pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\17.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\2.jpg'))">
       <SourceType>Package</SourceType>
@@ -570,8 +624,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>yrx1cf7vxz</Fingerprint>
-      <Integrity>wkYb2VrvOZO0z6BC2isGhGPsno9rjiwei18SnbtJYmQ=</Integrity>
+      <Fingerprint>2r68edr3b8</Fingerprint>
+      <Integrity>0pm8wQZF0mWKDApv6+DNBfPj3gR9441fhsATDKmJCo8=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\5.jpg'))</OriginalItemSpec>
@@ -588,8 +642,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nejxt6ye5u</Fingerprint>
-      <Integrity>gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=</Integrity>
+      <Fingerprint>upwhuyq25v</Fingerprint>
+      <Integrity>HnpDrGEhXD67wTnToFuibIldcn6hNoe8FFcYVLp+nso=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\6.jpg'))</OriginalItemSpec>
@@ -606,8 +660,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7dc7kirtw9</Fingerprint>
-      <Integrity>pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=</Integrity>
+      <Fingerprint>qei79qdiei</Fingerprint>
+      <Integrity>DgaVtBu1EpO908MQ15FAAfv+XXzHy0hiK+AL2TbJCuE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\7.jpg'))</OriginalItemSpec>
@@ -624,8 +678,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nejxt6ye5u</Fingerprint>
-      <Integrity>gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=</Integrity>
+      <Fingerprint>7dc7kirtw9</Fingerprint>
+      <Integrity>pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\8.jpg'))</OriginalItemSpec>
@@ -642,8 +696,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>fqkcxikatr</Fingerprint>
-      <Integrity>9/y6PoVOR6QfRIPkL++fJ7x8KPpmhkqwfApi4Jnf71g=</Integrity>
+      <Fingerprint>nejxt6ye5u</Fingerprint>
+      <Integrity>gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\pet\9.jpg'))</OriginalItemSpec>

@@ -1,38 +1,4 @@
-﻿@* @model PetArtworksPlatform.Models.Connection *@
-
-@* @{ *@
-@*     bool isAdmin = ViewBag.IsAdmin ?? false; *@
-@* } *@
-
-@* <h2>Create Connection</h2> *@
-@* @if (!ViewData.ModelState.IsValid) *@
-@*     { *@
-@*         <div class="alert alert-danger"> *@
-@*             @Html.ValidationSummary(false, "", new { @class = "text-danger" }) *@
-@*         </div> *@
-@*     } *@
-@* <br> *@
-@* <form asp-action="Create" method="post"> *@
-@*     @Html.AntiForgeryToken() *@
-@*         @if (isAdmin) *@
-@*         { *@
-@*             <div class="form-group"> *@
-@*                 <label for="followerId">Select User to Follow:</label> *@
-@*                 <select class="form-control" id="followerId" name="followerId" required> *@
-@*                     <option value="">-- Select User --</option> *@
-@*                     @foreach (var user in ViewBag.AvailableUsers) *@
-@*                     { *@
-@*                         <option value="@user.MemberId">@user.MemberName (ID: @user.MemberId)</option> *@
-@*                     } *@
-@*                 </select> *@
-@*             </div> *@
-@*         } *@
-@*     <br> *@
-@*     <button type="submit" class="btn btn-success">Create</button> *@
-@*     <a asp-action="Index" class="btn btn-secondary">Cancel</a> *@
-@* </form> *@
-
-@model PetArtworksPlatform.Models.ViewModels.ConnectionCreateViewModel
+﻿@model PetArtworksPlatform.Models.ViewModels.ConnectionCreateViewModel
 
 <h2>Create New Connection</h2>
 
