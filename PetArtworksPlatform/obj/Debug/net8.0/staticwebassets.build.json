@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KpiNwfTOc5v2tc7YYTsKbNOAx6roEpIY9qpeULbKN+w=",
+  "Hash": "J2Z8t4XPUghIxEiSwTxA50mjYywuhVzf5AAYRxR0JFE=",
   "Source": "PetArtworksPlatform",
   "BasePath": "_content/PetArtworksPlatform",
   "Mode": "Default",
@@ -1970,6 +1970,27 @@
       "OriginalItemSpec": "wwwroot\\image\\pet\\17.jpg"
     },
     {
+      "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\18.jpg",
+      "SourceId": "PetArtworksPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\",
+      "BasePath": "_content/PetArtworksPlatform",
+      "RelativePath": "image/pet/18#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cnpdz5rkct",
+      "Integrity": "6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\pet\\18.jpg"
+    },
+    {
       "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\2.jpg",
       "SourceId": "PetArtworksPlatform",
       "SourceType": "Discovered",
@@ -1989,6 +2010,111 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\pet\\2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\20.jpg",
+      "SourceId": "PetArtworksPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\",
+      "BasePath": "_content/PetArtworksPlatform",
+      "RelativePath": "image/pet/20#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "nejxt6ye5u",
+      "Integrity": "gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\pet\\20.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\21.jpg",
+      "SourceId": "PetArtworksPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\",
+      "BasePath": "_content/PetArtworksPlatform",
+      "RelativePath": "image/pet/21#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "nejxt6ye5u",
+      "Integrity": "gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\pet\\21.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\23.jpg",
+      "SourceId": "PetArtworksPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\",
+      "BasePath": "_content/PetArtworksPlatform",
+      "RelativePath": "image/pet/23#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7dc7kirtw9",
+      "Integrity": "pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\pet\\23.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\24.jpg",
+      "SourceId": "PetArtworksPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\",
+      "BasePath": "_content/PetArtworksPlatform",
+      "RelativePath": "image/pet/24#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7dc7kirtw9",
+      "Integrity": "pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\pet\\24.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\26.jpg",
+      "SourceId": "PetArtworksPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\",
+      "BasePath": "_content/PetArtworksPlatform",
+      "RelativePath": "image/pet/26#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7dc7kirtw9",
+      "Integrity": "pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\pet\\26.jpg"
     },
     {
       "Identity": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\3.jpg",
@@ -8162,6 +8288,88 @@
       ]
     },
     {
+      "Route": "image/pet/18.cnpdz5rkct.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\18.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4872"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 14:22:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cnpdz5rkct"
+        },
+        {
+          "Name": "label",
+          "Value": "image/pet/18.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/18.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\18.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4872"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 14:22:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="
+        }
+      ]
+    },
+    {
       "Route": "image/pet/2.cnpdz5rkct.jpg",
       "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\2.jpg",
       "Selectors": [],
@@ -8240,6 +8448,416 @@
         {
           "Name": "integrity",
           "Value": "sha256-6FU8V+EOnOLpltLYGEP1Nmh8psXoWKlQWhZ8Uz56QuU="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/20.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\20.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15862"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 14:26:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/20.nejxt6ye5u.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\20.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15862"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 14:26:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "nejxt6ye5u"
+        },
+        {
+          "Name": "label",
+          "Value": "image/pet/20.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/21.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\21.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15862"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 14:27:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/21.nejxt6ye5u.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\21.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15862"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 14:27:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "nejxt6ye5u"
+        },
+        {
+          "Name": "label",
+          "Value": "image/pet/21.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gWq8uNAyrADP9XlQrPwEnzyWdSfaYl7ob5dScBe27CI="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/23.7dc7kirtw9.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\23.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1903174"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 17:15:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7dc7kirtw9"
+        },
+        {
+          "Name": "label",
+          "Value": "image/pet/23.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/23.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\23.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1903174"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 17:15:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/24.7dc7kirtw9.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\24.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1903174"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 17:17:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7dc7kirtw9"
+        },
+        {
+          "Name": "label",
+          "Value": "image/pet/24.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/24.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\24.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1903174"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 17:17:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/26.7dc7kirtw9.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\26.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1903174"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 19:48:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7dc7kirtw9"
+        },
+        {
+          "Name": "label",
+          "Value": "image/pet/26.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
+        }
+      ]
+    },
+    {
+      "Route": "image/pet/26.jpg",
+      "AssetFile": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\wwwroot\\image\\pet\\26.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1903174"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 19:48:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pbkiD+21aMainSVZV3om+m2pJFuc35aXeyWqyTcYKWM="
         }
       ]
     },

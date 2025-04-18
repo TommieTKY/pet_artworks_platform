@@ -29,7 +29,13 @@ wwwroot\image\pet\13.jpg
 wwwroot\image\pet\15.jpg
 wwwroot\image\pet\16.jpg
 wwwroot\image\pet\17.jpg
+wwwroot\image\pet\18.jpg
 wwwroot\image\pet\2.jpg
+wwwroot\image\pet\20.jpg
+wwwroot\image\pet\21.jpg
+wwwroot\image\pet\23.jpg
+wwwroot\image\pet\24.jpg
+wwwroot\image\pet\26.jpg
 wwwroot\image\pet\3.jpg
 wwwroot\image\pet\4.jpg
 wwwroot\image\pet\5.jpg

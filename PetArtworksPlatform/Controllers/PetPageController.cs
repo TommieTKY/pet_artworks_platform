@@ -186,19 +186,43 @@ namespace PetArtworksPlatform.Controllers
         [Authorize(Roles = "Admin, MemberUser")]
         public IActionResult Create()
         {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentMember = _context.Members.FirstOrDefault(m => m.UserId == currentUserId);
+
+
+            if (!User.IsInRole("Admin") && currentMember == null)
+            {
+                TempData["Error"] = "You must create a member profile before creating a pet.";
+                return RedirectToAction("Create", "MemberPage");
+            }
+
+
             var petDto = new PetDTO
             {
-                OwnerIds = new List<int>() 
+                OwnerIds = new List<int>()
             };
+
 
             return View(petDto);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Create(PetDTO petDto)
         {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentMember = await _context.Members.FirstOrDefaultAsync(m => m.UserId == currentUserId);
+
+
+            if (!User.IsInRole("Admin") && currentMember == null)
+            {
+                TempData["Error"] = "You must create a member profile before creating a pet.";
+                return RedirectToAction("Create", "MemberPage");
+            }
+
+
             if (ModelState.IsValid)
             {
                 var pet = new Pet
@@ -211,8 +235,10 @@ namespace PetArtworksPlatform.Controllers
                     PicExtension = petDto.PetImage != null ? Path.GetExtension(petDto.PetImage.FileName) : null
                 };
 
+
                 _context.Add(pet);
                 await _context.SaveChangesAsync();
+
 
                 if (petDto.PetImage != null && petDto.PetImage.Length > 0)
                 {
@@ -222,8 +248,10 @@ namespace PetArtworksPlatform.Controllers
                         Directory.CreateDirectory(imageDirectory);
                     }
 
+
                     string fileName = $"{pet.PetId}{pet.PicExtension}";
                     string filePath = Path.Combine(imageDirectory, fileName);
+
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
@@ -231,24 +259,26 @@ namespace PetArtworksPlatform.Controllers
                     }
                 }
 
-                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var currentUser = await _context.Members.FirstOrDefaultAsync(m => m.UserId == currentUserId);
-                if (currentUser != null)
+
+                if (currentMember != null)
                 {
                     var petOwner = new PetOwner
                     {
                         PetId = pet.PetId,
-                        OwnerId = currentUser.MemberId
+                        OwnerId = currentMember.MemberId
                     };
                     _context.PetOwners.Add(petOwner);
                     await _context.SaveChangesAsync();
                 }
 
+
                 return RedirectToAction(nameof(List));
             }
 
+
             return View(petDto);
         }
+
 
         private async Task<List<MemberDTO>> GetOwnerList()
         {

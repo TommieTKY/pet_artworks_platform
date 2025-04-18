@@ -91,17 +91,24 @@ namespace PetArtworksPlatform.Controllers
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var existingMember = await _context.Members
-                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
 
-            if (existingMember != null)
+            if (!User.IsInRole("Admin"))
             {
-                TempData["Error"] = "You already have a member account.";
-                return RedirectToAction(nameof(Index));
+                var existingMember = await _context.Members
+                    .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+
+
+                if (existingMember != null)
+                {
+                    TempData["Error"] = "You already have a member account.";
+                    return RedirectToAction(nameof(Index));
+                }
             }
+
 
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -110,16 +117,23 @@ namespace PetArtworksPlatform.Controllers
         {
             if (!ModelState.IsValid) return View(memberDto);
 
+
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var existingMember = await _context.Members
-                .FirstOrDefaultAsync(m => m.UserId == currentUserId);
 
-            if (existingMember != null)
+            if (!User.IsInRole("Admin"))
             {
-                TempData["Error"] = "You already have a member profile.";
-                return RedirectToAction(nameof(Index));
+                var existingMember = await _context.Members
+                    .FirstOrDefaultAsync(m => m.UserId == currentUserId);
+
+
+                if (existingMember != null)
+                {
+                    TempData["Error"] = "You already have a member profile.";
+                    return RedirectToAction(nameof(Index));
+                }
             }
+
 
             var member = new Member
             {
@@ -127,15 +141,16 @@ namespace PetArtworksPlatform.Controllers
                 Email = memberDto.Email,
                 Bio = memberDto.Bio,
                 Location = memberDto.Location,
-                UserId = currentUserId 
+                UserId = currentUserId
             };
+
 
             _context.Members.Add(member);
             await _context.SaveChangesAsync();
 
+
             return RedirectToAction(nameof(Index));
         }
-
 
         [Authorize(Roles = "Admin, MemberUser")]
         public async Task<IActionResult> Edit(int id)
