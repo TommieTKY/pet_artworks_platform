@@ -33,22 +33,35 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 - **Interactive Features**:
 
   - Exhibition Status: View exhibitions categorized as past, ongoing, or future.
-  - Lightbox2 for enhanced image viewing.
   - Rich text editing with TinyMCE.
   - HTML sanitization for secure input handling.
 
 ### PawPals
 
 - **Member Management**:
-  - Add, update, delete, and view member profiles.
-  - Manage followers and following relationships.
-  - View pets owned by members.
+
+  - Create, update, view, and delete member profiles.
+  - Manage followers/following relationships.
+  - View all pets owned by a specific member.
+
 - **Pet Management**:
-  - Add, update, delete, and view pet profiles.
-  - Manage pet owners directly from the pet details page.
-  - Add or remove artworks associated with pets.
+
+  - Create, update, view, and delete pet profiles.
+  - Upload and preview pet profile images.
+  - Assign or remove pet owners directly from pet details page.
+  - Link or remove artworks to/from pets.
+
 - **Connection Management**:
-  - Add and delete connections between members.
+
+  - Add, view and delete connections between members.
+  - Use dropdown list to follow members easily.
+
+- **Interactive Features**:
+
+  - **Role-based access**:
+    - `Admin`: Full access across all modules.
+    - `MemberUser`: Manage their own profile, pets, and connections.
+    - `Guest`: Can only view pets, artworks, and details.
 
 ### Core Integration
 
@@ -60,6 +73,7 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 - Authentication: Secure authentication for creating, editing, and deleting content.
 - Image Management: Upload and display images for artworks and pets.
+- Lightbox2 for enhanced image viewing.
 
 ---
 
@@ -67,8 +81,8 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 - **Admin**: Full access to manage the system, including artists, artworks, exhibitions, members, pets and connection.
 - **ArtistUser**: Manage their profile and artworks.
-- **MemberUser**: Manage their pets, followers, connections and associated artworks.
-- Guest: View artists, artworks, exhibitions, pets, owners, and connections.
+- **MemberUser**: Create/manage member, pets, connections; assign owners and associated artworks to their pets.
+- Guest: View artists, artworks, exhibitions, pets and pet details.
 
 ---
 

@@ -17,11 +17,13 @@ namespace PetArtworksPlatform.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private IHtmlSanitizer _htmlSanitizer;
-        public ArtistProfileController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor)
+
+        public ArtistProfileController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor, IHtmlSanitizer htmlSanitizer)
         {
             _context = context;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
+            _htmlSanitizer = htmlSanitizer;
         }
 
         [HttpGet(template: "FindArtist")]
@@ -115,8 +117,8 @@ namespace PetArtworksPlatform.Controllers
             }
 
             Artist.ArtistName = artistDto.ArtistName;
-            //Artist.ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography);
-            Artist.ArtistBiography = (artistDto.ArtistBiography);
+            Artist.ArtistBiography = _htmlSanitizer.Sanitize(artistDto.ArtistBiography);
+            //Artist.ArtistBiography = (artistDto.ArtistBiography);
 
             _context.Entry(Artist).State = EntityState.Modified;
 
