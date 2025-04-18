@@ -4,7 +4,7 @@
 
 Built with ASP.NET Core, the platform provides comprehensive management tools for different domains.
 **ArtGallery** allows guests to explore artworks, artists, and exhibitions, while registered users can manage gallery content.
-**PawPals** enables admins to oversee members and their pets, facilitating connections and CRUD operations. Both applications utilize Entity Framework and MVC architecture for a seamless and user-friendly experience.
+**PawPals** enables admins to oversee members and their pets, facilitating connections and CRUD operations. Guests can preview the platform existing pet list for details. Registerd user have access to create a new member and multiple pets while add owners for their pets. Both applications utilize Entity Framework and MVC architecture for a seamless and user-friendly experience.
 
 The core connection between ArtGallery and PawPals is **pet-related artwork**. Users can explore artworks featuring pets and access detailed pet information associated with each piece. Registered users can also add or remove artworks directly from a pet's detail page, enhancing the interactive experience between art and pet communities.
 
@@ -40,21 +40,36 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 ### PawPals
 
 - **Member Management**:
-  - Add, update, delete, and view member profiles.
-  - Manage followers and following relationships.
-  - View pets owned by members.
+
+  - Create, update, view, and delete member profiles.
+  - Manage followers/following relationships.
+  - View all pets owned by a specific member.
+
 - **Pet Management**:
-  - Add, update, delete, and view pet profiles.
-  - Manage pet owners directly from the pet details page.
-  - Add or remove artworks associated with pets.
+
+  - Create, update, view, and delete pet profiles.
+  - Upload and preview pet profile images.
+  - Assign or remove pet owners directly from pet details page.
+  - Link or remove artworks to/from pets.
+
 - **Connection Management**:
-  - Add and delete connections between members.
+
+  - Add, view and delete connections between members.
+  - Use dropdown list to follow members easily.
+
+- **Interactive Features**:
+
+  - **Role-based access**:
+    - `Admin`: Full access across all modules.
+    - `MemberUser`: Manage their own profile, pets, and connections.
+    - `Guest`: Can only view pets, artworks, and details.
+  - **Lightbox2** integration for enhanced image display.
 
 ### Core Integration
 
 - **Pet-Related Artworks**:
   - Explore artworks featuring pets and access detailed pet information.
-  - Add or remove artworks directly from a pet's detail page.
+  - Members can link or unlink artworks directly from a pet’s detail page.
 
 ### Extra features:
 
@@ -67,8 +82,8 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 - **Admin**: Full access to manage the system, including artists, artworks, exhibitions, members, pets and connection.
 - **ArtistUser**: Manage their profile and artworks.
-- **MemberUser**: Manage their pets, followers, connections and associated artworks.
-- Guest: View artists, artworks, exhibitions, pets, owners, and connections.
+- **MemberUser**: Create/manage member, pets, connections; assign owners and associated artworks to their pets.
+- Guest: View artists, artworks, exhibitions, pets and pet details.
 
 ---
 
