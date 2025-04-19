@@ -199,7 +199,9 @@ namespace PetArtworksPlatform.Controllers
 
             var petDto = new PetDTO
             {
-                OwnerIds = new List<int>()
+                OwnerIds = User.IsInRole("Admin") && currentMember != null
+                    ? new List<int> { currentMember.MemberId }
+                    : new List<int>()
             };
 
 
@@ -215,13 +217,11 @@ namespace PetArtworksPlatform.Controllers
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var currentMember = await _context.Members.FirstOrDefaultAsync(m => m.UserId == currentUserId);
 
-
             if (!User.IsInRole("Admin") && currentMember == null)
             {
                 TempData["Error"] = "You must create a member profile before creating a pet.";
                 return RedirectToAction("Create", "MemberPage");
             }
-
 
             if (ModelState.IsValid)
             {
@@ -235,10 +235,8 @@ namespace PetArtworksPlatform.Controllers
                     PicExtension = petDto.PetImage != null ? Path.GetExtension(petDto.PetImage.FileName) : null
                 };
 
-
                 _context.Add(pet);
                 await _context.SaveChangesAsync();
-
 
                 if (petDto.PetImage != null && petDto.PetImage.Length > 0)
                 {
@@ -248,17 +246,14 @@ namespace PetArtworksPlatform.Controllers
                         Directory.CreateDirectory(imageDirectory);
                     }
 
-
                     string fileName = $"{pet.PetId}{pet.PicExtension}";
                     string filePath = Path.Combine(imageDirectory, fileName);
-
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await petDto.PetImage.CopyToAsync(stream);
                     }
                 }
-
 
                 if (currentMember != null)
                 {
@@ -268,13 +263,11 @@ namespace PetArtworksPlatform.Controllers
                         OwnerId = currentMember.MemberId
                     };
                     _context.PetOwners.Add(petOwner);
-                    await _context.SaveChangesAsync();
                 }
 
-
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(List));
             }
-
 
             return View(petDto);
         }

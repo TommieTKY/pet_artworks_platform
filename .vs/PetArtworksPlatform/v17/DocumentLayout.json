@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\views\\petpage\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\views\\petpage\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\connectionpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\controllers\\connectionpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\petpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\controllers\\petpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetUsers.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetUserRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.Members.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\views\\petpage\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|solutionrelative:petartworksplatform\\views\\petpage\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65750248-6F4F-4DFE-BA42-A468EFA38089}|PetArtworksPlatform\\PetArtworksPlatform.csproj|c:\\users\\tongk\\onedrive - humber polytechnic\\http5226_back-end\\pet_artworks_platform_git\\petartworksplatform\\controllers\\memberpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,27 +67,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "List.cshtml",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\PetPage\\List.cshtml",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Views\\PetPage\\List.cshtml",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\PetPage\\List.cshtml",
-              "RelativeToolTip": "PetArtworksPlatform\\Views\\PetPage\\List.cshtml",
-              "ViewState": "AgIAAAkAAAAAMzMzM/MmwB0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-18T19:49:09.165Z",
+              "Title": "ConnectionPageController.cs",
+              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ConnectionPageController.cs",
+              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\ConnectionPageController.cs",
+              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\ConnectionPageController.cs",
+              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\ConnectionPageController.cs",
+              "ViewState": "AgIAAOwAAAAAAAAAAAAcwBkBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T00:14:55.311Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "dbo.AspNetRoles.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetRoles.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetRoles.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-18T20:24:16.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "dbo.AspNetUsers.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetUsers.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetUsers.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-18T20:14:11.226Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MemberPageController.cs",
-              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\MemberPageController.cs",
-              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\MemberPageController.cs",
-              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\MemberPageController.cs",
-              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\MemberPageController.cs",
-              "ViewState": "AgIAAHwAAAAAaGZmZuYhwJkAAAAAAAAAAAAAAA==",
+              "Title": "Member.cs",
+              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Models\\Member.cs",
+              "RelativeDocumentMoniker": "PetArtworksPlatform\\Models\\Member.cs",
+              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Models\\Member.cs",
+              "RelativeToolTip": "PetArtworksPlatform\\Models\\Member.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T19:42:27.156Z",
+              "WhenOpened": "2025-04-18T20:16:34.653Z",
               "EditorCaption": ""
             },
             {
@@ -78,10 +116,52 @@
               "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\PetPageController.cs",
               "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\PetPageController.cs",
               "RelativeToolTip": "PetArtworksPlatform\\Controllers\\PetPageController.cs",
-              "ViewState": "AgIAAMQAAAAA/P/////xv9EAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAPAAAACAjpmZmZkrwAkBAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-18T19:38:45.228Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "dbo.AspNetUserRoles.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetUserRoles.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.AspNetUserRoles.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-18T20:22:40.551Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "dbo.Members.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.Members.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/PetArtworksPlatform_v4/True/SqlTable/dbo.Members.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-18T20:13:35.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "List.cshtml",
+              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\PetPage\\List.cshtml",
+              "RelativeDocumentMoniker": "PetArtworksPlatform\\Views\\PetPage\\List.cshtml",
+              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Views\\PetPage\\List.cshtml",
+              "RelativeToolTip": "PetArtworksPlatform\\Views\\PetPage\\List.cshtml",
+              "ViewState": "AgIAAAkAAAAAMzMzM/MmwB0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-18T19:49:09.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MemberPageController.cs",
+              "DocumentMoniker": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\MemberPageController.cs",
+              "RelativeDocumentMoniker": "PetArtworksPlatform\\Controllers\\MemberPageController.cs",
+              "ToolTip": "C:\\Users\\tongk\\OneDrive - Humber Polytechnic\\http5226_Back-End\\pet_artworks_platform_git\\PetArtworksPlatform\\Controllers\\MemberPageController.cs",
+              "RelativeToolTip": "PetArtworksPlatform\\Controllers\\MemberPageController.cs",
+              "ViewState": "AgIAAHwAAAAAaGZmZuYhwJkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T19:42:27.156Z"
             }
           ]
         }

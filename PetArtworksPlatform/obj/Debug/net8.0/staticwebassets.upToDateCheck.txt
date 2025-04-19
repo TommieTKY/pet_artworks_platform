@@ -36,7 +36,14 @@ wwwroot\image\pet\21.jpg
 wwwroot\image\pet\23.jpg
 wwwroot\image\pet\24.jpg
 wwwroot\image\pet\26.jpg
+wwwroot\image\pet\29.jpg
 wwwroot\image\pet\3.jpg
+wwwroot\image\pet\31.jpg
+wwwroot\image\pet\32.jpg
+wwwroot\image\pet\33.jpg
+wwwroot\image\pet\34.jpg
+wwwroot\image\pet\35.jpg
+wwwroot\image\pet\36.jpg
 wwwroot\image\pet\4.jpg
 wwwroot\image\pet\5.jpg
 wwwroot\image\pet\6.jpg

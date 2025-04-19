@@ -33,7 +33,8 @@ namespace PetArtworksPlatform.Controllers
             var currentMemberId = await GetCurrentMemberId();
             if (!User.IsInRole("Admin") && currentMemberId == null)
             {
-                return RedirectToAction("Login", "Account");
+                TempData["Error"] = "You must create a member profile before accessing connections.";
+                return RedirectToAction("Create", "MemberPage");
             }
 
             var query = _context.Connections
@@ -58,7 +59,8 @@ namespace PetArtworksPlatform.Controllers
 
             if (!isAdmin && currentMemberId == null)
             {
-                return RedirectToAction("Login", "Account");
+                TempData["Error"] = "You must create a member profile before creating connections.";
+                return RedirectToAction("Create", "MemberPage");
             }
 
             var viewModel = new ConnectionCreateViewModel
@@ -130,7 +132,8 @@ namespace PetArtworksPlatform.Controllers
 
                 if (!isAdmin && currentMemberId == null)
                 {
-                    return RedirectToAction("Login", "Account");
+                    TempData["Error"] = "You must create a member profile before creating connections.";
+                    return RedirectToAction("Create", "MemberPage");
                 }
 
                 int actualFollowerId = isAdmin && followerId.HasValue
@@ -213,7 +216,7 @@ namespace PetArtworksPlatform.Controllers
                 AvailableUsers = availableUsers
             };
 
-            return View("Create", viewModel); 
+            return View("Create", viewModel);
         }
 
 
@@ -221,7 +224,7 @@ namespace PetArtworksPlatform.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             bool isAdmin = User.IsInRole("Admin");
-            
+
             var currentMemberId = await GetCurrentMemberId();
 
             if (!isAdmin && currentMemberId == null)
