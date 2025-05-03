@@ -143,4 +143,4 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 ![Artist Page Interface](/image/artist.jpeg)
 ![Artwork Page Interface](/image/artwork.jpeg)
-![Exhibition Page Interface](/image/exhition.jpeg)
+![Exhibition Page Interface](/image/exhibition.jpeg)
