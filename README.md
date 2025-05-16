@@ -127,20 +127,20 @@ The core connection between ArtGallery and PawPals is **pet-related artwork**. U
 
 ### Home page
 
-![Home Page Interface](/image/home.jpeg)
+![Home Page Interface](./image/home.jpeg)
 
 ---
 
 ### Pawpals
 
-![Pet Page Interface](/image/pet.jpeg)
-![Member Page Interface](/image/member.jpeg)
-![Connection Page Interface](/image/connection.jpeg)
+![Pet Page Interface](./image/pet.jpeg)
+![Member Page Interface](./image/member.jpeg)
+![Connection Page Interface](./image/connection.jpeg)
 
 ---
 
 ### Art Gallery
 
-![Artist Page Interface](/image/artist.jpeg)
-![Artwork Page Interface](/image/artwork.jpeg)
-![Exhibition Page Interface](/image/exhibition.jpeg)
+![Artist Page Interface](./image/artist.jpeg)
+![Artwork Page Interface](./image/artwork.jpeg)
+![Exhibition Page Interface](./image/exhibition.jpeg)
